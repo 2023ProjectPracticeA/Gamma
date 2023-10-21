@@ -106,6 +106,7 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    * @return 平均値
    */
+  // \[ \frac{1}{n} \sum_{i=1}^{n} numbers_i \]
   public static double calcAve(double[] numbers) {
     // 合計値を格納する変数
     double sum = 0;
@@ -123,6 +124,7 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    * @return 最大値
    */
+  // \[ \max_{i=1}^{n} numbers_i \]
   public static double calcMax(double[] numbers) {
     // 最大値を格納する変数
     double max = numbers[0];
@@ -142,6 +144,7 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    * @return 最小値
    */
+  // \[ \min_{i=1}^{n} numbers_i \]
   public static double calcMin(double[] numbers) {
     // 最小値を格納する変数
     double min = numbers[0];
@@ -161,6 +164,7 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    * @return 標準偏差
    */
+  // \[ \sqrt{\frac{1}{n} \sum_{i=1}^{n} (numbers_i - \bar{numbers})^2} \]
   public static double calcStd(double[] numbers) {
     // 各要素の偏差の 2 乗の合計値を格納する変数
     double sum = 0;
