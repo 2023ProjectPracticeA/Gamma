@@ -14,6 +14,17 @@ import java.io.InputStreamReader;
  */ 
 
  public class ProgG12Stat2 {
+
+    // 文字列を表示する
+    public static void print(String message) {
+        System.out.print(message);
+    }
+
+    // 文字列を表示して改行する
+    public static void println(String message) {
+        System.out.println(message);
+    }
+
     public static void main(String[] args) throws IOException {
         // デフォルトのデータ個数
         int defaultCount = 5;
@@ -28,24 +39,24 @@ import java.io.InputStreamReader;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         // 統計のタイトルの入力
-        System.out.println("統計のタイトルを入力してください：");
-        System.out.print(">> ");
+        println("統計のタイトルを入力してください：");
+        print(">> ");
         title = reader.readLine();
 
         // データ個数の入力受付
-        System.out.println("データ個数を入力して下さい．");
-        System.out.print(">> ");
+        println("データ個数を入力して下さい．");
+        print(">> ");
 
         // 入力されたデータ個数の入力とエラーハンドリング
         try {
             count = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("!!!入力値が不正です．データ個数を「5」にします．");
+            println("!!!入力値が不正です．データ個数を「5」にします．");
         }
 
         // データ個数が 1 未満の場合のエラーハンドリング
         if (count < 1) {
-            System.out.println("!!!入力値が不正です．データ個数を「5」にします．");
+            println("!!!入力値が不正です．データ個数を「5」にします．");
             count = defaultCount;
         }
 
@@ -55,10 +66,10 @@ import java.io.InputStreamReader;
         // 数値の入力
         for (int i = 0; i < count; i++) {
             try {
-                System.out.print(i + 1 + "つ目のデータ >> ");
+                print(i + 1 + "つ目のデータ >> ");
                 numbers[i] = Double.parseDouble(reader.readLine());
             } catch (NumberFormatException e) {
-                System.out.println("!!!入力値が不正です． データ値を「0」にします．");
+                println("!!!入力値が不正です． データ値を「0」にします．");
                 numbers[i] = 0.0;
             }
         }
@@ -127,10 +138,10 @@ import java.io.InputStreamReader;
 
     // 統計データの表示
     public static void disp(String title, double average, double max, double min, double std) {
-        System.out.println("***** " + title + " *****");
-        System.out.println("最大値 = " + max);
-        System.out.println("最小値 = " + min);
-        System.out.println("平均 = " + average);
-        System.out.println("標準偏差 = " + std);
+        println("***** " + title + " *****");
+        println("最大値 = " + max);
+        println("最小値 = " + min);
+        println("平均 = " + average);
+        println("標準偏差 = " + std);
     }
 }
