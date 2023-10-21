@@ -1,9 +1,7 @@
 package step4_G1;
 
 // 入出力の関連パッケージをインポート
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /*
  * 課題番号      ： 第5回 演習問題G1-2
@@ -25,7 +23,7 @@ public class ProgG12Stat2 {
     System.out.println(message);
   }
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) {
     // デフォルトのデータ個数
     int defaultCount = 5;
 
@@ -35,26 +33,32 @@ public class ProgG12Stat2 {
     // 統計のタイトルの初期値
     String title = "入力データの統計量";
 
-    // ユーザからの入力を受け取るためのオブジェクト
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    // ユーザーからの入力を受け取るためのオブジェクト
+    Scanner scanner = new Scanner(System.in);
 
-    // 統計のタイトルの入力
+    // 統計のタイトルを尋ねる
     println("統計のタイトルを入力してください：");
     print(">> ");
-    title = reader.readLine();
 
-    // データ個数の入力受付
+    // 統計のタイトルを格納
+    title = scanner.nextLine();
+
+    // データ数を尋ねる
     println("データ個数を入力して下さい．");
     print(">> ");
 
-    // 入力されたデータ個数の入力とエラーハンドリング
-    try {
-      count = Integer.parseInt(reader.readLine());
-    } catch (NumberFormatException e) {
+    // 入力が整数であるかを確認し、それに応じて処理する
+    if (scanner.hasNextInt()) {
+      // 整数値を格納
+      count = scanner.nextInt();
+    } else {
       println("!!!入力値が不正です．データ個数を「5」にします．");
+
+      // 不正な入力をスキップ
+      scanner.next(); 
     }
 
-    // データ個数が 1 未満の場合のエラーハンドリング
+    // 入力されたデータ数が正であるかを確認
     if (count < 1) {
       println("!!!入力値が不正です．データ個数を「5」にします．");
       count = defaultCount;
@@ -63,17 +67,27 @@ public class ProgG12Stat2 {
     // 入力されるデータを格納する配列
     double[] numbers = new double[count];
 
-    // 数値の入力
+    // 指定された数のデータを入力として受け取る
     for (int i = 0; i < count; i++) {
-      try {
-        print(i + 1 + "つ目のデータ >> ");
-        numbers[i] = Double.parseDouble(reader.readLine());
-      } catch (NumberFormatException e) {
+      print(i + 1 + "つ目のデータ >> ");
+
+      // 入力が浮動小数点数であるかを確認し、それに応じて処理する
+      if (scanner.hasNextDouble()) {
+        // 浮動小数点数を格納
+        numbers[i] = scanner.nextDouble();
+      } else {
         println("!!!入力値が不正です． データ値を「0」にします．");
         numbers[i] = 0.0;
+
+        // 不正な入力をスキップ
+        scanner.next();
       }
     }
 
+    // Scanner オブジェクトを閉じてリソースを解放
+    scanner.close();
+
+    // 統計データを表示
     disp(title, calcAve(numbers), calcMax(numbers), calcMin(numbers), calcStd(numbers));
   }
 
