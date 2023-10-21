@@ -124,7 +124,7 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    * @return 最大値
    */
-  // \[ \max_{i=1}^{n} numbers_i \]
+  // \[ \max numbers_i \]
   public static double calcMax(double[] numbers) {
     // 最大値を格納する変数
     double max = numbers[0];
@@ -144,7 +144,7 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    * @return 最小値
    */
-  // \[ \min_{i=1}^{n} numbers_i \]
+  // \[ \min numbers_i \]
   public static double calcMin(double[] numbers) {
     // 最小値を格納する変数
     double min = numbers[0];

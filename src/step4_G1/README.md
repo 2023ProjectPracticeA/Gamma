@@ -111,7 +111,9 @@ calcAve メソッドは、引数に指定した数値の平均値を計算しま
 
 ## 式
 
-\[ \frac{1}{n} \sum_{i=1}^{n} numbers_i \]
+$$
+\frac{1}{n} \sum_{i=1}^{n} numbers_i
+$$
 
 ## 引数
 
@@ -151,7 +153,9 @@ calcMax メソッドは、引数に指定した数値の最大値を計算しま
 
 ## 式
 
-\[ \max_{i=1}^{n} numbers_i \]
+$$
+\max numbers_i
+$$
 
 ## 引数
 
@@ -191,7 +195,9 @@ calcMin メソッドは、引数に指定した数値の最小値を計算しま
 
 ## 式
 
-\[ \min_{i=1}^{n} numbers_i \]
+$$
+\min numbers_i
+$$
 
 ## 引数
 
@@ -231,7 +237,9 @@ calcStd メソッドは、引数に指定した数値の標準偏差を計算し
 
 ## 式
 
-\[ \sqrt{\frac{1}{n} \sum_{i=1}^{n} (numbers_i - \bar{numbers})^2} \]
+$$
+\sqrt{\frac{1}{n} \sum_{i=1}^{n} (numbers_i - \bar{numbers})^2}
+$$
 
 ## 引数
 
