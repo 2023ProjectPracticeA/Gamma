@@ -96,8 +96,8 @@ public class ProgG12Stat2 {
     // 合計値を格納する変数
     double sum = 0;
 
-    for (double num : numbers) {
-      sum += num;
+    for (double number : numbers) {
+      sum += number;
     }
 
     return sum / numbers.length;
@@ -108,9 +108,9 @@ public class ProgG12Stat2 {
     // 最大値を格納する変数
     double max = numbers[0];
 
-    for (double num : numbers) {
-      if (num > max) {
-        max = num;
+    for (double number : numbers) {
+      if (number > max) {
+        max = number;
       }
     }
 
