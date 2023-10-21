@@ -98,7 +98,7 @@ public class ProgG12Stat2 {
     scanner.close();
 
     // 統計データを表示
-    disp(title, calcAve(numbers), calcMax(numbers), calcMin(numbers), calcStd(numbers));
+    disp(title, numbers);
   }
 
   /**
@@ -187,12 +187,14 @@ public class ProgG12Stat2 {
   /**
    * 統計データの表示
    * @param title 統計のタイトル
-   * @param average 平均値
-   * @param max 最大値
-   * @param min 最小値
-   * @param std 標準偏差
+   * @param numbers 入力されたデータ
    */
-  public static void disp(String title, double average, double max, double min, double std) {
+  public static void disp(String title, double[] numbers) {
+    double average = calcAve(numbers);
+    double max = calcMax(numbers);
+    double min = calcMin(numbers);
+    double std = calcStd(numbers);
+
     println("***** " + title + " *****");
     println("最大値 = " + max);
     println("最小値 = " + min);
