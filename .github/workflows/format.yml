@@ -1,6 +1,9 @@
 name: Java Code Formatter
 
 on:
+  push:
+    paths:
+      - '**.java'
   pull_request:
     paths:
       - '**.java'
