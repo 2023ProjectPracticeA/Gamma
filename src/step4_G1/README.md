@@ -154,7 +154,7 @@ calcMax メソッドは、引数に指定した数値の最大値を計算しま
 ## 式
 
 $$
-\max numbers_i
+\max numbers
 $$
 
 ## 引数
@@ -196,7 +196,7 @@ calcMin メソッドは、引数に指定した数値の最小値を計算しま
 ## 式
 
 $$
-\min numbers_i
+\min numbers
 $$
 
 ## 引数
