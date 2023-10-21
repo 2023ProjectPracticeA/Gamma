@@ -13,16 +13,26 @@ import java.util.Scanner;
 
 public class ProgG12Stat2 {
 
-  // 文字列を表示する
+  /**
+   * 文字列を表示する
+   * @param message 表示する文字列
+   */
   public static void print(String message) {
     System.out.print(message);
   }
 
-  // 文字列を表示して改行する
+  /**
+   * 文字列を表示して改行する
+   * @param message 表示する文字列
+   */
   public static void println(String message) {
     System.out.println(message);
   }
 
+  /**
+   * エントリーポイント
+   * @param args コマンドライン引数
+   */
   public static void main(String[] args) {
     // デフォルトのデータ個数
     int defaultCount = 5;
@@ -91,7 +101,11 @@ public class ProgG12Stat2 {
     disp(title, calcAve(numbers), calcMax(numbers), calcMin(numbers), calcStd(numbers));
   }
 
-  // 統計データの表示
+  /**
+   * 平均値の計算
+   * @param numbers 入力されたデータ
+   * @return 平均値
+   */
   public static double calcAve(double[] numbers) {
     // 合計値を格納する変数
     double sum = 0;
@@ -104,7 +118,11 @@ public class ProgG12Stat2 {
     return sum / numbers.length;
   }
 
-  // 最大値の計算
+  /**
+   * 最大値の計算
+   * @param numbers 入力されたデータ
+   * @return 最大値
+   */
   public static double calcMax(double[] numbers) {
     // 最大値を格納する変数
     double max = numbers[0];
@@ -119,7 +137,11 @@ public class ProgG12Stat2 {
     return max;
   }
 
-  // 最小値の計算
+  /**
+   * 最小値の計算
+   * @param numbers 入力されたデータ
+   * @return 最小値
+   */
   public static double calcMin(double[] numbers) {
     // 最小値を格納する変数
     double min = numbers[0];
@@ -134,7 +156,11 @@ public class ProgG12Stat2 {
     return min;
   }
 
-  // 標準偏差の計算
+  /**
+   * 標準偏差の計算
+   * @param numbers 入力されたデータ
+   * @return 標準偏差
+   */
   public static double calcStd(double[] numbers) {
     // 各要素の偏差の 2 乗の合計値を格納する変数
     double sum = 0;
@@ -154,7 +180,14 @@ public class ProgG12Stat2 {
     return Math.sqrt(sum / numbers.length);
   }
 
-  // 統計データの表示
+  /**
+   * 統計データの表示
+   * @param title 統計のタイトル
+   * @param average 平均値
+   * @param max 最大値
+   * @param min 最小値
+   * @param std 標準偏差
+   */
   public static void disp(String title, double average, double max, double min, double std) {
     println("***** " + title + " *****");
     println("最大値 = " + max);
