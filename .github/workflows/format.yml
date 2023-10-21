@@ -47,6 +47,6 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit add .
+          git commit add . || echo "No changes to add"
           git commit -m "Format Java code" || echo "No changes to commit"
           git push
