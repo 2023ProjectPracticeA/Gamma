@@ -96,6 +96,7 @@ public class ProgG12Stat2 {
     // 合計値を格納する変数
     double sum = 0;
 
+    // 拡張 for 文を用いて合計値を計算
     for (double number : numbers) {
       sum += number;
     }
@@ -108,6 +109,7 @@ public class ProgG12Stat2 {
     // 最大値を格納する変数
     double max = numbers[0];
 
+    // 拡張 for 文を用いて最大値を計算
     for (double number : numbers) {
       if (number > max) {
         max = number;
@@ -122,6 +124,7 @@ public class ProgG12Stat2 {
     // 最小値を格納する変数
     double min = numbers[0];
 
+    // 拡張 for 文を用いて最小値を計算
     for (double number : numbers) {
       if (number < min) {
         min = number;
@@ -139,6 +142,7 @@ public class ProgG12Stat2 {
     // 配列の平均値を格納する変数
     double mean = calcAve(numbers);
 
+    // 拡張 for 文を用いて偏差の 2 乗の合計値を計算
     for (double number : numbers) {
       // 値と平均の差を計算
       double d = number - mean;
