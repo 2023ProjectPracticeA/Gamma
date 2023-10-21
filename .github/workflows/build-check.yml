@@ -19,7 +19,7 @@ jobs:
 
     - name: Build All Entry Points
       run: |
-        entry_point_files=$(grep -l -r --include=\*.java "public static void main(String[] args)" src)
+        entry_point_files=$(grep -l -r --include=\*.java "public static void main(String\[\] args)" src)
 
         if [[ ! -z $entry_point_files ]]; then
             for file in $entry_point_files; do
