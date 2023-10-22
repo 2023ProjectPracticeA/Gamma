@@ -310,4 +310,225 @@ public class ProgG12Stat2 {
       println("  実際: " + actual);
     }
   }
+
+  /**
+   * n 次多項式回帰の係数を求める。
+   * 与えられたデータ点に基づいて多項式の係数を求める。
+   * 
+   * @param x      x 座標の配列
+   * @param y      y 座標の配列
+   * @param degree 求めたい多項式の次数
+   * @return 係数の配列。入力が無効の場合は、空の配列を返す。
+   */
+  public static double[] polynomialRegression(double[] x, double[] y, int degree) {
+      // x と y のデータ点の数が異なる場合、または次数が無効な場合、
+      // もしくはデータ点の数が次数に対して不十分な場合、空の配列を返す。
+      if (x.length != y.length || degree < 0 || x.length < degree + 1) {
+        return new double[0];
+      }
+  
+      int n = x.length;
+  
+      // Vandermonde 行列の作成
+      double[][] matrix = new double[degree + 1][degree + 1];
+      double[] rhs = new double[degree + 1];
+  
+      // Vandermonde 行列の各要素を計算
+      for (int i = 0; i <= 2 * degree; i++) {
+        double sum = 0;
+        for (double number : x) {
+          sum += Math.pow(number, i);
+        }
+  
+        int minRowCol = Math.max(0, i - degree);
+        int maxRowCol = Math.min(i, degree);
+  
+        for (int j = minRowCol; j <= maxRowCol; j++) {
+          matrix[i - j][j] = sum;
+        }
+      }
+  
+      // 右辺のベクトルを計算
+      for (int i = 0; i <= degree; i++) {
+        double sum = 0;
+        for (int j = 0; j < n; j++) {
+          sum += Math.pow(x[j], i) * y[j];
+        }
+        rhs[i] = sum;
+      }
+  
+      // ガウスの消去法を使用して線形方程式を解く
+      return gaussianElimination(matrix, rhs);
+  }
+  
+  /**
+   * ガウスの消去法を使用して線形方程式を解く。
+   * 
+   * @param matrix 係数行列
+   * @param rhs    右辺のベクトル
+   * @return 解のベクトル
+   */
+  public static double[] gaussianElimination(double[][] matrix, double[] rhs) {
+      int n = rhs.length;
+  
+      // 部分的ピボット選択を用いて前進消去を行う。
+      for (int i = 0; i < n; i++) {
+        int max = i;
+        for (int j = i + 1; j < n; j++) {
+          if (Math.abs(matrix[j][i]) > Math.abs(matrix[max][i])) {
+            max = j;
+          }
+        }
+  
+        // 最大の要素を持つ行と現在の行を交換
+        double[] temp = matrix[i];
+        matrix[i] = matrix[max];
+        matrix[max] = temp;
+  
+        double t = rhs[i];
+        rhs[i] = rhs[max];
+        rhs[max] = t;
+  
+        // 前進消去を実行
+        for (int j = i + 1; j < n; j++) {
+          double factor = matrix[j][i] / matrix[i][i];
+          rhs[j] -= factor * rhs[i];
+          for (int k = i; k < n; k++) {
+            matrix[j][k] -= factor * matrix[i][k];
+          }
+        }
+      }
+  
+      // 後退代入を用いて解を求める
+      double[] solution = new double[n];
+      for (int i = n - 1; i >= 0; i--) {
+        double sum = 0.0;
+        for (int j = i + 1; j < n; j++) {
+          sum += matrix[i][j] * solution[j];
+        }
+        solution[i] = (rhs[i] - sum) / matrix[i][i];
+      }
+  
+      return solution;
+  }
+
+  /**
+   * 指数回帰の係数を求める
+   * a * exp^(b * x)
+   * [a, b]
+   * 
+   * @param x x 座標の配列
+   * @param y y 座標の配列
+   * @return 係数の配列
+   */
+  public static double[] expRegression(double[] x, double[] y) {
+    // y-valuesの自然対数を取る
+    double[] lnY = new double[y.length];
+    for (int i = 0; i < y.length; i++) {
+      if (y[i] <= 0) {
+        throw new IllegalArgumentException("y-values must be positive for exp regression");
+      }
+      lnY[i] = Math.log(y[i]);
+    }
+
+    // 1 次多項式回帰を適用
+    double[] coefficients = polynomialRegression(x, lnY, 1);
+
+    // 求めた係数からaとbを取得
+    double b = coefficients[1];
+    double a = Math.exp(coefficients[0]);
+
+    return new double[] { a, b };
+  }
+
+  /**
+   * x 座標の値に対応する y 座標の値を予測する
+   * 
+   * @param x            x 座標の値
+   * @param coefficients 係数の配列
+   * @return 予測される y 座標の値
+   */
+  public static double polynomialPredict(double x, double[] coefficients) {
+    // 予測される y 座標の値を格納
+    double y = 0;
+
+    // 予測される y 座標の値を計算
+    for (int i = 0; i < coefficients.length; i++) {
+      y += coefficients[i] * Math.pow(x, i);
+    }
+    return y;
+  }
+
+  /**
+   * 決定係数を求める
+   * 
+   * @param x            x 座標の配列
+   * @param y            y 座標の配列
+   * @param coefficients 係数の配列
+   * @return 決定係数
+   */
+  public static double coefficientOfDetermination(double[] x, double[] y, double[] coefficients) {
+    double rss = 0;
+    for (int i = 0; i < x.length; i++) {
+      double error = y[i] - polynomialPredict(x[i], coefficients);
+      rss += error * error;
+    }
+
+    double yMean = 0;
+    for (double value : y) {
+      yMean += value;
+    }
+    yMean /= y.length;
+
+    double tss = 0;
+    for (double value : y) {
+      double diff = value - yMean;
+      tss += diff * diff;
+    }
+
+    return 1 - rss / tss;
+  }
+
+  /**
+   * 平均二乗誤差を求める
+   * 
+   * @param x            x 座標の配列
+   * @param y            y 座標の配列
+   * @param coefficients 係数の配列
+   * @return 平均二乗誤差
+   */
+  public static double meanSquaredError(double[] x, double[] y, double[] coefficients) {
+    if (x.length != y.length) {
+      throw new IllegalArgumentException("xValues and yValues must have the same length");
+    }
+
+    double totalError = 0.0;
+    for (int i = 0; i < x.length; i++) {
+      double predictedY = polynomialPredict(x[i], coefficients);
+      totalError += Math.pow(y[i] - predictedY, 2);
+    }
+
+    return totalError / x.length;
+  }
+
+  /**
+   * 平均絶対誤差を求める
+   * 
+   * @param x            x 座標の配列
+   * @param y            y 座標の配列
+   * @param coefficients 係数の配列
+   * @return 平均絶対誤差
+   */
+  public static double meanAbsoluteError(double[] x, double[] y, double[] coefficients) {
+    if (x.length != y.length) {
+      throw new IllegalArgumentException("x and y arrays must have the same length");
+    }
+
+    double totalError = 0;
+    for (int i = 0; i < x.length; i++) {
+      double estimatedY = polynomialPredict(x[i], coefficients);
+      totalError += Math.abs(y[i] - estimatedY);
+    }
+    return totalError / x.length;
+  }
 }
