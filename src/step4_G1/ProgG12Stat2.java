@@ -350,6 +350,16 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 与えられた数の最小値を計算します。
+   * @param x 入力値
+   * @param y 入力値
+   * @return x と y の最小値
+   */
+  public static int min(int x, int y) {
+    return x < y ? x : y;
+  }
+
+  /**
    * n 次多項式回帰の係数を求める。
    * 与えられたデータ点に基づいて多項式の係数を求める。
    * 
