@@ -312,6 +312,35 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 与えられた数のべき乗を計算します。
+   *
+   * <p>
+   * このメソッドは x を n 乗した結果を計算します。
+   * n が負の場合、x の逆数の絶対値のべき乗を計算します。
+   * 例えば、pow(2, -3) は 1/8 を返します。
+   *
+   * @param x ベースとなる数値
+   * @param n べき乗する指数
+   * @return x の n 乗の結果
+   * @throws ArithmeticException x が 0 で n が負の場合
+   */
+  public static double pow(double x, int n) {
+    if (x == 0 && n < 0) {
+      return Double.NaN;
+    }
+
+    if (n < 0) {
+      return 1.0 / pow(x, -n);
+    }
+
+    double result = 1.0;
+    for (int i = 0; i < n; i++) {
+      result *= x;
+    }
+    return result;
+  }
+
+  /**
    * n 次多項式回帰の係数を求める。
    * 与えられたデータ点に基づいて多項式の係数を求める。
    * 
@@ -321,46 +350,46 @@ public class ProgG12Stat2 {
    * @return 係数の配列。入力が無効の場合は、空の配列を返す。
    */
   public static double[] polynomialRegression(double[] x, double[] y, int degree) {
-      // x と y のデータ点の数が異なる場合、または次数が無効な場合、
-      // もしくはデータ点の数が次数に対して不十分な場合、空の配列を返す。
-      if (x.length != y.length || degree < 0 || x.length < degree + 1) {
-        return new double[0];
+    // x と y のデータ点の数が異なる場合、または次数が無効な場合、
+    // もしくはデータ点の数が次数に対して不十分な場合、空の配列を返す。
+    if (x.length != y.length || degree < 0 || x.length < degree + 1) {
+      return new double[0];
+    }
+
+    int n = x.length;
+
+    // Vandermonde 行列の作成
+    double[][] matrix = new double[degree + 1][degree + 1];
+    double[] rhs = new double[degree + 1];
+
+    // Vandermonde 行列の各要素を計算
+    for (int i = 0; i <= 2 * degree; i++) {
+      double sum = 0;
+      for (double number : x) {
+        sum += pow(number, i);
       }
-  
-      int n = x.length;
-  
-      // Vandermonde 行列の作成
-      double[][] matrix = new double[degree + 1][degree + 1];
-      double[] rhs = new double[degree + 1];
-  
-      // Vandermonde 行列の各要素を計算
-      for (int i = 0; i <= 2 * degree; i++) {
-        double sum = 0;
-        for (double number : x) {
-          sum += Math.pow(number, i);
-        }
-  
-        int minRowCol = Math.max(0, i - degree);
-        int maxRowCol = Math.min(i, degree);
-  
-        for (int j = minRowCol; j <= maxRowCol; j++) {
-          matrix[i - j][j] = sum;
-        }
+
+      int minRowCol = Math.max(0, i - degree);
+      int maxRowCol = Math.min(i, degree);
+
+      for (int j = minRowCol; j <= maxRowCol; j++) {
+        matrix[i - j][j] = sum;
       }
-  
-      // 右辺のベクトルを計算
-      for (int i = 0; i <= degree; i++) {
-        double sum = 0;
-        for (int j = 0; j < n; j++) {
-          sum += Math.pow(x[j], i) * y[j];
-        }
-        rhs[i] = sum;
+    }
+
+    // 右辺のベクトルを計算
+    for (int i = 0; i <= degree; i++) {
+      double sum = 0;
+      for (int j = 0; j < n; j++) {
+        sum += pow(x[j], i) * y[j];
       }
-  
-      // ガウスの消去法を使用して線形方程式を解く
-      return gaussianElimination(matrix, rhs);
+      rhs[i] = sum;
+    }
+
+    // ガウスの消去法を使用して線形方程式を解く
+    return gaussianElimination(matrix, rhs);
   }
-  
+
   /**
    * ガウスの消去法を使用して線形方程式を解く。
    * 
@@ -369,47 +398,47 @@ public class ProgG12Stat2 {
    * @return 解のベクトル
    */
   public static double[] gaussianElimination(double[][] matrix, double[] rhs) {
-      int n = rhs.length;
-  
-      // 部分的ピボット選択を用いて前進消去を行う。
-      for (int i = 0; i < n; i++) {
-        int max = i;
-        for (int j = i + 1; j < n; j++) {
-          if (Math.abs(matrix[j][i]) > Math.abs(matrix[max][i])) {
-            max = j;
-          }
-        }
-  
-        // 最大の要素を持つ行と現在の行を交換
-        double[] temp = matrix[i];
-        matrix[i] = matrix[max];
-        matrix[max] = temp;
-  
-        double t = rhs[i];
-        rhs[i] = rhs[max];
-        rhs[max] = t;
-  
-        // 前進消去を実行
-        for (int j = i + 1; j < n; j++) {
-          double factor = matrix[j][i] / matrix[i][i];
-          rhs[j] -= factor * rhs[i];
-          for (int k = i; k < n; k++) {
-            matrix[j][k] -= factor * matrix[i][k];
-          }
+    int n = rhs.length;
+
+    // 部分的ピボット選択を用いて前進消去を行う。
+    for (int i = 0; i < n; i++) {
+      int max = i;
+      for (int j = i + 1; j < n; j++) {
+        if (Math.abs(matrix[j][i]) > Math.abs(matrix[max][i])) {
+          max = j;
         }
       }
-  
-      // 後退代入を用いて解を求める
-      double[] solution = new double[n];
-      for (int i = n - 1; i >= 0; i--) {
-        double sum = 0.0;
-        for (int j = i + 1; j < n; j++) {
-          sum += matrix[i][j] * solution[j];
+
+      // 最大の要素を持つ行と現在の行を交換
+      double[] temp = matrix[i];
+      matrix[i] = matrix[max];
+      matrix[max] = temp;
+
+      double t = rhs[i];
+      rhs[i] = rhs[max];
+      rhs[max] = t;
+
+      // 前進消去を実行
+      for (int j = i + 1; j < n; j++) {
+        double factor = matrix[j][i] / matrix[i][i];
+        rhs[j] -= factor * rhs[i];
+        for (int k = i; k < n; k++) {
+          matrix[j][k] -= factor * matrix[i][k];
         }
-        solution[i] = (rhs[i] - sum) / matrix[i][i];
       }
-  
-      return solution;
+    }
+
+    // 後退代入を用いて解を求める
+    double[] solution = new double[n];
+    for (int i = n - 1; i >= 0; i--) {
+      double sum = 0.0;
+      for (int j = i + 1; j < n; j++) {
+        sum += matrix[i][j] * solution[j];
+      }
+      solution[i] = (rhs[i] - sum) / matrix[i][i];
+    }
+
+    return solution;
   }
 
   /**
@@ -454,7 +483,7 @@ public class ProgG12Stat2 {
 
     // 予測される y 座標の値を計算
     for (int i = 0; i < coefficients.length; i++) {
-      y += coefficients[i] * Math.pow(x, i);
+      y += coefficients[i] * pow(x, i);
     }
     return y;
   }
@@ -505,7 +534,7 @@ public class ProgG12Stat2 {
     double totalError = 0.0;
     for (int i = 0; i < x.length; i++) {
       double predictedY = polynomialPredict(x[i], coefficients);
-      totalError += Math.pow(y[i] - predictedY, 2);
+      totalError += pow(y[i] - predictedY, 2);
     }
 
     return totalError / x.length;
