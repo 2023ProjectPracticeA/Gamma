@@ -342,6 +342,7 @@ public class ProgG12Stat2 {
 
   /**
    * 与えられた数の絶対値を計算します。
+   * 
    * @param x 入力値
    * @return x の絶対値
    */
@@ -351,6 +352,7 @@ public class ProgG12Stat2 {
 
   /**
    * 与えられた数の最小値を計算します。
+   * 
    * @param x 入力値
    * @param y 入力値
    * @return x と y の最小値
@@ -360,7 +362,50 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 与えられた数の階乗を計算します。
+   * 
+   * @param n 入力値
+   * @return n の階乗
+   */
+  public static long factorial(int n) {
+    long result = 1;
+    for (int i = 1; i <= n; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  /**
+   * 指数関数を計算します。
+   * @param x 入力値
+   * @return exp(x)
+   */
+  public static double exp(double x) {
+    // 初項は 1.0
+    double sum = 1.0;
+    double lastSum;
+    double term = x;
+    int i = 1;
+    do {
+      // 前の和を保存
+      lastSum = sum;
+
+      // 新しい項を加える
+      sum += term;
+      i++;
+
+      // 新しい項を計算
+      term = pow(x, i) / factorial(i);
+
+      // 和の変化がなくなるまで続ける
+    } while (lastSum != sum);
+
+    return sum;
+  }
+
+  /**
    * 与えられた数の最大値を計算します。
+   * 
    * @param x 入力値
    * @param y 入力値
    * @return x と y の最大値
@@ -494,7 +539,7 @@ public class ProgG12Stat2 {
 
     // 求めた係数からaとbを取得
     double b = coefficients[1];
-    double a = Math.exp(coefficients[0]);
+    double a = exp(coefficients[0]);
 
     return new double[] { a, b };
   }
