@@ -360,6 +360,16 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 与えられた数の最大値を計算します。
+   * @param x 入力値
+   * @param y 入力値
+   * @return x と y の最大値
+   */
+  public static int max(int x, int y) {
+    return x > y ? x : y;
+  }
+
+  /**
    * n 次多項式回帰の係数を求める。
    * 与えられたデータ点に基づいて多項式の係数を求める。
    * 
@@ -388,8 +398,8 @@ public class ProgG12Stat2 {
         sum += pow(number, i);
       }
 
-      int minRowCol = Math.max(0, i - degree);
-      int maxRowCol = Math.min(i, degree);
+      int minRowCol = max(0, i - degree);
+      int maxRowCol = min(i, degree);
 
       for (int j = minRowCol; j <= maxRowCol; j++) {
         matrix[i - j][j] = sum;
