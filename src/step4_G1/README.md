@@ -326,3 +326,76 @@ public class Main {
 平均値 = 3.0
 標準偏差 = 1.4142135623730951
 ```
+
+# runTest メソッド
+
+## 概要
+
+runTest メソッドは、すべてのメソッドが正しいかどうかをテストします。
+
+## 引数
+
+なし
+
+## 戻り値
+
+なし
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        runTest();
+    }
+}
+```
+
+## 標準出力結果
+
+```
+OK: 平均
+OK: 最大値
+OK: 最小値
+OK: 標準偏差
+```
+
+# assertEqual メソッド
+
+## 概要
+
+assertEqual メソッドは、2 つの値が等しいかどうかをテストします。
+正しければ OK と表示します。
+間違っていれば NG と表示して、期待値と実際の値を表示します。
+
+## 引数
+
+| 引数名 | 型 | 説明 |
+|:--|:--|:--|
+| message | String | テストのタイトル |
+| expected | double | 期待値 |
+| actual | double | 実測値 |
+
+## 戻り値
+
+なし
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        assertEqual("1", 3.0, 3.0);
+        assertEqual("2", 3.0, 4.0);
+    }
+}
+```
+
+## 標準出力結果
+
+```
+OK: 1
+NG: 2
+  期待: 3.0
+  実際: 4.0
+```

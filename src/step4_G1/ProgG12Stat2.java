@@ -201,4 +201,49 @@ public class ProgG12Stat2 {
     println("平均 = " + average);
     println("標準偏差 = " + std);
   }
+
+  /**
+   * テストを実行する
+   */
+  public static void runTest() {
+    // テストデータ
+    double[] testData = { 1.0, 2.0, 3.0, 4.0, 5.0 };
+
+    // テストデータの平均値
+    double expectedAve = 3.0;
+    assertEqual("平均", expectedAve, calcAve(testData));
+
+    // テストデータの最大値
+    double expectedMax = 5.0;
+    assertEqual("最大値", expectedMax, calcMax(testData));
+
+    // テストデータの最小値
+    double expectedMin = 1.0;
+    assertEqual("最小値", expectedMin, calcMin(testData));
+
+    // テストデータの標準偏差
+    double expectedStd = Math.sqrt(2.0);
+    assertEqual("標準偏差", expectedStd, calcStd(testData));
+  }
+
+  /**
+   * 期待値と実際の値が等しいかを確認する
+   * @param message 表示するメッセージ
+   * @param expected 期待値
+   * @param actual 実際の値
+   */
+  public static void assertEqual(String message, double expected, double actual) {
+    // 期待値と実際の値が等しいかを確認
+    if (expected == actual) {
+      // 等しい場合は OK と表示
+      println("OK: " + message);
+    } else {
+      // 等しくない場合は NG と表示
+      println("NG: " + message);
+
+      // 期待値と実際の値を表示
+      println("  期待: " + expected);
+      println("  実際: " + actual);
+    }
+  }
 }
