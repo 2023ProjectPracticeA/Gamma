@@ -15,6 +15,7 @@ public class ProgG12Stat2 {
 
   /**
    * 文字列を表示する
+   * 
    * @param message 表示する文字列
    */
   public static void print(String message) {
@@ -23,6 +24,7 @@ public class ProgG12Stat2 {
 
   /**
    * 文字列を表示して改行する
+   * 
    * @param message 表示する文字列
    */
   public static void println(String message) {
@@ -31,15 +33,65 @@ public class ProgG12Stat2 {
 
   /**
    * エントリーポイント
+   * 
    * @param args コマンドライン引数
    */
   public static void main(String[] args) {
+    // メニューのループを制御するフラグ
+    boolean isLoop = true;
+
+    // ユーザーからの入力を受け取るためのオブジェクト
+    Scanner scanner = new Scanner(System.in);
+
+    while (isLoop) {
+      // メニューを表示
+      println("数字を入力してください．");
+      println("1: 統計データの入力と表示");
+      println("2: テスト");
+      println("0: 終了");
+      print(">> ");
+
+      // 入力が整数であるかを確認し、それに応じて処理する
+      if (scanner.hasNextInt()) {
+        // 整数値を格納
+        int input = scanner.nextInt();
+
+        // 入力された値に応じて処理を分岐
+        switch (input) {
+          case 1:
+            // 統計データの入力と表示
+            inputAndDisplayStatistics();
+            break;
+
+          case 2:
+            // テスト
+            runTest();
+            break;
+
+          case 0:
+            // プログラムの終了
+            println("終了します．");
+            isLoop = false;
+            break;
+
+          default:
+            // その他の入力
+            println("!!!入力値が不正です．");
+            break;
+        }
+      } else {
+        println("!!!入力値が不正です．");
+      }
+    }
+
+    // Scanner オブジェクトを閉じてリソースを解放
+    scanner.close();
   }
 
   /**
    * 統計データの入力と表示
    */
-  public static void inputAndDisplayStatistics(){
+  public static void inputAndDisplayStatistics() {
     // デフォルトのデータ個数
     int defaultCount = 5;
 
@@ -71,7 +123,7 @@ public class ProgG12Stat2 {
       println("!!!入力値が不正です．データ個数を「5」にします．");
 
       // 不正な入力をスキップ
-      scanner.next(); 
+      scanner.next();
     }
 
     // 入力されたデータ数が正であるかを確認
@@ -109,6 +161,7 @@ public class ProgG12Stat2 {
 
   /**
    * 平均値の計算
+   * 
    * @param numbers 入力されたデータ
    * @return 平均値
    */
@@ -127,6 +180,7 @@ public class ProgG12Stat2 {
 
   /**
    * 最大値の計算
+   * 
    * @param numbers 入力されたデータ
    * @return 最大値
    */
@@ -147,6 +201,7 @@ public class ProgG12Stat2 {
 
   /**
    * 最小値の計算
+   * 
    * @param numbers 入力されたデータ
    * @return 最小値
    */
@@ -167,6 +222,7 @@ public class ProgG12Stat2 {
 
   /**
    * 標準偏差の計算
+   * 
    * @param numbers 入力されたデータ
    * @return 標準偏差
    */
@@ -192,7 +248,8 @@ public class ProgG12Stat2 {
 
   /**
    * 統計データの表示
-   * @param title 統計のタイトル
+   * 
+   * @param title   統計のタイトル
    * @param numbers 入力されたデータ
    */
   public static void disp(String title, double[] numbers) {
@@ -234,9 +291,10 @@ public class ProgG12Stat2 {
 
   /**
    * 期待値と実際の値が等しいかを確認する
-   * @param message 表示するメッセージ
+   * 
+   * @param message  表示するメッセージ
    * @param expected 期待値
-   * @param actual 実際の値
+   * @param actual   実際の値
    */
   public static void assertEqual(String message, double expected, double actual) {
     // 期待値と実際の値が等しいかを確認
