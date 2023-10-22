@@ -341,6 +341,15 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 与えられた数の絶対値を計算します。
+   * @param x 入力値
+   * @return x の絶対値
+   */
+  public static double abs(double x) {
+    return x < 0 ? -x : x;
+  }
+
+  /**
    * n 次多項式回帰の係数を求める。
    * 与えられたデータ点に基づいて多項式の係数を求める。
    * 
@@ -404,7 +413,7 @@ public class ProgG12Stat2 {
     for (int i = 0; i < n; i++) {
       int max = i;
       for (int j = i + 1; j < n; j++) {
-        if (Math.abs(matrix[j][i]) > Math.abs(matrix[max][i])) {
+        if (abs(matrix[j][i]) > abs(matrix[max][i])) {
           max = j;
         }
       }
@@ -556,7 +565,7 @@ public class ProgG12Stat2 {
     double totalError = 0;
     for (int i = 0; i < x.length; i++) {
       double estimatedY = polynomialPredict(x[i], coefficients);
-      totalError += Math.abs(y[i] - estimatedY);
+      totalError += abs(y[i] - estimatedY);
     }
     return totalError / x.length;
   }
