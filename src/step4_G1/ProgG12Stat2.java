@@ -34,6 +34,12 @@ public class ProgG12Stat2 {
    * @param args コマンドライン引数
    */
   public static void main(String[] args) {
+  }
+
+  /**
+   * 統計データの入力と表示
+   */
+  public static void inputAndDisplayStatistics(){
     // デフォルトのデータ個数
     int defaultCount = 5;
 
