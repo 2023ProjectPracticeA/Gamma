@@ -287,6 +287,54 @@ public class ProgG12Stat2 {
     // テストデータの標準偏差
     double expectedStd = Math.sqrt(2.0);
     assertEqual("標準偏差", expectedStd, calcStd(testData));
+
+    assertEqual("pow(2, 3)", 8.0, pow(2, 3));
+
+    assertEqual("pow(2, -3)", 1.0 / 8.0, pow(2, -3));
+
+    assertEqual("abs(3)", 3.0, abs(3));
+
+    assertEqual("abs(-3)", 3.0, abs(-3));
+
+    assertEqual("min(3, 5)", 3, min(3, 5));
+
+    assertEqual("min(5, 3)", 3, min(5, 3));
+
+    assertEqual("max(3, 5)", 5, max(3, 5));
+
+    assertEqual("max(5, 3)", 5, max(5, 3));
+
+    assertEqual("factorial(3)", 6, factorial(3));
+
+    assertEqual("factorial(5)", 120, factorial(5));
+
+    assertEqual("exp(0)", 1.0, exp(0));
+
+    assertEqual("exp(1)", Math.E, exp(1));
+
+    assertEqual("ln(1)", 0.0, ln(1));
+
+    assertEqual("ln(e)", 1.0, ln(Math.E));
+
+    assertEqual("ln(exp(1))", 1.0, ln(exp(1)));
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 1)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 1)[0]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 1)", 1.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 1)[1]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[0]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[1]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 1.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[2]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 3)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 3)[0]);
   }
 
   /**
@@ -362,6 +410,17 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 与えられた数の最大値を計算します。
+   * 
+   * @param x 入力値
+   * @param y 入力値
+   * @return x と y の最大値
+   */
+  public static int max(int x, int y) {
+    return x > y ? x : y;
+  }
+
+  /**
    * 与えられた数の階乗を計算します。
    * 
    * @param n 入力値
@@ -377,6 +436,7 @@ public class ProgG12Stat2 {
 
   /**
    * 指数関数を計算します。
+   * 
    * @param x 入力値
    * @return exp(x)
    */
@@ -405,40 +465,30 @@ public class ProgG12Stat2 {
 
   /**
    * 自然対数を計算します。
+   * 
    * @param x 入力値
    * @return ln(x)
    */
   public static double ln(double x) {
-      double y = x - 1;
-      double result = 0.0;
-      double lastResult;
-      int i = 1;
+    double y = x - 1;
+    double result = 0.0;
+    double lastResult;
+    int i = 1;
 
-      do {
-          lastResult = result;
+    do {
+      lastResult = result;
 
-          double term = pow(y, i) / i;
-          if (i % 2 == 0) {
-              result -= term;
-          } else {
-              result += term;
-          }
+      double term = pow(y, i) / i;
+      if (i % 2 == 0) {
+        result -= term;
+      } else {
+        result += term;
+      }
 
-          i++;
-      } while (result != lastResult);
+      i++;
+    } while (i < 100 && lastResult != result);
 
-      return result;
-  }
-
-  /**
-   * 与えられた数の最大値を計算します。
-   * 
-   * @param x 入力値
-   * @param y 入力値
-   * @return x と y の最大値
-   */
-  public static int max(int x, int y) {
-    return x > y ? x : y;
+    return result;
   }
 
   /**
