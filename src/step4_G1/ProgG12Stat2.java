@@ -320,22 +320,23 @@ public class ProgG12Stat2 {
     for (int row = (int) maxValue + 1; row > intMinValue; row--) {
       for (int col = 0; col < numbers.length; col++) {
         if (row < 0) {
-          if (numbers[col] <= row) {
-            print("█");
-            print(spaces);
+          if (numbers[col] < 0 && numbers[col] <= row) {
+              print("█");
+              print(spaces);
           } else {
-            print(" ");
-            print(spaces);
+              print(" ");
+              print(spaces);
           }
-        } else {
-          if (numbers[col] > row) {
-            print("█");
-            print(spaces);
+      } else {
+          if (numbers[col] >= row) {
+              print("█");
+              print(spaces);
           } else {
-            print(" ");
-            print(spaces);
+              print(" ");
+              print(spaces);
           }
-        }
+      }
+      
       }
       println("");
     }
