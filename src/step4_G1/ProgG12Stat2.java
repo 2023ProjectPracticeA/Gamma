@@ -55,7 +55,9 @@ public class ProgG12Stat2 {
       println("1: 統計データのタイトルの入力");
       println("2: 統計データの数値の入力");
       println("3: 統計データの表示");
-      println("4: テスト");
+      println("4: 並び替え");
+      println("5: グラフ表示付き並び替え");
+      println("6: テスト");
       println("0: 終了");
       print(">> ");
 
@@ -82,6 +84,16 @@ public class ProgG12Stat2 {
             break;
 
           case 4:
+            // 並び替え
+            sortMenu(numbers, scanner, false);
+            break;
+
+          case 5:
+            // グラフ表示付き並び替え
+            sortMenu(numbers, scanner, true);
+            break;
+
+          case 6:
             // テスト
             runTest();
             break;
@@ -167,6 +179,157 @@ public class ProgG12Stat2 {
     }
 
     return numbers;
+  }
+
+  public static void sortMenu(double[] numbers, Scanner scanner, boolean isVisual) {
+    // メニューのループを制御するフラグ
+    boolean isLoop = true;
+
+    while (isLoop) {
+      // メニューを表示
+      println("数字を入力してください．");
+      println("1: バブルソート");
+      println("2: 選択ソート");
+      println("3: 挿入ソート");
+      println("4: クイックソート");
+      println("0: 戻る");
+      print(">> ");
+
+      // 入力が整数であるかを確認し、それに応じて処理する
+      if (scanner.hasNextInt()) {
+        // 整数値を格納
+        int input = scanner.nextInt();
+
+        // 入力された値に応じて処理を分岐
+        switch (input) {
+          case 1:
+            // バブルソート
+            bubbleSort(numbers, isVisual);
+            break;
+
+          case 2:
+            // 選択ソート
+            selectionSort(numbers, isVisual);
+            break;
+
+          case 3:
+            // 挿入ソート
+            insertionSort(numbers, isVisual);
+            break;
+
+          case 0:
+            // メニューに戻る
+            isLoop = false;
+            break;
+
+          default:
+            // その他の入力
+            println("!!!入力値が不正です．");
+            break;
+        }
+      } else {
+        println("!!!入力値が不正です．");
+      }
+    }
+  }
+
+  /**
+   * バブルソート
+   * 
+   * @param numbers 入力されたデータ
+   */
+  public static void bubbleSort(double[] numbers, boolean isVisual) {
+    // バブルソートのループを制御するフラグ
+    boolean isLoop = true;
+
+    // バブルソートのループ
+    while (isLoop) {
+      // バブルソートのループを終了するかを制御するフラグ
+      boolean isEnd = true;
+
+      // バブルソートのループ
+      for (int i = 0; i < numbers.length - 1; i++) {
+        // 隣り合う要素を比較し、順序が逆なら交換
+        if (numbers[i] > numbers[i + 1]) {
+          double temp = numbers[i];
+          numbers[i] = numbers[i + 1];
+          numbers[i + 1] = temp;
+
+          // 交換が行われたので、ループを継続
+          isEnd = false;
+        }
+      }
+
+      // 交換が行われなかった場合、ループを終了
+      if (isEnd) {
+        isLoop = false;
+      }
+
+      // グラフを表示
+      if (isVisual) {
+        printGraph(numbers);
+      }
+    }
+  }
+
+  /**
+   * 選択ソート
+   * 
+   * @param numbers 入力されたデータ
+   */
+  public static void selectionSort(double[] numbers, boolean isVisual) {
+    // 選択ソートのループ
+    for (int i = 0; i < numbers.length - 1; i++) {
+      // 最小値のインデックスを格納する変数
+      int minIndex = i;
+
+      // 最小値のインデックスを探索
+      for (int j = i + 1; j < numbers.length; j++) {
+        if (numbers[j] < numbers[minIndex]) {
+          minIndex = j;
+        }
+      }
+
+      // 最小値のインデックスが i でない場合、最小値と i 番目の要素を交換
+      if (minIndex != i) {
+        double temp = numbers[i];
+        numbers[i] = numbers[minIndex];
+        numbers[minIndex] = temp;
+      }
+
+      // グラフを表示
+      if (isVisual) {
+        printGraph(numbers);
+      }
+    }
+  }
+
+  /**
+   * 挿入ソート
+   * 
+   * @param numbers 入力されたデータ
+   */
+  public static void insertionSort(double[] numbers, boolean isVisual) {
+    // 挿入ソートのループ
+    for (int i = 1; i < numbers.length; i++) {
+      // 挿入する値を格納する変数
+      double temp = numbers[i];
+
+      // 挿入する位置を探索
+      int j = i - 1;
+      while (j >= 0 && numbers[j] > temp) {
+        numbers[j + 1] = numbers[j];
+        j--;
+      }
+
+      // 挿入する値を挿入
+      numbers[j + 1] = temp;
+
+      // グラフを表示
+      if (isVisual) {
+        printGraph(numbers);
+      }
+    }
   }
 
   /**
