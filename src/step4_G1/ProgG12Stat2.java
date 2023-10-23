@@ -295,6 +295,8 @@ public class ProgG12Stat2 {
 
     if (minValue < 0) {
       intMinValue--;
+    } else {
+      intMinValue = 0;
     }
 
     String spaces = "";
@@ -315,7 +317,7 @@ public class ProgG12Stat2 {
     println("");
 
     // 縦方向の描画のため、最大値からデクリメントしながら行ごとに描画
-    for (int row = (int) maxValue + 1 + -intMinValue; row > intMinValue; row--) {
+    for (int row = (int) maxValue + 1; row > intMinValue; row--) {
       for (int col = 0; col < numbers.length; col++) {
         if (row < 0) {
           if (numbers[col] <= row) {
@@ -325,16 +327,8 @@ public class ProgG12Stat2 {
             print(" ");
             print(spaces);
           }
-        }else if(row == 0){
-          if (numbers[col] > row) {
-            print("█");
-            print(spaces);
-          } else {
-            print(" ");
-            print(spaces);
-          }
         } else {
-          if (numbers[col] >= row) {
+          if (numbers[col] > row) {
             print("█");
             print(spaces);
           } else {
