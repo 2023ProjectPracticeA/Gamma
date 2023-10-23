@@ -191,7 +191,6 @@ public class ProgG12Stat2 {
       println("1: バブルソート");
       println("2: 選択ソート");
       println("3: 挿入ソート");
-      println("4: クイックソート");
       println("0: 戻る");
       print(">> ");
 
