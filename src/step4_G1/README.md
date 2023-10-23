@@ -428,7 +428,7 @@ assertEqual メソッドは、2 つの値が等しいかどうかをテストし
 |:--|:--|:--|
 | message | String | テストのタイトル |
 | expected | double | 期待値 |
-| actual | double | 実測値 |
+| actual | double | 実際の値 |
 
 ## 戻り値
 

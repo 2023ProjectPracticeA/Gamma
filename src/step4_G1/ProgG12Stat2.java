@@ -371,6 +371,54 @@ public class ProgG12Stat2 {
     // テストデータの標準偏差
     double expectedStd = Math.sqrt(2.0);
     assertEqual("標準偏差", expectedStd, calcStd(testData));
+
+    assertEqual("pow(2, 3)", 8.0, pow(2, 3));
+
+    assertEqual("pow(2, -3)", 1.0 / 8.0, pow(2, -3));
+
+    assertEqual("abs(3)", 3.0, abs(3));
+
+    assertEqual("abs(-3)", 3.0, abs(-3));
+
+    assertEqual("min(3, 5)", 3, min(3, 5));
+
+    assertEqual("min(5, 3)", 3, min(5, 3));
+
+    assertEqual("max(3, 5)", 5, max(3, 5));
+
+    assertEqual("max(5, 3)", 5, max(5, 3));
+
+    assertEqual("factorial(3)", 6, factorial(3));
+
+    assertEqual("factorial(5)", 120, factorial(5));
+
+    assertEqual("exp(0)", 1.0, exp(0));
+
+    assertEqual("exp(1)", Math.E, exp(1));
+
+    assertEqual("ln(1)", 0.0, ln(1));
+
+    assertEqual("ln(e)", 1.0, ln(Math.E));
+
+    assertEqual("ln(exp(1))", 1.0, ln(exp(1)));
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 1)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 1)[0]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 1)", 1.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 1)[1]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[0]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[1]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 1.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[2]);
+
+    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 3)", 0.0,
+        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 3)[0]);
   }
 
   /**
@@ -393,6 +441,138 @@ public class ProgG12Stat2 {
       println("  期待: " + expected);
       println("  実際: " + actual);
     }
+  }
+
+  /**
+   * 与えられた数のべき乗を計算します。
+   *
+   * <p>
+   * このメソッドは x を n 乗した結果を計算します。
+   * n が負の場合、x の逆数の絶対値のべき乗を計算します。
+   * 例えば、pow(2, -3) は 1/8 を返します。
+   *
+   * @param x ベースとなる数値
+   * @param n べき乗する指数
+   * @return x の n 乗の結果
+   * @throws ArithmeticException x が 0 で n が負の場合
+   */
+  public static double pow(double x, int n) {
+    if (x == 0 && n < 0) {
+      return Double.NaN;
+    }
+
+    if (n < 0) {
+      return 1.0 / pow(x, -n);
+    }
+
+    double result = 1.0;
+    for (int i = 0; i < n; i++) {
+      result *= x;
+    }
+    return result;
+  }
+
+  /**
+   * 与えられた数の絶対値を計算します。
+   * 
+   * @param x 入力値
+   * @return x の絶対値
+   */
+  public static double abs(double x) {
+    return x < 0 ? -x : x;
+  }
+
+  /**
+   * 与えられた数の最小値を計算します。
+   * 
+   * @param x 入力値
+   * @param y 入力値
+   * @return x と y の最小値
+   */
+  public static int min(int x, int y) {
+    return x < y ? x : y;
+  }
+
+  /**
+   * 与えられた数の最大値を計算します。
+   * 
+   * @param x 入力値
+   * @param y 入力値
+   * @return x と y の最大値
+   */
+  public static int max(int x, int y) {
+    return x > y ? x : y;
+  }
+
+  /**
+   * 与えられた数の階乗を計算します。
+   * 
+   * @param n 入力値
+   * @return n の階乗
+   */
+  public static long factorial(int n) {
+    long result = 1;
+    for (int i = 1; i <= n; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  /**
+   * 指数関数を計算します。
+   * 
+   * @param x 入力値
+   * @return exp(x)
+   */
+  public static double exp(double x) {
+    // 初項は 1.0
+    double sum = 1.0;
+    double lastSum;
+    double term = x;
+    int i = 1;
+    do {
+      // 前の和を保存
+      lastSum = sum;
+
+      // 新しい項を加える
+      sum += term;
+      i++;
+
+      // 新しい項を計算
+      term = pow(x, i) / factorial(i);
+
+      // 和の変化がなくなるまで続ける
+    } while (lastSum != sum);
+
+    return sum;
+  }
+
+  /**
+   * 自然対数を計算します。
+   * 
+   * @param x 入力値
+   * @return ln(x)
+   */
+  public static double ln(double x) {
+    double y = x - 1;
+    double result = 0.0;
+    double lastResult;
+    int i = 1;
+
+    do {
+      lastResult = result;
+
+      double term = pow(y, i) / i;
+      if (i % 2 == 0) {
+        result -= term;
+      } else {
+        result += term;
+      }
+
+      i++;
+    } while (i < 100 && lastResult != result);
+
+    return result;
   }
 
   /**
@@ -421,11 +601,11 @@ public class ProgG12Stat2 {
     for (int i = 0; i <= 2 * degree; i++) {
       double sum = 0;
       for (double number : x) {
-        sum += Math.pow(number, i);
+        sum += pow(number, i);
       }
 
-      int minRowCol = Math.max(0, i - degree);
-      int maxRowCol = Math.min(i, degree);
+      int minRowCol = max(0, i - degree);
+      int maxRowCol = min(i, degree);
 
       for (int j = minRowCol; j <= maxRowCol; j++) {
         matrix[i - j][j] = sum;
@@ -436,7 +616,7 @@ public class ProgG12Stat2 {
     for (int i = 0; i <= degree; i++) {
       double sum = 0;
       for (int j = 0; j < n; j++) {
-        sum += Math.pow(x[j], i) * y[j];
+        sum += pow(x[j], i) * y[j];
       }
       rhs[i] = sum;
     }
@@ -459,7 +639,7 @@ public class ProgG12Stat2 {
     for (int i = 0; i < n; i++) {
       int max = i;
       for (int j = i + 1; j < n; j++) {
-        if (Math.abs(matrix[j][i]) > Math.abs(matrix[max][i])) {
+        if (abs(matrix[j][i]) > abs(matrix[max][i])) {
           max = j;
         }
       }
@@ -512,7 +692,7 @@ public class ProgG12Stat2 {
       if (y[i] <= 0) {
         throw new IllegalArgumentException("y-values must be positive for exp regression");
       }
-      lnY[i] = Math.log(y[i]);
+      lnY[i] = ln(y[i]);
     }
 
     // 1 次多項式回帰を適用
@@ -520,7 +700,7 @@ public class ProgG12Stat2 {
 
     // 求めた係数からaとbを取得
     double b = coefficients[1];
-    double a = Math.exp(coefficients[0]);
+    double a = exp(coefficients[0]);
 
     return new double[] { a, b };
   }
@@ -538,7 +718,7 @@ public class ProgG12Stat2 {
 
     // 予測される y 座標の値を計算
     for (int i = 0; i < coefficients.length; i++) {
-      y += coefficients[i] * Math.pow(x, i);
+      y += coefficients[i] * pow(x, i);
     }
     return y;
   }
@@ -589,7 +769,7 @@ public class ProgG12Stat2 {
     double totalError = 0.0;
     for (int i = 0; i < x.length; i++) {
       double predictedY = polynomialPredict(x[i], coefficients);
-      totalError += Math.pow(y[i] - predictedY, 2);
+      totalError += pow(y[i] - predictedY, 2);
     }
 
     return totalError / x.length;
@@ -611,7 +791,7 @@ public class ProgG12Stat2 {
     double totalError = 0;
     for (int i = 0; i < x.length; i++) {
       double estimatedY = polynomialPredict(x[i], coefficients);
-      totalError += Math.abs(y[i] - estimatedY);
+      totalError += abs(y[i] - estimatedY);
     }
     return totalError / x.length;
   }
