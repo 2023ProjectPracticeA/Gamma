@@ -43,11 +43,19 @@ public class ProgG12Stat2 {
     // ユーザーからの入力を受け取るためのオブジェクト
     Scanner scanner = new Scanner(System.in);
 
+    // 統計データのタイトル
+    String title = "";
+
+    // 統計データの数値
+    double[] numbers = new double[0];
+
     while (isLoop) {
       // メニューを表示
       println("数字を入力してください．");
-      println("1: 統計データの入力と表示");
-      println("2: テスト");
+      println("1: 統計データのタイトルの入力");
+      println("2: 統計データの数値の入力");
+      println("3: 統計データの表示");
+      println("4: テスト");
       println("0: 終了");
       print(">> ");
 
@@ -59,11 +67,21 @@ public class ProgG12Stat2 {
         // 入力された値に応じて処理を分岐
         switch (input) {
           case 1:
-            // 統計データの入力と表示
-            inputAndDisplayStatistics(scanner);
+            // 統計データのタイトルの入力
+            title = inputTitle(scanner);
             break;
 
           case 2:
+            // 統計データの数値の入力
+            numbers = inputNumbers(scanner);
+            break;
+
+          case 3:
+            // 統計データの表示
+            disp(title, numbers);
+            break;
+
+          case 4:
             // テスト
             runTest();
             break;
@@ -89,26 +107,23 @@ public class ProgG12Stat2 {
   }
 
   /**
-   * 統計データの入力と表示
+   * 統計データのタイトルの入力
    */
-  public static void inputAndDisplayStatistics(Scanner scanner) {
+  public static String inputTitle(Scanner scanner) {
+    println("統計データのタイトルを入力して下さい．");
+    print(">> ");
+    return scanner.next();
+  }
+
+  /**
+   * 統計データの数値の入力
+   */
+  public static double[] inputNumbers(Scanner scanner) {
     // デフォルトのデータ個数
     int defaultCount = 5;
 
     // ユーザから入力されるデータの個数を格納する変数
     int count = defaultCount;
-
-    // 統計のタイトルの初期値
-    String title = "入力データの統計量";
-
-    scanner.nextLine();
-
-    // 統計のタイトルを尋ねる
-    println("統計のタイトルを入力してください：");
-    print(">> ");
-
-    // 統計のタイトルを格納
-    title = scanner.nextLine();
 
     // データ数を尋ねる
     println("データ個数を入力して下さい．");
@@ -151,8 +166,7 @@ public class ProgG12Stat2 {
       }
     }
 
-    // 統計データを表示
-    disp(title, numbers);
+    return numbers;
   }
 
   /**
@@ -249,6 +263,22 @@ public class ProgG12Stat2 {
    * @param numbers 入力されたデータ
    */
   public static void disp(String title, double[] numbers) {
+    boolean invalid = false;
+
+    if (title.length() == 0) {
+      println("!!!タイトルが入力されていません．");
+      invalid = true;
+    }
+
+    if (numbers.length == 0) {
+      println("!!!データが入力されていません．");
+      invalid = true;
+    }
+
+    if (invalid) {
+      return;
+    }
+
     double average = calcAve(numbers);
     double max = calcMax(numbers);
     double min = calcMin(numbers);
@@ -321,22 +351,22 @@ public class ProgG12Stat2 {
       for (int col = 0; col < numbers.length; col++) {
         if (row < 0) {
           if (numbers[col] < 0 && numbers[col] <= row) {
-              print("█");
-              print(spaces);
+            print("█");
+            print(spaces);
           } else {
-              print(" ");
-              print(spaces);
+            print(" ");
+            print(spaces);
           }
-      } else {
+        } else {
           if (numbers[col] >= row) {
-              print("█");
-              print(spaces);
+            print("█");
+            print(spaces);
           } else {
-              print(" ");
-              print(spaces);
+            print(" ");
+            print(spaces);
           }
-      }
-      
+        }
+
       }
       println("");
     }
