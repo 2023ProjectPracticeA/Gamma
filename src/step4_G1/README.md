@@ -212,16 +212,19 @@ public class Main {
 [1.0, 2.0, 3.0, 4.0, 5.0]
 ```
 
-
-# `inputAndDisplayStatistics` メソッド
+# `sortMenu` メソッド
 
 ## 概要
 
-`inputAndDisplayStatistics` メソッドは、統計データを入力し、標準出力に出力します。
+`sortMenu` メソッドはメニューを表示し、選択された並び替え方法を実行します。
 
 ## 引数
 
-なし
+| 引数名     | 型        | 説明                                      |
+|:---------|:--------|:----------------------------------------|
+| `scanner`  | `Scanner` | 入力を受け付けるスキャナー |
+| `numbers`  | `double[]` | 入力されたデータ |
+| `isVisiual` | `boolean` | グラフを表示するか |
 
 ## 戻り値
 
@@ -232,7 +235,9 @@ public class Main {
 ```java
 public class Main {
     public static void main(String[] args) {
-        inputAndDisplayStatistics();
+        Scanner scanner = new Scanner(System.in);
+        double[] numbers = inputNumbers(scanner);
+        sortMenu(scanner, numbers, true);
     }
 }
 ```
@@ -240,31 +245,123 @@ public class Main {
 ## 標準入力
 
 ```txt
-Sample
-1
-2
-3
-4
-5
+0
 ```
 
 ## 標準出力結果
 
+```txt
+数字を入力してください．
+1: バブルソート
+2: 選択ソート
+3: 挿入ソート
+0: 戻る
+>> 
 ```
-統計のタイトルを入力してください：
->> 
-データの個数を入力してください：
->> 
-1つ目のデータ >> 
-2つ目のデータ >> 
-3つ目のデータ >> 
-4つ目のデータ >> 
-5つ目のデータ >> 
-***** Sample *****
-最大値 = 5.0
-最小値 = 1.0
-平均値 = 3.0
-標準偏差 = 1.4142135623730951
+
+# `bubbleSort` メソッド
+
+## 概要
+
+`bubbleSort` メソッドは、引数に指定した数値をバブルソートで並び替えます。
+
+## 引数
+
+| 引数名     | 型        | 説明                                      |
+|:---------|:--------|:----------------------------------------|
+| `numbers`  | `double[]` | 入力されたデータ |
+| `isVisiual` | `boolean` | グラフを表示するか |
+
+## 戻り値
+
+なし
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        double[] numbers = new double[] { 5, 4, 3, 2, 1 };
+        bubbleSort(numbers, false);
+        System.out.println(Arrays.toString(numbers));
+    }
+}
+```
+
+## 標準出力結果
+
+```txt
+[1.0, 2.0, 3.0, 4.0, 5.0]
+```
+
+# `selectionSort` メソッド
+
+## 概要
+
+`selectionSort` メソッドは、引数に指定した数値を選択ソートで並び替えます。
+
+## 引数
+
+| 引数名     | 型        | 説明                                      |
+|:---------|:--------|:----------------------------------------|
+| `numbers`  | `double[]` | 入力されたデータ |
+| `isVisiual` | `boolean` | グラフを表示するか |
+
+## 戻り値
+
+なし
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        double[] numbers = new double[] { 5, 4, 3, 2, 1 };
+        selectionSort(numbers, false);
+        System.out.println(Arrays.toString(numbers));
+    }
+}
+```
+
+## 標準出力結果
+
+```txt
+[1.0, 2.0, 3.0, 4.0, 5.0]
+```
+
+# `insertionSort` メソッド
+
+## 概要
+
+`insertionSort` メソッドは、引数に指定した数値を挿入ソートで並び替えます。
+
+## 引数
+
+| 引数名     | 型        | 説明                                      |
+|:---------|:--------|:----------------------------------------|
+| `numbers`  | `double[]` | 入力されたデータ |
+| `isVisiual` | `boolean` | グラフを表示するか |
+
+## 戻り値
+
+なし
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        double[] numbers = new double[] { 5, 4, 3, 2, 1 };
+        insertionSort(numbers, false);
+        System.out.println(Arrays.toString(numbers));
+    }
+}
+```
+
+## 標準出力結果
+
+```txt
+[1.0, 2.0, 3.0, 4.0, 5.0]
 ```
 
 # `calcAve` メソッド
@@ -472,6 +569,86 @@ public class Main {
 最小値 = 1.0
 平均値 = 3.0
 標準偏差 = 1.4142135623730951
+```
+
+# `digitCount` メソッド
+
+## 概要
+
+`digitCount` メソッドは、引数に指定した数値の桁数を計算します。
+
+## 引数
+
+| 引数名    | 型         | 説明           |
+|:--------|:----------|:--------------|
+| `number`| `double` | 入力されたデータ |
+
+## 戻り値
+
+| 戻り値の型 | 説明     |
+|:-------|:------|
+| `int` | 桁数 |
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        int count = digitCount(12345);
+        println(count);
+    }
+}
+```
+
+## 標準出力結果
+
+```
+5
+```
+
+# `printGraph` メソッド
+
+## 概要
+
+`printGraph` メソッドは、統計データを棒グラフで標準出力に出力します。
+棒の上には添え字を、棒の下には値を出力します。
+棒の高さは、入力されたデータの値に比例します。
+負の値にも対応しています。
+
+## 引数
+
+| 引数名   | 型         | 説明           |
+|:-------|:----------|:--------------|
+| `numbers`| `double[]` | 入力されたデータ |
+
+## 戻り値
+
+なし
+
+## 使い方
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        double[] numbers = { 1, 2, 3, 4, 5 };
+        printGraph(numbers);
+    }
+}
+```
+
+## 標準出力結果
+
+```
+0 1 2 3 4 
+
+        █ 
+      █ █ 
+    █ █ █ 
+  █ █ █ █ 
+█ █ █ █ █ 
+1 2 3 4 5 
+. . . . . 
+0 0 0 0 0 
 ```
 
 # `runTest` メソッド
