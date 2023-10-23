@@ -404,6 +404,33 @@ public class ProgG12Stat2 {
   }
 
   /**
+   * 自然対数を計算します。
+   * @param x 入力値
+   * @return ln(x)
+   */
+  public static double ln(double x) {
+      double y = x - 1;
+      double result = 0.0;
+      double lastResult;
+      int i = 1;
+
+      do {
+          lastResult = result;
+
+          double term = pow(y, i) / i;
+          if (i % 2 == 0) {
+              result -= term;
+          } else {
+              result += term;
+          }
+
+          i++;
+      } while (result != lastResult);
+
+      return result;
+  }
+
+  /**
    * 与えられた数の最大値を計算します。
    * 
    * @param x 入力値
@@ -531,7 +558,7 @@ public class ProgG12Stat2 {
       if (y[i] <= 0) {
         throw new IllegalArgumentException("y-values must be positive for exp regression");
       }
-      lnY[i] = Math.log(y[i]);
+      lnY[i] = ln(y[i]);
     }
 
     // 1 次多項式回帰を適用
