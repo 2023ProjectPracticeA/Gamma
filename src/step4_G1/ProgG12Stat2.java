@@ -101,6 +101,8 @@ public class ProgG12Stat2 {
     // 統計のタイトルの初期値
     String title = "入力データの統計量";
 
+    scanner.nextLine();
+
     // 統計のタイトルを尋ねる
     println("統計のタイトルを入力してください：");
     print(">> ");
@@ -287,7 +289,13 @@ public class ProgG12Stat2 {
    * @param numbers 表示するデータ
    */
   public static void printGraph(double[] numbers) {
-    double maxVal = calcMax(numbers);
+    double maxValue = calcMax(numbers);
+    double minValue = calcMin(numbers);
+    int intMinValue = (int) minValue;
+
+    if (minValue < 0) {
+      intMinValue--;
+    }
 
     String spaces = "";
     for (int i = 0; i < digitCount(numbers.length); i++) {
@@ -303,19 +311,36 @@ public class ProgG12Stat2 {
         print(" ");
       }
     }
-    
-    
+
     println("");
 
     // 縦方向の描画のため、最大値からデクリメントしながら行ごとに描画
-    for (int row = (int) maxVal + 1; row > 0; row--) {
+    for (int row = (int) maxValue + 1 + -intMinValue; row > intMinValue; row--) {
       for (int col = 0; col < numbers.length; col++) {
-        if (numbers[col] >= row) {
-          print("█");
-          print(spaces);
+        if (row < 0) {
+          if (numbers[col] <= row) {
+            print("█");
+            print(spaces);
+          } else {
+            print(" ");
+            print(spaces);
+          }
+        }else if(row == 0){
+          if (numbers[col] > row) {
+            print("█");
+            print(spaces);
+          } else {
+            print(" ");
+            print(spaces);
+          }
         } else {
-          print(" ");
-          print(spaces);
+          if (numbers[col] >= row) {
+            print("█");
+            print(spaces);
+          } else {
+            print(" ");
+            print(spaces);
+          }
         }
       }
       println("");
