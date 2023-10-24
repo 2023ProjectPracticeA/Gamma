@@ -890,7 +890,7 @@ public class ProgG12Stat2 {
 
   /**
    * 指数回帰の係数を求める
-   * a * exp^(b * x)
+   * a * exp(b * x)
    * [a, b]
    * 
    * @param x x 座標の配列
