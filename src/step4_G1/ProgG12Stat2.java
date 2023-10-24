@@ -57,7 +57,7 @@ public class ProgG12Stat2 {
       println("3: 統計データの表示");
       println("4: 並び替え");
       println("5: グラフ表示付き並び替え");
-      println("6: テスト");
+      println("6: テスト（開発者向け）");
       println("0: 終了");
       print(">> ");
 
