@@ -111,6 +111,7 @@ public class ProgG12Stat2 {
         }
       } else {
         println("!!!入力値が不正です．");
+        scanner.nextLine();
       }
     }
 
@@ -149,7 +150,7 @@ public class ProgG12Stat2 {
       println("!!!入力値が不正です．データ個数を「5」にします．");
 
       // 不正な入力をスキップ
-      scanner.next();
+      scanner.nextLine();
     }
 
     // 入力されたデータ数が正であるかを確認
@@ -174,7 +175,7 @@ public class ProgG12Stat2 {
         numbers[i] = 0.0;
 
         // 不正な入力をスキップ
-        scanner.next();
+        scanner.nextLine();
       }
     }
 
