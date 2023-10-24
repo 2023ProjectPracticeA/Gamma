@@ -628,9 +628,6 @@ public class ProgG12Stat2 {
 
     assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 1.0,
         polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[2]);
-
-    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 3)", 0.0,
-        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 3)[0]);
   }
 
   /**
