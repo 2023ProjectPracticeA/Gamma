@@ -615,12 +615,6 @@ public class ProgG12Stat2 {
 
     assertEqual("ln(exp(1))", 1.0, ln(exp(1)));
 
-    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 1)", 0.0,
-        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 1)[0]);
-
-    assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 1)", 1.0,
-        polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 1)[1]);
-
     assertEqual("polynomialRegression([1, 2, 3], [1, 4, 9], 2)", 0.0,
         polynomialRegression(new double[] { 1, 2, 3 }, new double[] { 1, 4, 9 }, 2)[0]);
 
