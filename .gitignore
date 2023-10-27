@@ -11,3 +11,7 @@
 /src/step4_G1/*
 !/src/step4_G1/*.java
 !/src/step4_G1/README.md
+
+!/src/step5_G2/
+/src/step5_G2/*
+!/src/step5_G2/*.java
