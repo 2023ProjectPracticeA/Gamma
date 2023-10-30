@@ -29,6 +29,12 @@ public class Complex {
      * @param real 実部
      */
     public Complex(double real) {
+        // 実部が NaN の場合は NaN を設定する
+        if (real == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.real = real;
     }
 
@@ -38,6 +44,12 @@ public class Complex {
      * @param imag 虚部
      */
     public Complex(double real, double imag) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (real == Double.NaN || imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.real = real;
         this.imag = imag;
     }
@@ -47,6 +59,12 @@ public class Complex {
      * @param complex 複素数
      */
     public Complex(Complex complex) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (complex.real == Double.NaN || complex.imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.real = complex.real;
         this.imag = complex.imag;
     }
@@ -72,6 +90,12 @@ public class Complex {
      * @param real 実部
      */
     public void setReal(double real) {
+        // 実部が NaN の場合は NaN を設定する
+        if (real == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.real = real;
     }
 
@@ -80,6 +104,12 @@ public class Complex {
      * @param imag 虚部
      */
     public void setImag(double imag) {
+        // 虚部が NaN の場合は NaN を設定する
+        if (imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.imag = imag;
     }
 
@@ -89,6 +119,12 @@ public class Complex {
      * @param imag 虚部
      */
     public void set(double real, double imag) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (real == Double.NaN || imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.real = real;
         this.imag = imag;
     }
@@ -98,6 +134,12 @@ public class Complex {
      * @param complex 複素数
      */
     public void set(Complex complex) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (complex.real == Double.NaN || complex.imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            return;
+        }
         this.real = complex.real;
         this.imag = complex.imag;
     }
@@ -304,6 +346,11 @@ public class Complex {
      * @param complex 標準出力する複素数
      */
     public static void disp(Complex complex) {
+        if (complex.real == Double.NaN || complex.imag == Double.NaN) {
+            System.out.println("NaN");
+            return;
+        }
+
         if (complex.imag >= 0) {
             System.out.println(complex.real + " + " + complex.imag + "i");
         } else {
