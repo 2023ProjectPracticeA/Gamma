@@ -36,6 +36,14 @@ public class Complex2 {
      * @param real 実部
      */
     public Complex2(double real) {
+        // 実部が NaN の場合は NaN を設定する
+        if (real == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = real;
     }
 
@@ -46,6 +54,15 @@ public class Complex2 {
      * @param imag 複素数の虚部
      */
     public Complex2(double real, double imag) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (real == Double.NaN || imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
+
         this.real = real;
         this.imag = imag;
     }
@@ -59,6 +76,14 @@ public class Complex2 {
      * @param k    複素数の拡張を表す数の第三虚部
      */
     public Complex2(double real, double imag, double j, double k) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (real == Double.NaN || imag == Double.NaN || j == Double.NaN || k == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = real;
         this.imag = imag;
         this.j = j;
@@ -71,6 +96,15 @@ public class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public Complex2(Complex2 complex) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (complex.real == Double.NaN || complex.imag == Double.NaN || complex.j == Double.NaN
+                || complex.k == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = complex.real;
         this.imag = complex.imag;
         this.j = complex.j;
@@ -119,6 +153,14 @@ public class Complex2 {
      * @param real 複素数の拡張を表す数の実部
      */
     public void setReal(double real) {
+        // NaN の場合は NaN を設定する
+        if (real == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = real;
     }
 
@@ -128,6 +170,14 @@ public class Complex2 {
      * @param imag 複素数の拡張を表す数の第一虚部
      */
     public void setImag(double imag) {
+        // NaN の場合は NaN を設定する
+        if (imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.imag = imag;
     }
 
@@ -137,6 +187,14 @@ public class Complex2 {
      * @param j 複素数の拡張を表す数の第二虚部
      */
     public void setJ(double j) {
+        // NaN の場合は NaN を設定する
+        if (j == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.j = j;
     }
 
@@ -146,6 +204,14 @@ public class Complex2 {
      * @param k 複素数の拡張を表す数の第三虚部
      */
     public void setK(double k) {
+        // NaN の場合は NaN を設定する
+        if (k == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.k = k;
     }
 
@@ -155,7 +221,15 @@ public class Complex2 {
      * @param real 複素数の拡張を表す数の実部
      * @param imag 複素数の拡張を表す数の第一虚部
      */
-    public void set(double real, double imag) {
+    public void setComplex(double real, double imag) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (real == Double.NaN || imag == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = real;
         this.imag = imag;
     }
@@ -169,6 +243,14 @@ public class Complex2 {
      * @param k    複素数の拡張を表す数の第三虚部
      */
     public void set(double real, double imag, double j, double k) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (real == Double.NaN || imag == Double.NaN || j == Double.NaN || k == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = real;
         this.imag = imag;
         this.j = j;
@@ -181,6 +263,14 @@ public class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void set(Complex2 complex) {
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (complex.real == Double.NaN || complex.imag == Double.NaN || complex.j == Double.NaN || complex.k == Double.NaN) {
+            this.real = Double.NaN;
+            this.imag = Double.NaN;
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
         this.real = complex.real;
         this.imag = complex.imag;
         this.j = complex.j;
@@ -370,6 +460,9 @@ public class Complex2 {
      * @return 複素数の拡張を表す数どうしの値が等しいかどうか
      */
     public static boolean equals(Complex2 complex1, Complex2 complex2) {
+        if (complex1.isNaN() || complex2.isNaN()) {
+            return false;
+        }
         return complex1.real == complex2.real
                 && complex1.imag == complex2.imag 
                 && complex1.j == complex2.j 
@@ -441,5 +534,25 @@ public class Complex2 {
      */
     public boolean isPurelyComplex() {
         return Complex2.isPurelyComplex(this);
+    }
+
+    /**
+     * 複素数の拡張を表す数が NaN かどうかを返す
+     * 
+     * @param complex 複素数の拡張を表す数
+     * @return 複素数の拡張を表す数が NaN かどうか
+     */
+    public static boolean isNaN(Complex2 complex) {
+        return Double.isNaN(complex.real) || Double.isNaN(complex.imag) || Double.isNaN(complex.j)
+                || Double.isNaN(complex.k);
+    }
+
+    /**
+     * 複素数の拡張を表す数が NaN かどうかを返す
+     * 
+     * @return 複素数の拡張を表す数が NaN かどうか
+     */
+    public boolean isNaN() {
+        return Complex2.isNaN(this);
     }
 }
