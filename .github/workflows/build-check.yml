@@ -22,10 +22,12 @@ jobs:
         entry_point_files=$(grep -l -r --include=\*.java "public static void main(String\[\] args)" src)
 
         if [[ ! -z $entry_point_files ]]; then
-            for file in $entry_point_files; do
-                echo "Entry point found: $file"
-                javac $file
-            done
+        echo "Entry points found:"
+          for file in $entry_point_files; do
+            echo " - $file"
+          done
+
+          javac src/**/*.java
         else
             echo "No entry points were found."
             exit 1
