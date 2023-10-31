@@ -897,4 +897,23 @@ public class Complex2 {
     public Complex2 rotate(Complex2 complex) {
         return Complex2.rotate(this, complex);
     }
+
+    /**
+     * 複素数の拡張を表す数を正規化する
+     * 
+     * @param complex 複素数の拡張を表す数
+     * @return 正規化した複素数の拡張を表す数
+     */
+    public static Complex2 normalize(Complex2 complex) {
+        return Complex2.over(complex, Complex2.abs(complex));
+    }
+
+    /**
+     * 複素数の拡張を表す数を正規化する
+     * 
+     * @return 正規化した複素数の拡張を表す数
+     */
+    public Complex2 normalize() {
+        return Complex2.normalize(this);
+    }
 }
