@@ -14,15 +14,17 @@ import java.util.Scanner;
 public class ProgG21Cmplx1 {
     /**
      * 複素共役を返す
+     * 
      * @param complex 複素数
      * @return 複素共役
      */
     public static Complex conj(Complex complex) {
         return new Complex(complex.getReal(), -complex.getImag());
     }
-    
+
     /**
      * 複素数の絶対値を返す
+     * 
      * @param complex 複素数
      * @return 絶対値
      */
@@ -32,13 +34,15 @@ public class ProgG21Cmplx1 {
 
     /**
      * エントリーポイント
+     * 
+     * @param args コマンドライン引数
      */
     public static void main(String[] args) {
         // 複素数を 4 つ定義
-        
+
         // 複素数 z1
         Complex z1;
-        
+
         // 複素数 z2
         Complex z2;
 
@@ -63,13 +67,13 @@ public class ProgG21Cmplx1 {
         System.out.print("  実部 = ");
 
         // 実部を入力
-        if (scanner.hasNextDouble()){
+        if (scanner.hasNextDouble()) {
             double real = scanner.nextDouble();
 
             System.out.print("  虚部 = ");
 
             // 虚部を入力
-            if (scanner.hasNextDouble()){
+            if (scanner.hasNextDouble()) {
                 double imag = scanner.nextDouble();
                 z1 = new Complex(real, imag);
             } else {
@@ -82,7 +86,7 @@ public class ProgG21Cmplx1 {
             System.out.print("  虚部 = ");
 
             // 虚部を入力
-            if (scanner.hasNextDouble()){
+            if (scanner.hasNextDouble()) {
                 double imag = scanner.nextDouble();
                 z1 = new Complex(0, imag);
             } else {
@@ -95,13 +99,13 @@ public class ProgG21Cmplx1 {
         System.out.print("  実部 = ");
 
         // 実部を入力
-        if (scanner.hasNextDouble()){
+        if (scanner.hasNextDouble()) {
             double real = scanner.nextDouble();
 
             System.out.print("  虚部 = ");
 
             // 虚部を入力
-            if (scanner.hasNextDouble()){
+            if (scanner.hasNextDouble()) {
                 double imag = scanner.nextDouble();
                 z2 = new Complex(real, imag);
             } else {
@@ -110,11 +114,11 @@ public class ProgG21Cmplx1 {
             }
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値を設定します．");
-            
+
             System.out.print("  虚部 = ");
 
             // 虚部を入力
-            if (scanner.hasNextDouble()){
+            if (scanner.hasNextDouble()) {
                 double imag = scanner.nextDouble();
                 z2 = new Complex(0, imag);
             } else {
@@ -127,7 +131,7 @@ public class ProgG21Cmplx1 {
         System.out.print("  実部 = ");
 
         // 実部を入力
-        if (scanner.hasNextDouble()){
+        if (scanner.hasNextDouble()) {
             double real = scanner.nextDouble();
 
             System.out.print("  虚部 = 0 とします．");
@@ -149,7 +153,7 @@ public class ProgG21Cmplx1 {
         System.out.print("  実数a = ");
 
         // 実数を入力
-        if (scanner.hasNextDouble()){
+        if (scanner.hasNextDouble()) {
             a = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
@@ -196,7 +200,7 @@ public class ProgG21Cmplx1 {
         System.out.println();
 
         System.out.println("絶対値");
-        
+
         System.out.println("  |z1| = " + abs(z1));
 
         System.out.println("  |z2| = " + abs(z2));
@@ -214,7 +218,7 @@ public class ProgG21Cmplx1 {
 
         System.out.println("  z2 - a = ");
         z2.minus(a).disp();
-        
+
         System.out.println("  z1 x a = ");
         z1.times(a).disp();
 
