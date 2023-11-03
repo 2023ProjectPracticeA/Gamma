@@ -53,7 +53,7 @@ public class ProgG22Cmplx2 {
 
         Vector3 focus = new Vector3(0, 0, 1);
         Complex2 complex = new Complex2(1, 1, 1, 1);
-        complex = complex.normalize();
+        complex.normalize();
 
         for (int screenY = 0; screenY <= diameter; screenY++) {
             int y = screenY - radius;
@@ -74,7 +74,7 @@ public class ProgG22Cmplx2 {
                     Vector3 vectorPart = cros.scale(Math.sin(theta / 2));
 
                     Complex2 c = new Complex2(cos, vectorPart.x, vectorPart.y, vectorPart.z);
-                    c = c.normalize();
+                    c.normalize();
 
                     double d = complex.dot(c);
                     d = d / 2 + 0.5;

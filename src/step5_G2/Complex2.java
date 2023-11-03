@@ -286,7 +286,14 @@ public class Complex2 {
      * @return 実数と複素数の拡張を表す数の和
      */
     public static Complex2 plus(double real, Complex2 complex) {
-        return new Complex2(real + complex.real, complex.imag, complex.j, complex.k);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 実数と複素数の拡張を表す数の和を設定する
+        newComplex.plus(real);
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -297,7 +304,14 @@ public class Complex2 {
      * @return 複素数の拡張を表す数と実数の和
      */
     public static Complex2 plus(Complex2 complex, double real) {
-        return new Complex2(complex.real + real, complex.imag, complex.j, complex.k);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 複素数の拡張を表す数と実数の和を設定する
+        newComplex.plus(real);
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -308,8 +322,14 @@ public class Complex2 {
      * @return 複素数の拡張を表す数と複素数の拡張を表す数の和
      */
     public static Complex2 plus(Complex2 complex1, Complex2 complex2) {
-        return new Complex2(complex1.real + complex2.real, complex1.imag + complex2.imag, complex1.j + complex2.j,
-                complex1.k + complex2.k);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex1);
+
+        // 複素数の拡張を表す数と複素数の拡張を表す数の和を設定する
+        newComplex.plus(complex2);
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -342,8 +362,14 @@ public class Complex2 {
      * @return 複素数の拡張を表す数と複素数の拡張を表す数の差
      */
     public static Complex2 minus(Complex2 complex1, Complex2 complex2) {
-        return new Complex2(complex1.real - complex2.real, complex1.imag - complex2.imag, complex1.j - complex2.j,
-                complex1.k - complex2.k);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex1);
+
+        // 複素数の拡張を表す数と複素数の拡張を表す数の差を設定する
+        newComplex.minus(complex2);
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -354,7 +380,14 @@ public class Complex2 {
      * @return 実数と複素数の拡張を表す数の積
      */
     public static Complex2 times(double real, Complex2 complex) {
-        return new Complex2(real * complex.real, real * complex.imag, real * complex.j, real * complex.k);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 実数と複素数の拡張を表す数の積を設定する
+        newComplex.times(real);
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -365,7 +398,14 @@ public class Complex2 {
      * @return 複素数の拡張を表す数と実数の積
      */
     public static Complex2 times(Complex2 complex, double real) {
-        return new Complex2(complex.real * real, complex.imag * real, complex.j * real, complex.k * real);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 複素数の拡張を表す数と実数の積を設定する
+        newComplex.times(real);
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -376,18 +416,14 @@ public class Complex2 {
      * @return 複素数の拡張を表す数と複素数の拡張を表す数の積
      */
     public static Complex2 times(Complex2 complex1, Complex2 complex2) {
-        return new Complex2(
-                complex1.real * complex2.real - complex1.imag * complex2.imag - complex1.j * complex2.j
-                        - complex1.k * complex2.k,
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex1);
 
-                complex1.real * complex2.imag + complex1.imag * complex2.real
-                        + complex1.j * complex2.k - complex1.k * complex2.j,
+        // 複素数の拡張を表す数と複素数の拡張を表す数の積を設定する
+        newComplex.times(complex2);
 
-                complex1.real * complex2.j + complex1.imag * complex2.k
-                        + complex1.j * complex2.real + complex1.k * complex2.imag,
-
-                complex1.real * complex2.k + complex1.imag * complex2.j
-                        - complex1.j * complex2.imag + complex1.k * complex2.real);
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -429,7 +465,7 @@ public class Complex2 {
      * @param real 実数
      * @return 実数との和
      */
-    public Complex2 plus(double real) {
+    public Complex2 plusPure(double real) {
         return Complex2.plus(this, real);
     }
 
@@ -511,13 +547,124 @@ public class Complex2 {
     }
 
     /**
+     * 実数との和を設定する
+     * 
+     * @param real
+     */
+    public void plus(double real) {
+        this.setReal(real + this.real);
+    }
+
+    /**
+     * 複素数の拡張を表す数との和を設定する
+     * 
+     * @param complex 複素数の拡張を表す数
+     */
+    public void plus(Complex2 complex) {
+        this.setReal(complex.real + this.real);
+        this.setImag(complex.imag + this.imag);
+        this.setJ(complex.j + this.j);
+        this.setK(complex.k + this.k);
+    }
+
+    /**
+     * 実数との差を設定する
+     * 
+     * @param real 実数
+     */
+    public void minus(double real) {
+        this.setReal(this.real - real);
+    }
+
+    /**
+     * 複素数の拡張を表す数との差を設定する
+     * 
+     * @param complex 複素数の拡張を表す数
+     */
+    public void minus(Complex2 complex) {
+        this.setReal(this.real - complex.real);
+        this.setImag(this.imag - complex.imag);
+        this.setJ(this.j - complex.j);
+        this.setK(this.k - complex.k);
+    }
+
+    /**
+     * 実数との積を設定する
+     * 
+     * @param real 実数
+     */
+    public void times(double real) {
+        this.setReal(real * this.real);
+        this.setImag(real * this.imag);
+        this.setJ(real * this.j);
+        this.setK(real * this.k);
+    }
+
+    /**
+     * 複素数の拡張を表す数との積を設定する
+     * 
+     * @param complex 複素数の拡張を表す数
+     */
+    public void times(Complex2 complex) {
+        this.setReal(this.real * complex.real - this.imag * complex.imag - this.j * complex.j - this.k * complex.k);
+        this.setImag(this.real * complex.imag + this.imag * complex.real + this.j * complex.k - this.k * complex.j);
+        this.setJ(this.real * complex.j + this.imag * complex.k + this.j * complex.real + this.k * complex.imag);
+        this.setK(this.real * complex.k + this.imag * complex.j - this.j * complex.imag + this.k * complex.real);
+    }
+
+    /**
+     * 実数で割った商を設定する
+     * 
+     * @param real 実数
+     */
+    public void over(double real) {
+        this.setReal(this.real / real);
+        this.setImag(this.imag / real);
+        this.setJ(this.j / real);
+        this.setK(this.k / real);
+    }
+
+    /**
+     * 複素数の拡張を表す数で割った商を設定する
+     * 
+     * @param complex 複素数の拡張を表す数
+     */
+    public void over(Complex2 complex) {
+        // 絶対値
+        double abs = Complex2.abs(complex);
+
+        // 絶対値の二乗
+        double absSquare = abs * abs;
+
+        // 複素数の拡張を表す数で割った商を設定する
+        this.setReal((this.real * complex.real + this.imag * complex.imag + this.j * complex.j + this.k * complex.k)
+                / absSquare);
+
+        this.setImag((this.imag * complex.real - this.real * complex.imag - this.j * complex.k + this.k * complex.j)
+                / absSquare);
+
+        this.setJ((this.j * complex.real - this.real * complex.j + this.imag * complex.k - this.k * complex.imag)
+                / absSquare);
+
+        this.setK((this.k * complex.real - this.real * complex.k - this.imag * complex.j + this.j * complex.imag)
+                / absSquare);
+    }
+
+    /**
      * 複素数の拡張を表す数の共役を返す
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数の共役
      */
     public static Complex2 conj(Complex2 complex) {
-        return new Complex2(complex.real, -complex.imag, -complex.j, -complex.k);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 複素数の拡張を表す数の共役を設定する
+        newComplex.conj();
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -528,6 +675,15 @@ public class Complex2 {
      */
     public Complex2 conjPure() {
         return Complex2.conj(this);
+    }
+
+    /**
+     * 複素数の拡張を表す数の共役を設定する
+     */
+    public void conj() {
+        this.setImag(-this.imag);
+        this.setJ(-this.j);
+        this.setK(-this.k);
     }
 
     /**
@@ -543,11 +699,10 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数の絶対値を返す
-     * オブジェクトを変更しない
      * 
      * @return 複素数の拡張を表す数の絶対値
      */
-    public double absPure() {
+    public double abs() {
         return Complex2.abs(this);
     }
 
@@ -558,8 +713,14 @@ public class Complex2 {
      * @return 複素数の拡張を表す数の逆数
      */
     public static Complex2 inv(Complex2 complex) {
-        double abs = Complex2.abs(complex);
-        return Complex2.over(conj(complex), abs * abs);
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 複素数の拡張を表す数の逆数を設定する
+        newComplex.inv();
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -570,6 +731,23 @@ public class Complex2 {
      */
     public Complex2 invPure() {
         return Complex2.inv(this);
+    }
+
+    /**
+     * 複素数の拡張を表す数の逆数を設定する
+     */
+    public void inv() {
+        // 絶対値
+        double abs = Complex2.abs(this);
+
+        // 絶対値の二乗
+        double absSquare = abs * abs;
+
+        // 複素数の拡張を表す数の逆数を設定する
+        this.setReal(this.real / absSquare);
+        this.setImag(-this.imag / absSquare);
+        this.setJ(-this.j / absSquare);
+        this.setK(-this.k / absSquare);
     }
 
     /**
@@ -586,14 +764,13 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数の内積を返す
-     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数の内積
      */
-    public double dotPure(Complex2 complex) {
+    public double dot(Complex2 complex) {
         return Complex2.dot(this, complex);
-    }    
+    }
 
     /**
      * 複素数の拡張を表す数を複素数とみなして偏角を返す
@@ -607,11 +784,10 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数を複素数とみなして偏角を返す
-     * オブジェクトを変更しない
      * 
      * @return 複素数の偏角
      */
-    public double argPure() {
+    public double arg() {
         return Complex2.arg(this);
     }
 
@@ -746,7 +922,7 @@ public class Complex2 {
      * 複素数の拡張を表す数と実数が等しいかどうかを返す
      * 
      * @param complex 複素数の拡張を表す数
-     * @param real 実数
+     * @param real    実数
      * @return 複素数の拡張を表す数と実数が等しいかどうか
      */
     public static boolean equals(Complex2 complex, double real) {
@@ -868,24 +1044,24 @@ public class Complex2 {
     }
 
     // /**
-    //  * 複素数の拡張を表す数を回転させる
-    //  * 
-    //  * @param complex 複素数の拡張を表す数
-    //  * @param angle   回転角度
-    //  * @return 回転させた複素数の拡張を表す数
-    //  */
+    // * 複素数の拡張を表す数を回転させる
+    // *
+    // * @param complex 複素数の拡張を表す数
+    // * @param angle 回転角度
+    // * @return 回転させた複素数の拡張を表す数
+    // */
     // public static Complex2 rotate(Complex2 complex, Degree angle) {
-    //     return Complex2.times(complex, Complex2.exp(angle));
+    // return Complex2.times(complex, Complex2.exp(angle));
     // }
 
     // /**
-    //  * 複素数の拡張を表す数を回転させる
-    //  * 
-    //  * @param angle 回転角度
-    //  * @return 回転させた複素数の拡張を表す数
-    //  */
+    // * 複素数の拡張を表す数を回転させる
+    // *
+    // * @param angle 回転角度
+    // * @return 回転させた複素数の拡張を表す数
+    // */
     // public Complex2 rotate(Degree angle) {
-    //     return Complex2.rotate(this, angle);
+    // return Complex2.rotate(this, angle);
     // }
 
     /**
@@ -911,6 +1087,10 @@ public class Complex2 {
         return Complex2.rotate(this, complex);
     }
 
+    public void rotate(Complex2 complex) {
+
+    }
+
     /**
      * 複素数の拡張を表す数を正規化する
      * 
@@ -918,7 +1098,14 @@ public class Complex2 {
      * @return 正規化した複素数の拡張を表す数
      */
     public static Complex2 normalize(Complex2 complex) {
-        return Complex2.over(complex, Complex2.abs(complex));
+        // 新しいオブジェクトを生成する
+        Complex2 newComplex = new Complex2(complex);
+
+        // 複素数の拡張を表す数を正規化する
+        newComplex.normalize();
+
+        // 新しく生成したオブジェクトを返す
+        return newComplex;
     }
 
     /**
@@ -929,5 +1116,15 @@ public class Complex2 {
      */
     public Complex2 normalizePure() {
         return Complex2.normalize(this);
+    }
+
+    /**
+     * 複素数の拡張を表す数を正規化する
+     */
+    public void normalize() {
+        // 絶対値
+        double abs = abs();
+
+        over(abs);
     }
 }
