@@ -435,71 +435,78 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数との和を返す
+     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数との和
      */
-    public Complex2 plus(Complex2 complex) {
+    public Complex2 plusPure(Complex2 complex) {
         return Complex2.plus(this, complex);
     }
 
     /**
      * 実数との差を返す
+     * オブジェクトを変更しない
      * 
      * @param real 実数
      * @return 実数との差
      */
-    public Complex2 minus(double real) {
+    public Complex2 minusPure(double real) {
         return Complex2.minus(this, real);
     }
 
     /**
      * 複素数の拡張を表す数との差を返す
+     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数との差
      */
-    public Complex2 minus(Complex2 complex) {
+    public Complex2 minusPure(Complex2 complex) {
         return Complex2.minus(this, complex);
     }
 
     /**
      * 実数との積を返す
+     * オブジェクトを変更しない
      * 
      * @param real 実数
      * @return 実数との積
      */
-    public Complex2 times(double real) {
+    public Complex2 timesPure(double real) {
         return Complex2.times(this, real);
     }
 
     /**
      * 複素数の拡張を表す数との積を返す
+     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数との積
      */
-    public Complex2 times(Complex2 complex) {
+    public Complex2 timesPure(Complex2 complex) {
         return Complex2.times(this, complex);
     }
 
     /**
      * 実数で割った商を返す
+     * オブジェクトを変更しない
      * 
      * @param real 実数
      * @return 実数で割った商
      */
-    public Complex2 over(double real) {
+    public Complex2 overPure(double real) {
         return Complex2.over(this, real);
     }
 
     /**
      * 複素数の拡張を表す数で割った商を返す
+     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数で割った商
      */
-    public Complex2 over(Complex2 complex) {
+    public Complex2 overPure(Complex2 complex) {
         return Complex2.over(this, complex);
     }
 
@@ -515,10 +522,11 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数の共役を返す
+     * オブジェクトを変更しない
      * 
      * @return 複素数の拡張を表す数の共役
      */
-    public Complex2 conj() {
+    public Complex2 conjPure() {
         return Complex2.conj(this);
     }
 
@@ -535,10 +543,11 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数の絶対値を返す
+     * オブジェクトを変更しない
      * 
      * @return 複素数の拡張を表す数の絶対値
      */
-    public double abs() {
+    public double absPure() {
         return Complex2.abs(this);
     }
 
@@ -555,10 +564,11 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数の逆数を返す
+     * オブジェクトを変更しない
      * 
      * @return 複素数の拡張を表す数の逆数
      */
-    public Complex2 inv() {
+    public Complex2 invPure() {
         return Complex2.inv(this);
     }
 
@@ -576,11 +586,12 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数の内積を返す
+     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の拡張を表す数の内積
      */
-    public double dot(Complex2 complex) {
+    public double dotPure(Complex2 complex) {
         return Complex2.dot(this, complex);
     }    
 
@@ -596,10 +607,11 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数を複素数とみなして偏角を返す
+     * オブジェクトを変更しない
      * 
      * @return 複素数の偏角
      */
-    public double arg() {
+    public double argPure() {
         return Complex2.arg(this);
     }
 
@@ -890,11 +902,12 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数を回転させる
+     * オブジェクトを変更しない
      * 
      * @param complex 複素数の拡張を表す数
      * @return 回転させた複素数の拡張を表す数
      */
-    public Complex2 rotate(Complex2 complex) {
+    public Complex2 rotatePure(Complex2 complex) {
         return Complex2.rotate(this, complex);
     }
 
@@ -910,10 +923,11 @@ public class Complex2 {
 
     /**
      * 複素数の拡張を表す数を正規化する
+     * オブジェクトを変更しない
      * 
      * @return 正規化した複素数の拡張を表す数
      */
-    public Complex2 normalize() {
+    public Complex2 normalizePure() {
         return Complex2.normalize(this);
     }
 }

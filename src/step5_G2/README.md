@@ -1255,15 +1255,16 @@ Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 Complex2 c3 = Complex2.over(c1, c2);
 ```
 
-## `plus` メソッド
+## `plusPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスとの和を求めるメソッドです。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### オーバーロード
 
-1. `plus(double real)`
+1. `plusPure(double real)`
 
     実数 `real` との和を求めます。
 
@@ -1273,7 +1274,7 @@ Complex2 c3 = Complex2.over(c1, c2);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `plus(Complex2 complex)`
+2. `plusPure(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との和を求めます。
 
@@ -1296,18 +1297,19 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 
 // c1 と c2 の和を求める
-Complex2 c3 = c1.plus(c2);
+Complex2 c3 = c1.plusPure(c2);
 ```
 
-## `minus` メソッド
+## `minusPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスとの差を求めるメソッドです。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### オーバーロード
 
-1. `minus(double real)`
+1. `minusPure(double real)`
 
     実数 `real` との差を求めます。
 
@@ -1317,7 +1319,7 @@ Complex2 c3 = c1.plus(c2);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `minus(Complex2 complex)`
+2. `minusPure(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との差を求めます。
 
@@ -1340,19 +1342,20 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 
 // c1 と c2 の差を求める
-Complex2 c3 = c1.minus(c2);
+Complex2 c3 = c1.minusPure(c2);
 ```
 
-## `times` メソッド
+## `timesPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスとの積を求めるメソッドです。
 複素数を表す `Complex` クラスと異なり、計算の順序が変わると結果が変わるので、注意してください。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### オーバーロード
 
-1. `times(double real)`
+1. `timesPure(double real)`
 
     実数 `real` との積を求めます。
 
@@ -1362,7 +1365,7 @@ Complex2 c3 = c1.minus(c2);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `times(Complex2 complex)`
+2. `timesPure(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との積を求めます。
 
@@ -1385,19 +1388,20 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 
 // c1 と c2 の積を求める
-Complex2 c3 = c1.times(c2);
+Complex2 c3 = c1.timesPure(c2);
 ```
 
-## `over` メソッド
+## `overPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスとの商を求めるメソッドです。
 実際には、逆数を求めてから積を求めています。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### オーバーロード
 
-1. `over(double real)`
+1. `overPure(double real)`
 
     実数 `real` との商を求めます。
 
@@ -1407,7 +1411,7 @@ Complex2 c3 = c1.times(c2);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `over(Complex2 complex)`
+2. `overPure(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との商を求めます。
 
@@ -1430,7 +1434,7 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 
 // c1 と c2 の商を求める
-Complex2 c3 = c1.over(c2);
+Complex2 c3 = c1.overPure(c2);
 ```
 
 ## 静的 `conj` メソッド
@@ -1460,11 +1464,12 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 Complex2 c2 = Complex2.conj(c1);
 ```
 
-## `conj` メソッド
+## `conjPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスの共役を求めるメソッドです。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### 引数
 
@@ -1482,7 +1487,7 @@ Complex2 c2 = Complex2.conj(c1);
 Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 
 // c1 の共役を求める
-Complex2 c2 = c1.conj();
+Complex2 c2 = c1.conjPure();
 ```
 
 ## 静的 `abs` メソッド
@@ -1512,11 +1517,12 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 double abs = Complex2.abs(c1);
 ```
 
-## `abs` メソッド
+## `absPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスの絶対値を求めるメソッドです。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### 引数
 
@@ -1534,7 +1540,7 @@ double abs = Complex2.abs(c1);
 Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 
 // c1 の絶対値を求める
-double abs = c1.abs();
+double abs = c1.absPure();
 ```
 
 ## 静的 `dot` メソッド
@@ -1566,11 +1572,12 @@ Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 double dot = Complex2.dot(c1, c2);
 ```
 
-## `dot` メソッド
+## `dotPure` メソッド
 
 ### 概要
 
 `Complex2` クラスのインスタンスの内積を求めるメソッドです。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
 
 ### 引数
 
@@ -1591,7 +1598,7 @@ Complex2 c1 = new Complex2(1.0, 2.0, 3.0, 4.0);
 Complex2 c2 = new Complex2(5.0, 6.0, 7.0, 8.0);
 
 // c1 と c2 の内積を求める
-double dot = c1.dot(c2);
+double dot = c1.dotPure(c2);
 ```
 
 ## 静的 `args` メソッド
