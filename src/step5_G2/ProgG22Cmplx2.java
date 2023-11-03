@@ -1182,6 +1182,7 @@ public class ProgG22Cmplx2 {
    */
   public static void runTest() {
       assertEqual("i * i", new Complex2(-1), new Complex2(0, 1).timesPure(new Complex2(0, 1)));
+      assertEqual("j * j", new Complex2(-1), new Complex2(0, 0, 1, 0).timesPure(new Complex2(0, 0, 1, 0)));
   }
 
   /**
