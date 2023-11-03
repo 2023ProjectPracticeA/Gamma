@@ -134,7 +134,7 @@ public class ProgG21Cmplx1 {
         if (scanner.hasNextDouble()) {
             double real = scanner.nextDouble();
 
-            System.out.print("  虚部 = 0 とします．");
+            System.out.println("  虚部 = 0 とします．");
 
             z3 = new Complex(real, 0);
         } else {
@@ -143,7 +143,7 @@ public class ProgG21Cmplx1 {
         }
 
         System.out.println("z4:");
-        System.out.print("  実部 = 虚部 = 0 とします． ");
+        System.out.println("  実部 = 虚部 = 0 とします． ");
 
         z4 = new Complex(0, 0);
 
