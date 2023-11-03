@@ -1181,7 +1181,7 @@ public class ProgG22Cmplx2 {
    * テストを実行する
    */
   public static void runTest() {
-      assertEqual("i * i", new Complex(-1), new Complex2(0, 1).times(new Complex2(0, 1)));
+      assertEqual("i * i", new Complex(-1), new Complex2(0, 1).timesPure(new Complex2(0, 1)));
   }
 
   /**
