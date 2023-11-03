@@ -1183,8 +1183,9 @@ public class ProgG22Cmplx2 {
   public static void runTest() {
       assertEqual("i * i", new Complex2(-1), new Complex2(0, 1).timesPure(new Complex2(0, 1)));
       assertEqual("j * j", new Complex2(-1), new Complex2(0, 0, 1, 0).timesPure(new Complex2(0, 0, 1, 0)));
-  }
+      assertEqual("k * k", new Complex2(-1), new Complex2(0, 0, 0, 1).timesPure(new Complex2(0, 0 ,0 ,1)));
 
+  }
   /**
    * 複素数の拡張を表す数の、期待値と実際の値が等しいかを確認する
    * 
