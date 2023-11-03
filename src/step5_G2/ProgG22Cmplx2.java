@@ -1178,6 +1178,13 @@ public class ProgG22Cmplx2 {
     }
 
   /**
+   * テストを実行する
+   */
+  public static void runTest() {
+      assertEqual("i * i", new Complex(-1), new Complex2(0, i).times(new Complex2(0, i)));
+  }
+
+  /**
    * 複素数の拡張を表す数の、期待値と実際の値が等しいかを確認する
    * 
    * @param message  表示するメッセージ
@@ -1188,14 +1195,14 @@ public class ProgG22Cmplx2 {
     // 期待値と実際の値が等しいかを確認
     if (expected.equals(actual)) {
       // 等しい場合は OK と表示
-      println("OK: " + message);
+      System.out.println("OK: " + message);
     } else {
       // 等しくない場合は NG と表示
-      println("NG: " + message);
+      System.out.println("NG: " + message);
 
       // 期待値と実際の値を表示
-      println("  期待: " + expected);
-      println("  実際: " + actual);
+      System.out.println("  期待: " + expected.toString());
+      System.out.println("  実際: " + actual.toString());
     }
   }
 
