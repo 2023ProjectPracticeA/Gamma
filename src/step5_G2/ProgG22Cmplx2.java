@@ -1177,6 +1177,28 @@ public class ProgG22Cmplx2 {
         }
     }
 
+  /**
+   * 複素数の拡張を表す数の、期待値と実際の値が等しいかを確認する
+   * 
+   * @param message  表示するメッセージ
+   * @param expected 期待値
+   * @param actual   実際の値
+   */
+  public static void assertEqual(String message, Complex2 expected, Complex2 actual) {
+    // 期待値と実際の値が等しいかを確認
+    if (expected.equals(actual)) {
+      // 等しい場合は OK と表示
+      println("OK: " + message);
+    } else {
+      // 等しくない場合は NG と表示
+      println("NG: " + message);
+
+      // 期待値と実際の値を表示
+      println("  期待: " + expected);
+      println("  実際: " + actual);
+    }
+  }
+
     public class Vector3 {
         public double x, y, z;
 
