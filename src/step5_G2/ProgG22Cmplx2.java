@@ -1181,10 +1181,41 @@ public class ProgG22Cmplx2 {
    * テストを実行する
    */
   public static void runTest() {
-      assertEqual("i * i", new Complex2(-1), new Complex2(0, 1).timesPure(new Complex2(0, 1)));
-      assertEqual("j * j", new Complex2(-1), new Complex2(0, 0, 1, 0).timesPure(new Complex2(0, 0, 1, 0)));
-      assertEqual("k * k", new Complex2(-1), new Complex2(0, 0, 0, 1).timesPure(new Complex2(0, 0 ,0 ,1)));
+    //複素数の和
+    assertEqual("r + r, i + i, j + j, k + k", new Complex2(2, 2, 2, 2),new Complex2(1, 1, 1, 1).plusPure(new Complex2(1, 1, 1, 1)));
 
+	//複素数の差  
+    assertEqual("r - r, i - i, j - j, k - k", new Complex2(0, 0, 0, 0),new Complex2(1, 1, 1, 1).minusPure(new Complex2(1, 1, 1, 1)));
+
+    //複素数の積
+    assertEqual("i * i", new Complex2(-1), new Complex2(0, 1).timesPure(new Complex2(0, 1)));
+    
+    assertEqual("j * j", new Complex2(-1), new Complex2(0, 0, 1, 0).timesPure(new Complex2(0, 0, 1, 0)));
+    
+    assertEqual("k * k", new Complex2(-1), new Complex2(0, 0, 0, 1).timesPure(new Complex2(0, 0 ,0 ,1)));
+    
+    assertEqual("i * j * k", new Complex2(-1), new Complex2(0, 1, 0, 0).timesPure
+            (new Complex2(0, 0 ,1 ,0).timesPure(new Complex2(0, 0 ,0 ,1))));
+
+    //複素数の商
+    assertEqual("i / i", new Complex2(1),new Complex2(0 , 1, 0, 0).overPure(new Complex2(0, 1, 0, 0)));
+    
+    assertEqual("j / j", new Complex2(1),new Complex2(0, 0, 1, 0).overPure(new Complex2(0, 0, 1, 0)));
+    
+    assertEqual("k / k", new Complex2(1),new Complex2(0, 0, 0, 1).overPure(new Complex2(0, 0, 0, 1)));
+    
+    //共役複素数
+    assertEqual("r = i = j = k = 1 の共役複素数", new Complex2(1,-1,-1,-1),new Complex2(1,1,1,1).conjPure());
+    
+    //絶対値
+    assertEqual2("r = i = j = k = 1 の絶対値", 2 ,new Complex2(1,1,1,1).abs());
+    
+    //偏角
+    assertEqual2("real = 1 img = 1の偏角", 0.78,new Complex2(1,1).arg());
+    
+    //内積
+    assertEqual2("real = 1, img = 1の内積", 2,new Complex2(1,1).dot(new Complex2(1,1)));
+    
   }
   /**
    * 複素数の拡張を表す数の、期待値と実際の値が等しいかを確認する
@@ -1207,6 +1238,21 @@ public class ProgG22Cmplx2 {
       System.out.println("  実際: " + actual.toString());
     }
   }
+
+  public static void assertEqual2(String message, double expected, double actual) {
+    // 期待値と実際の値が等しいかを確認
+    if (expected == actual) {
+      // 等しい場合は OK と表示
+      System.out.println("OK: " + message);
+    } else {
+      // 等しくない場合は NG と表示
+      System.out.println("NG: " + message);
+
+      // 期待値と実際の値を表示
+      System.out.println("  期待: " + expected);
+      System.out.println("  実際: " + actual);
+    }
+}
 
     public class Vector3 {
         public double x, y, z;
