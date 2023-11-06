@@ -779,6 +779,10 @@ class Complex2 {
      * @return 複素数の偏角
      */
     public static double arg(Complex2 complex) {
+        // Math.atan2 は逆正接を返す
+        // Math.atan2 は Math.atan2(y, x) で y/x の偏角を返す
+        // Math.atan も逆正接を返すが、-π/2 <= Math.atan(x) <= π/2 であり、象限を考慮しない
+        // Math.atan2 は -π <= Math.atan2(y, x) <= π であり、象限を考慮する
         return Math.atan2(complex.imag, complex.real);
     }
 
