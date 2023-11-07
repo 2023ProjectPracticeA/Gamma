@@ -1,5 +1,7 @@
 package step5_G2;
 
+import java.util.Scanner;
+
 /*
  * 課題番号      ： 第5回 演習問題G2-2
  * ファイル名    ： ProgG22Cmplx2.java
@@ -1218,9 +1220,9 @@ class Complex2 {
     /**
      * オイラー角から X 軸、Y 軸、Z 軸の順序で複素数の拡張を表す数を返す
      * 
-     * @param roll ロール角
+     * @param roll  ロール角
      * @param pitch ピッチ角
-     * @param yaw ヨー角
+     * @param yaw   ヨー角
      * @return 複素数の拡張を表す数
      */
     public static Complex2 fromEulerXYZ(double roll, double pitch, double yaw) {
@@ -1247,8 +1249,334 @@ class Complex2 {
 public class ProgG22Cmplx2 {
     private static final char[] chars = new char[] { ' ', '.', ':', '-', '=', '+', '*', '#', 'P', '@' };
 
+    /**
+     * エントリーポイント
+     * 
+     * @param args コマンドライン引数
+     */
     public static void main(String[] args) {
-        runTest();
+        // メニューのループを制御するフラグ
+        boolean isLoop = true;
+
+        // ユーザーからの入力を受け取るためのオブジェクト
+        Scanner scanner = new Scanner(System.in);
+
+        while (isLoop) {
+            // メニューを表示
+            System.out.println("数字を入力してください．");
+            System.out.println("1: 複素数の拡張を表す数の四則演算");
+            System.out.println("2: ソフトウェアレンダリングとオブジェクトの回転");
+            System.out.println("3: テスト（開発者向け）");
+            System.out.println("0: 終了");
+            System.out.print(">> ");
+
+            // 入力が整数であるかを確認し、それに応じて処理する
+            if (scanner.hasNextInt()) {
+                // 整数値を格納
+                int input = scanner.nextInt();
+
+                // 入力された値に応じて処理を分岐
+                switch (input) {
+                    case 1:
+                        clalcComplex2(scanner);
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+                        // テスト
+                        runTest();
+                        break;
+
+                    case 0:
+                        // プログラムの終了
+                        System.out.println("終了します．");
+                        isLoop = false;
+                        break;
+
+                    default:
+                        // その他の入力
+                        System.out.println("!!!入力値が不正です．");
+                        break;
+                }
+            } else {
+                System.out.println("!!!入力値が不正です．");
+                scanner.nextLine();
+            }
+        }
+
+        // Scanner オブジェクトを閉じてリソースを解放
+        scanner.close();
+    }
+
+    public static void clalcComplex2(Scanner scanner) {
+        Complex2 z1;
+
+        Complex2 z2;
+
+        Complex2 z3;
+
+        Complex2 z4;
+
+        double real, i, j, k, a;
+
+        System.out.println("＿/ ＿/ ＿/データ入力＿/ ＿/ ＿/\n");
+
+        // z1
+        System.out.print("実部入力： ");
+        if (scanner.hasNextDouble())
+            real = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            real = 0.0;
+        }
+        System.out.println("実部 = " + real);
+
+        System.out.print("3つの虚部の入力\n一つ目：");
+        if (scanner.hasNextDouble())
+            i = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            i = 0.0;
+        }
+        System.out.println("imag = " + i);
+
+        System.out.print("二つ目： ");
+        if (scanner.hasNextDouble())
+            j = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            j = 0.0;
+        }
+        System.out.println("j = " + j);
+
+        System.out.print("三つ目： ");
+        if (scanner.hasNextDouble())
+            k = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            k = 0.0;
+        }
+        System.out.println("k = " + k);
+
+        z1 = new Complex2(real, i, j, k);
+
+        // z2
+        System.out.print("実部入力： ");
+        if (scanner.hasNextDouble())
+            real = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            real = 0.0;
+        }
+        System.out.println("実部 = " + real);
+
+        System.out.print("3つの虚部の入力\n一つ目：");
+        if (scanner.hasNextDouble())
+            i = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            i = 0.0;
+        }
+        System.out.println("imag = " + i);
+
+        System.out.print("二つ目： ");
+        if (scanner.hasNextDouble())
+            j = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            j = 0.0;
+        }
+        System.out.println("j = " + j);
+
+        System.out.print("三つ目： ");
+        if (scanner.hasNextDouble())
+            k = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            k = 0.0;
+        }
+        System.out.println("k = " + k);
+
+        z2 = new Complex2(real, i, j, k);
+
+        // z3
+        System.out.print("実部入力： ");
+        if (scanner.hasNextDouble())
+            real = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            real = 0.0;
+        }
+        System.out.println("実部 = " + real);
+
+        System.out.print("3つの虚部の入力\n一つ目：");
+        if (scanner.hasNextDouble())
+            i = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            i = 0.0;
+        }
+        System.out.println("imag = " + i);
+
+        System.out.print("二つ目： ");
+        if (scanner.hasNextDouble())
+            j = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            j = 0.0;
+        }
+        System.out.println("j = " + j);
+
+        System.out.print("三つ目： ");
+        if (scanner.hasNextDouble())
+            k = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            k = 0.0;
+        }
+        System.out.println("k = " + k);
+
+        z3 = new Complex2(real, i, j, k);
+
+        // z4
+        System.out.print("実部入力： ");
+        if (scanner.hasNextDouble())
+            real = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            real = 0.0;
+        }
+        System.out.println("実部 = " + real);
+
+        System.out.print("3つの虚部の入力\n一つ目：");
+        if (scanner.hasNextDouble())
+            i = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            i = 0.0;
+        }
+        System.out.println("imag = " + i);
+
+        System.out.print("二つ目： ");
+        if (scanner.hasNextDouble())
+            j = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            j = 0.0;
+        }
+        System.out.println("j = " + j);
+
+        System.out.print("三つ目： ");
+        if (scanner.hasNextDouble())
+            k = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            k = 0.0;
+        }
+        System.out.println("k = " + k);
+
+        z4 = new Complex2(real, i, j, k);
+
+        System.out.print("実数： ");
+        if (scanner.hasNextDouble())
+            a = scanner.nextDouble();
+        else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+            a = 0.0;
+        }
+        System.out.println("実数 = " + a);
+
+        System.out.println("＿/＿/＿/ データ出力 ＿/＿/＿/ \n");
+        System.out.println("複素数の拡張を表す数の入力値");
+        System.out.print("  z1 = ");
+        z1.disp();
+
+        System.out.print("  z2 = ");
+        z2.disp();
+
+        System.out.print("  z3 = ");
+        z3.disp();
+
+        System.out.print("  z4 = ");
+        z4.disp();
+
+        System.out.println("複素数の拡張を表す数の共役");
+
+        System.out.println("  z1* = ");
+        Complex2.conj(z1).disp();
+
+        System.out.println("  z2* = ");
+        Complex2.conj(z2).disp();
+
+        System.out.println("  z3* = ");
+        Complex2.conj(z3).disp();
+
+        System.out.println("  z4* = ");
+        Complex2.conj(z4).disp();
+
+        System.out.println();
+
+        System.out.println("絶対値");
+
+        System.out.print("  |z1| = " + Complex2.abs(z1));
+
+        System.out.print("  |z2| = " + Complex2.abs(z2));
+
+        System.out.print("  |z3| = " + Complex2.abs(z3));
+
+        System.out.print("  |z4| = " + Complex2.abs(z4));
+
+        System.out.println();
+
+        System.out.println("複素数の拡張を表す数どうしの四則演算");
+
+        System.out.print("  z1 + z2 = ");
+        Complex2.plus(z1, z2).disp();
+
+        System.out.print("  z1 - z2 = ");
+        Complex2.minus(z1, z2).disp();
+
+        System.out.print("  z1 x z2 = ");
+        Complex2.times(z1, z2).disp();
+
+        System.out.print("  z1 / z2 = ");
+        Complex2.over(z1, z2).disp();
+
+        System.out.println();
+
+        System.out.println("入力値の逆数");
+
+        System.out.print(" 1 / z1 = ");
+        Complex2.inv(z1).disp();
+
+        System.out.print(" 1 / z2 = ");
+        Complex2.inv(z2).disp();
+
+        System.out.print(" 1 / z3 = ");
+        Complex2.inv(z3).disp();
+
+        System.out.print(" 1 / z4 = ");
+        Complex2.inv(z4).disp();
     }
 
     /**
@@ -1364,16 +1692,15 @@ public class ProgG22Cmplx2 {
 
         public Vector3 cross(Vector3 other) {
             return new Vector3(
-                this.y * other.z - this.z * other.y,
-                this.z * other.x - this.x * other.z,
-                this.x * other.y - this.y * other.x
-            );
+                    this.y * other.z - this.z * other.y,
+                    this.z * other.x - this.x * other.z,
+                    this.x * other.y - this.y * other.x);
         }
-        
+
         public double norm() {
             return Math.sqrt(x * x + y * y + z * z);
         }
-    
+
         public Vector3 normalize() {
             double norm = norm();
             return new Vector3(x / norm, y / norm, z / norm);
@@ -1422,10 +1749,10 @@ public class ProgG22Cmplx2 {
                 Vector3 v0 = vertices[triangle[0]];
                 Vector3 v1 = vertices[triangle[1]];
                 Vector3 v2 = vertices[triangle[2]];
-    
+
                 // 三角形の法線を計算
                 Vector3 normal = v1.subtract(v0).cross(v2.subtract(v0)).normalize();
-    
+
                 // 視点から三角形が見えるかチェック（背面カリング）
                 if (normal.z <= 0) {
                     continue;
