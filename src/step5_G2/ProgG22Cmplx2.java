@@ -1265,8 +1265,9 @@ public class ProgG22Cmplx2 {
             // メニューを表示
             System.out.println("数字を入力してください．");
             System.out.println("1: 複素数の拡張を表す数の四則演算");
-            System.out.println("2: 四面体の回転");
-            System.out.println("3: テスト（開発者向け）");
+            System.out.println("2: 四角錐の回転");
+            System.out.println("3: 球の回転");
+            System.out.println("4: テスト（開発者向け）");
             System.out.println("0: 終了");
             System.out.print(">> ");
 
@@ -1288,10 +1289,20 @@ public class ProgG22Cmplx2 {
 
                         // 四面体の表示
                         System.out.println("＿/＿/＿/ データ出力 ＿/＿/＿/ \n");
-                        Simple3DConsoleRenderer.dispTetrahedron(rot);
+                        Simple3DConsoleRenderer.dispPyramid(rot);
                         break;
 
                     case 3:
+                        // 回転角の入力
+                        System.out.println("＿/ ＿/ ＿/データ入力＿/ ＿/ ＿/\n");
+                        Complex2 rotB = inputEulerAnglerXYZ(scanner);
+
+                        // 四面体の表示
+                        System.out.println("＿/＿/＿/ データ出力 ＿/＿/＿/ \n");
+                        dispBall(rotB);
+                        break;
+
+                    case 4:
                         // テスト
                         runTest();
                         break;
@@ -1565,8 +1576,13 @@ public class ProgG22Cmplx2 {
         System.out.print("  z1 x z2 = ");
         Complex2.times(z1, z2).disp();
 
-        System.out.print("  z1 / z2 = ");
-        Complex2.over(z1, z2).disp();
+        // 0 で割ることはできない
+        if (z2.getReal() == 0 && z2.getImag() == 0 && z2.getJ() == 0 && z2.getK() == 0) {
+            System.out.println("!!!0で割ることはできません．");
+        } else {
+            System.out.print("  z1 / z2 = ");
+            Complex2.over(z1, z2).disp();
+        }
 
         System.out.println();
 
@@ -1620,6 +1636,50 @@ public class ProgG22Cmplx2 {
         }
 
         return Complex2.fromEulerXYZ(x, y, z);
+    }
+
+    public static void dispBall(Complex2 complex){
+        
+        int diameter = 25;
+        int radius = diameter / 2;
+
+        ProgG22Cmplx2 instance = new ProgG22Cmplx2();
+
+        Vector3 focus = instance.new Vector3(0, 0, 1);
+
+        for (int screenY = 0; screenY <= diameter; screenY++) {
+            int y = screenY - radius;
+            for (int screenX = 0; screenX <= diameter; screenX++) {
+                int x = screenX - radius;
+                double distance = Math.sqrt(x * x + y * y);
+
+                if (distance <= radius) {
+                    Vector3 ray = instance.new Vector3(x, y, 0);
+                    ray.normalize();
+
+                    double cos = ray.dot(focus);
+                    double theta = Math.acos(cos);
+
+                    Vector3 cros = ray.cross(focus);
+                    cros.normalize();
+
+                    Vector3 vectorPart = cros.multiply(Math.sin(theta / 2));
+
+                    Complex2 c = new Complex2(cos, vectorPart.x, vectorPart.y, vectorPart.z);
+                    c.normalize();
+
+                    double d = complex.dot(c);
+                    d = d / 2 + 0.5;
+
+                    int index = (int) (d * d * 10);
+                    System.out.print(chars[index]);
+                    System.out.print(" ");
+                } else {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -1740,6 +1800,10 @@ public class ProgG22Cmplx2 {
             return new Vector3(this.x / scalar, this.y / scalar, this.z / scalar);
         }
 
+        public double dot(Vector3 other) {
+            return this.x * other.x + this.y * other.y + this.z * other.z;
+        }
+
         public Vector3 cross(Vector3 other) {
             return new Vector3(
                     this.y * other.z - this.z * other.y,
@@ -1776,16 +1840,22 @@ public class ProgG22Cmplx2 {
         };
 
         private static int[][] triangles = {
-                { 0, 1, 2 },
-                { 2, 3, 0 },
+                { 2, 1, 0 },
+                { 0, 3, 2 },
                 { 1, 4, 0 },
                 { 2, 4, 1 },
                 { 3, 4, 2 },
                 { 0, 4, 3 }
         };
 
-        public static void dispTetrahedron(Complex2 rot) {
+        public static void dispPyramid(Complex2 rot) {
             char[][] screen = new char[HEIGHT][WIDTH];
+
+            System.out.println(rot.toString());
+            System.out.println(rot.abs());
+            // System.out.println();
+
+            rot.normalize();
 
             Complex2 rotInv = Complex2.inv(rot);
 
@@ -1803,12 +1873,12 @@ public class ProgG22Cmplx2 {
                 Vector3 v2 = vertices[triangle[2]];
 
                 // 三角形の法線を計算
-                Vector3 normal = v1.subtract(v0).cross(v2.subtract(v0)).normalize();
+                // Vector3 normal = v1.subtract(v0).cross(v2.subtract(v0)).normalize();
 
                 // 視点から三角形が見えるかチェック（背面カリング）
-                if (normal.z <= 0) {
-                    continue;
-                }
+                // if (normal.z <= 0) {
+                // continue;
+                // }
 
                 int[] xPoints = new int[3];
                 int[] yPoints = new int[3];
