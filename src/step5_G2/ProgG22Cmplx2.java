@@ -1214,6 +1214,34 @@ class Complex2 {
 
         over(abs);
     }
+
+    /**
+     * オイラー角から X 軸、Y 軸、Z 軸の順序で複素数の拡張を表す数を返す
+     * 
+     * @param roll ロール角
+     * @param pitch ピッチ角
+     * @param yaw ヨー角
+     * @return 複素数の拡張を表す数
+     */
+    public static Complex2 fromEulerXYZ(double roll, double pitch, double yaw) {
+        double rollHalf = Math.toRadians(roll) / 2;
+        double pitchHalf = Math.toRadians(pitch) / 2;
+        double yawHalf = Math.toRadians(yaw) / 2;
+
+        double sinRollHalf = Math.sin(rollHalf);
+        double cosRollHalf = Math.cos(rollHalf);
+        double sinPitchHalf = Math.sin(pitchHalf);
+        double cosPitchHalf = Math.cos(pitchHalf);
+        double sinYawHalf = Math.sin(yawHalf);
+        double cosYawHalf = Math.cos(yawHalf);
+
+        double w = cosRollHalf * cosPitchHalf * cosYawHalf - sinRollHalf * sinPitchHalf * sinYawHalf;
+        double x = sinRollHalf * cosPitchHalf * cosYawHalf + cosRollHalf * sinPitchHalf * sinYawHalf;
+        double y = cosRollHalf * sinPitchHalf * cosYawHalf - sinRollHalf * cosPitchHalf * sinYawHalf;
+        double z = cosRollHalf * cosPitchHalf * sinYawHalf + sinRollHalf * sinPitchHalf * cosYawHalf;
+
+        return new Complex2(w, x, y, z);
+    }
 }
 
 public class ProgG22Cmplx2 {
