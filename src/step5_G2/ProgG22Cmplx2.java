@@ -1619,6 +1619,13 @@ public class ProgG22Cmplx2 {
 
         // 内積
         assertEqual("real = 1, img = 1 どうしの内積", 2, new Complex2(1, 1).dot(new Complex2(1, 1)));
+
+        // 逆数
+        assertEqual("i = 1 の逆数", new Complex2(0, -1, 0, 0), new Complex2(0, 1, 0, 0).invPure());
+
+        assertEqual("j = 1 の逆数", new Complex2(0, 0, -1, 0), new Complex2(0, 0, 1, 0).invPure());
+
+        assertEqual("k = 1 の逆数", new Complex2(0, 0, 0, -1), new Complex2(0, 0, 0, 1).invPure());
     }
 
     /**
