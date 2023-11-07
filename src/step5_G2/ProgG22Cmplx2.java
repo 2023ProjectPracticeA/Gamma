@@ -1346,28 +1346,22 @@ public class ProgG22Cmplx2 {
             this.z = z;
         }
 
-        // 他のベクトルとの加算
         public Vector3 add(Vector3 other) {
             return new Vector3(this.x + other.x, this.y + other.y, this.z + other.z);
         }
 
-        // 他のベクトルとの減算
         public Vector3 subtract(Vector3 other) {
             return new Vector3(this.x - other.x, this.y - other.y, this.z - other.z);
         }
 
-        // スカラー値での乗算
         public Vector3 multiply(double scalar) {
             return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
         }
 
-        // スカラー値での除算
         public Vector3 divide(double scalar) {
             return new Vector3(this.x / scalar, this.y / scalar, this.z / scalar);
         }
 
-        // 文字列表現
-        @Override
         public String toString() {
             return String.format("(%f, %f, %f)", x, y, z);
         }
@@ -1396,6 +1390,17 @@ public class ProgG22Cmplx2 {
         public static void main(String[] args) {
             char[][] screen = new char[HEIGHT][WIDTH];
 
+            Complex2 rotX = Complex2.fromEulerXYZ(0, 0, 90);
+            Complex2 rotXInv = Complex2.inv(rotX);
+
+            for (int i = 0; i < vertices.length; i++) {
+                Complex2 complex = new Complex2(0, vertices[i].x, vertices[i].y, vertices[i].z);
+                complex = Complex2.rotate(complex, rotX, rotXInv);
+                vertices[i].x = complex.getImag();
+                vertices[i].y = complex.getJ();
+                vertices[i].z = complex.getK();
+            }
+
             for (int[] triangle : triangles) {
                 int[] xPoints = new int[3];
                 int[] yPoints = new int[3];
@@ -1417,6 +1422,7 @@ public class ProgG22Cmplx2 {
             for (int y = 0; y < HEIGHT; y++) {
                 for (int x = 0; x < WIDTH; x++) {
                     System.out.print(screen[y][x] == '*' ? '*' : ' ');
+                    System.out.print(' ');
                 }
                 System.out.println();
             }
