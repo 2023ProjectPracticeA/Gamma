@@ -1265,7 +1265,7 @@ public class ProgG22Cmplx2 {
             // メニューを表示
             System.out.println("数字を入力してください．");
             System.out.println("1: 複素数の拡張を表す数の四則演算");
-            System.out.println("2: ソフトウェアレンダリングとオブジェクトの回転");
+            System.out.println("2: 四面体の回転");
             System.out.println("3: テスト（開発者向け）");
             System.out.println("0: 終了");
             System.out.print(">> ");
@@ -1282,7 +1282,13 @@ public class ProgG22Cmplx2 {
                         break;
 
                     case 2:
+                        // 回転角の入力
+                        System.out.println("＿/ ＿/ ＿/データ入力＿/ ＿/ ＿/\n");
+                        Complex2 rot = inputEulerAnglerXYZ(scanner);
 
+                        // 四面体の表示
+                        System.out.println("＿/＿/＿/ データ出力 ＿/＿/＿/ \n");
+                        Simple3DConsoleRenderer.dispTetrahedron(rot);
                         break;
 
                     case 3:
@@ -1579,6 +1585,43 @@ public class ProgG22Cmplx2 {
         Complex2.inv(z4).disp();
     }
 
+    public static Complex2 inputEulerAnglerXYZ(Scanner scanner) {
+        double x = 0.0;
+        double y = 0.0;
+        double z = 0.0;
+
+        System.out.print("回転角を入力してください（度数法）： ");
+
+        System.out.print("x 軸の回転角度を入力してください： ");
+
+        if (scanner.nextDouble() != 0.0) {
+            x = scanner.nextDouble();
+        } else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+        }
+
+        System.out.print("y 軸の回転角度を入力してください： ");
+
+        if (scanner.nextDouble() != 0.0) {
+            y = scanner.nextDouble();
+        } else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+        }
+
+        System.out.print("z 軸の回転角度を入力してください： ");
+
+        if (scanner.nextDouble() != 0.0) {
+            z = scanner.nextDouble();
+        } else {
+            System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
+            scanner.nextLine();
+        }
+
+        return Complex2.fromEulerXYZ(x, y, z);
+    }
+
     /**
      * テストを実行する
      */
@@ -1725,28 +1768,30 @@ public class ProgG22Cmplx2 {
         private static final int HEIGHT = 30;
 
         private static Vector3[] vertices = {
-                progG22Cmplx2.new Vector3(0, -1, 0),
-                progG22Cmplx2.new Vector3(1, 0, 0),
-                progG22Cmplx2.new Vector3(0, 1, 0),
-                progG22Cmplx2.new Vector3(-1, 0, 0)
+                progG22Cmplx2.new Vector3(1, -1, 0),
+                progG22Cmplx2.new Vector3(1, 1, 0),
+                progG22Cmplx2.new Vector3(-1, 1, 0),
+                progG22Cmplx2.new Vector3(-1, -1, 0),
+                progG22Cmplx2.new Vector3(0, 0, 1)
         };
 
         private static int[][] triangles = {
                 { 0, 1, 2 },
-                { 0, 1, 3 },
-                { 0, 2, 3 },
-                { 1, 2, 3 }
+                { 2, 3, 0 },
+                { 1, 4, 0 },
+                { 2, 4, 1 },
+                { 3, 4, 2 },
+                { 0, 4, 3 }
         };
 
-        public static void main(String[] args) {
+        public static void dispTetrahedron(Complex2 rot) {
             char[][] screen = new char[HEIGHT][WIDTH];
 
-            Complex2 rotX = Complex2.fromEulerXYZ(0, 90, 0);
-            Complex2 rotXInv = Complex2.inv(rotX);
+            Complex2 rotInv = Complex2.inv(rot);
 
             for (int i = 0; i < vertices.length; i++) {
                 Complex2 complex = new Complex2(0, vertices[i].x, vertices[i].y, vertices[i].z);
-                complex = Complex2.rotate(complex, rotX, rotXInv);
+                complex = Complex2.rotate(complex, rot, rotInv);
                 vertices[i].x = complex.getImag();
                 vertices[i].y = complex.getJ();
                 vertices[i].z = complex.getK();
