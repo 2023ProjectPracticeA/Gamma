@@ -1090,27 +1090,6 @@ class Complex2 {
         return Complex2.isNaN(this);
     }
 
-    // /**
-    // * 複素数の拡張を表す数を回転させる
-    // *
-    // * @param complex 複素数の拡張を表す数
-    // * @param angle 回転角度
-    // * @return 回転させた複素数の拡張を表す数
-    // */
-    // public static Complex2 rotate(Complex2 complex, Degree angle) {
-    // return Complex2.times(complex, Complex2.exp(angle));
-    // }
-
-    // /**
-    // * 複素数の拡張を表す数を回転させる
-    // *
-    // * @param angle 回転角度
-    // * @return 回転させた複素数の拡張を表す数
-    // */
-    // public Complex2 rotate(Degree angle) {
-    // return Complex2.rotate(this, angle);
-    // }
-
     /**
      * 複素数の拡張を表す数を回転させる
      * 
@@ -1135,7 +1114,20 @@ class Complex2 {
     }
 
     public void rotate(Complex2 complex) {
+        // 絶対値
+        double abs = Complex2.abs(this);
 
+        // 絶対値の二乗
+        double absSquare = abs * abs;
+
+        // 複素数の拡張を表す数の逆数
+        double invReal = real / absSquare;
+        double invImag = -imag / absSquare;
+        double invJ = -j / absSquare;
+        double invK = -k / absSquare;
+
+        times(complex);
+        times(invReal, invImag, invJ, invK);
     }
 
     /**
