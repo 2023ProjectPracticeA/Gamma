@@ -1137,48 +1137,7 @@ public class ProgG22Cmplx2 {
     private static final char[] chars = new char[] { ' ', '.', ':', '-', '=', '+', '*', '#', 'P', '@' };
 
     public static void main(String[] args) {
-        int diameter = 25;
-        int radius = diameter / 2;
-
-        ProgG22Cmplx2 instance = new ProgG22Cmplx2();
-
-        Vector3 focus = instance.new Vector3(0, 0, 1);
-        Complex2 complex = new Complex2(1, 1, 1, 1);
-        complex.normalize();
-
-        for (int screenY = 0; screenY <= diameter; screenY++) {
-            int y = screenY - radius;
-            for (int screenX = 0; screenX <= diameter; screenX++) {
-                int x = screenX - radius;
-                double distance = Math.sqrt(x * x + y * y);
-
-                if (distance <= radius) {
-                    Vector3 ray = instance.new Vector3(x, y, 0);
-                    ray.normalize();
-
-                    double cos = ray.dot(focus);
-                    double theta = Math.acos(cos);
-
-                    Vector3 cros = ray.cross(focus);
-                    cros.normalize();
-
-                    Vector3 vectorPart = cros.scale(Math.sin(theta / 2));
-
-                    Complex2 c = new Complex2(cos, vectorPart.x, vectorPart.y, vectorPart.z);
-                    c.normalize();
-
-                    double d = complex.dot(c);
-                    d = d / 2 + 0.5;
-
-                    int index = (int) (d * d * 10);
-                    System.out.print(chars[index]);
-                    System.out.print(" ");
-                } else {
-                    System.out.print("  ");
-                }
-            }
-            System.out.println();
-        }
+        Simple3DConsoleRenderer.main(args);
     }
 
     /**
@@ -1276,30 +1235,109 @@ public class ProgG22Cmplx2 {
             this.z = z;
         }
 
-        public Vector3 cross(Vector3 v) {
-            return new Vector3(
-                    this.y * v.z - this.z * v.y,
-                    this.z * v.x - this.x * v.z,
-                    this.x * v.y - this.y * v.x);
+        // 他のベクトルとの加算
+        public Vector3 add(Vector3 other) {
+            return new Vector3(this.x + other.x, this.y + other.y, this.z + other.z);
         }
 
-        public double dot(Vector3 v) {
-            return this.x * v.x + this.y * v.y + this.z * v.z;
+        // 他のベクトルとの減算
+        public Vector3 subtract(Vector3 other) {
+            return new Vector3(this.x - other.x, this.y - other.y, this.z - other.z);
         }
 
-        public double norm() {
-            return Math.sqrt(this.dot(this));
+        // スカラー値での乗算
+        public Vector3 multiply(double scalar) {
+            return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
         }
 
-        public void normalize() {
-            double magnitude = this.norm();
-            this.x /= magnitude;
-            this.y /= magnitude;
-            this.z /= magnitude;
+        // スカラー値での除算
+        public Vector3 divide(double scalar) {
+            return new Vector3(this.x / scalar, this.y / scalar, this.z / scalar);
         }
 
-        public Vector3 scale(double factor) {
-            return new Vector3(this.x * factor, this.y * factor, this.z * factor);
+        // 文字列表現
+        @Override
+        public String toString() {
+            return String.format("(%f, %f, %f)", x, y, z);
+        }
+    }
+
+    public static class Simple3DConsoleRenderer {
+        private static ProgG22Cmplx2 progG22Cmplx2 = new ProgG22Cmplx2();
+
+        private static final int WIDTH = 40;
+        private static final int HEIGHT = 30;
+
+        private static Vector3[] vertices = {
+                progG22Cmplx2.new Vector3(0, -1, 0),
+                progG22Cmplx2.new Vector3(1, 0, 0),
+                progG22Cmplx2.new Vector3(0, 1, 0),
+                progG22Cmplx2.new Vector3(-1, 0, 0)
+        };
+
+        private static int[][] triangles = {
+                { 0, 1, 2 },
+                { 0, 1, 3 },
+                { 0, 2, 3 },
+                { 1, 2, 3 }
+        };
+
+        public static void main(String[] args) {
+            char[][] screen = new char[HEIGHT][WIDTH];
+
+            for (int[] triangle : triangles) {
+                int[] xPoints = new int[3];
+                int[] yPoints = new int[3];
+                for (int i = 0; i < 3; i++) {
+                    xPoints[i] = (int) (WIDTH / 2 + vertices[triangle[i]].x * WIDTH / 4);
+                    yPoints[i] = (int) (HEIGHT / 2 - vertices[triangle[i]].y * HEIGHT / 4);
+                }
+
+                for (int i = 0; i < 3; i++) {
+                    int x0 = xPoints[i];
+                    int y0 = yPoints[i];
+                    int x1 = xPoints[(i + 1) % 3];
+                    int y1 = yPoints[(i + 1) % 3];
+
+                    drawLine(screen, x0, y0, x1, y1, '*');
+                }
+            }
+
+            for (int y = 0; y < HEIGHT; y++) {
+                for (int x = 0; x < WIDTH; x++) {
+                    System.out.print(screen[y][x] == '*' ? '*' : ' ');
+                }
+                System.out.println();
+            }
+        }
+
+        private static void drawLine(char[][] screen, int x0, int y0, int x1, int y1, char ch) {
+            int dx = Math.abs(x1 - x0);
+            int dy = Math.abs(y1 - y0);
+
+            int sx = x0 < x1 ? 1 : -1;
+            int sy = y0 < y1 ? 1 : -1;
+
+            int err = dx - dy;
+
+            while (true) {
+                if (x0 >= 0 && x0 < WIDTH && y0 >= 0 && y0 < HEIGHT) {
+                    screen[y0][x0] = ch;
+                }
+
+                if (x0 == x1 && y0 == y1)
+                    break;
+
+                int e2 = 2 * err;
+                if (e2 > -dy) {
+                    err -= dy;
+                    x0 += sx;
+                }
+                if (e2 < dx) {
+                    err += dx;
+                    y0 += sy;
+                }
+            }
         }
     }
 }
