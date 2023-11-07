@@ -1590,11 +1590,11 @@ public class ProgG22Cmplx2 {
         double y = 0.0;
         double z = 0.0;
 
-        System.out.print("回転角を入力してください（度数法）： ");
+        System.out.println("回転角を入力してください（度数法）");
 
         System.out.print("x 軸の回転角度を入力してください： ");
 
-        if (scanner.nextDouble() != 0.0) {
+        if (scanner.hasNextDouble()) {
             x = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
@@ -1603,7 +1603,7 @@ public class ProgG22Cmplx2 {
 
         System.out.print("y 軸の回転角度を入力してください： ");
 
-        if (scanner.nextDouble() != 0.0) {
+        if (scanner.hasNextDouble()) {
             y = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
@@ -1612,7 +1612,7 @@ public class ProgG22Cmplx2 {
 
         System.out.print("z 軸の回転角度を入力してください： ");
 
-        if (scanner.nextDouble() != 0.0) {
+        if (scanner.hasNextDouble()) {
             z = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
