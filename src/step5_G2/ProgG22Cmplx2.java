@@ -1581,16 +1581,16 @@ public class ProgG22Cmplx2 {
 
         System.out.println("複素数の拡張を表す数の共役");
 
-        System.out.println("  z1* = ");
+        System.out.print("  z1* = ");
         Complex2.conj(z1).disp();
 
-        System.out.println("  z2* = ");
+        System.out.print("  z2* = ");
         Complex2.conj(z2).disp();
 
-        System.out.println("  z3* = ");
+        System.out.print("  z3* = ");
         Complex2.conj(z3).disp();
 
-        System.out.println("  z4* = ");
+        System.out.print("  z4* = ");
         Complex2.conj(z4).disp();
 
         System.out.println();
