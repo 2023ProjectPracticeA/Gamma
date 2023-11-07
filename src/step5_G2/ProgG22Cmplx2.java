@@ -1320,7 +1320,7 @@ public class ProgG22Cmplx2 {
                 }
             } else {
                 System.out.println("!!!入力値が不正です．");
-                scanner.nextLine();
+                scanner.next();
             }
         }
 
@@ -1347,7 +1347,7 @@ public class ProgG22Cmplx2 {
             real = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             real = 0.0;
         }
         System.out.println("実部 = " + real);
@@ -1357,7 +1357,7 @@ public class ProgG22Cmplx2 {
             i = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             i = 0.0;
         }
         System.out.println("imag = " + i);
@@ -1367,7 +1367,7 @@ public class ProgG22Cmplx2 {
             j = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             j = 0.0;
         }
         System.out.println("j = " + j);
@@ -1377,7 +1377,7 @@ public class ProgG22Cmplx2 {
             k = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             k = 0.0;
         }
         System.out.println("k = " + k);
@@ -1390,7 +1390,7 @@ public class ProgG22Cmplx2 {
             real = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             real = 0.0;
         }
         System.out.println("実部 = " + real);
@@ -1400,7 +1400,7 @@ public class ProgG22Cmplx2 {
             i = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             i = 0.0;
         }
         System.out.println("imag = " + i);
@@ -1410,7 +1410,7 @@ public class ProgG22Cmplx2 {
             j = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             j = 0.0;
         }
         System.out.println("j = " + j);
@@ -1420,7 +1420,7 @@ public class ProgG22Cmplx2 {
             k = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             k = 0.0;
         }
         System.out.println("k = " + k);
@@ -1433,7 +1433,7 @@ public class ProgG22Cmplx2 {
             real = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             real = 0.0;
         }
         System.out.println("実部 = " + real);
@@ -1443,7 +1443,7 @@ public class ProgG22Cmplx2 {
             i = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             i = 0.0;
         }
         System.out.println("imag = " + i);
@@ -1453,7 +1453,7 @@ public class ProgG22Cmplx2 {
             j = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             j = 0.0;
         }
         System.out.println("j = " + j);
@@ -1463,7 +1463,7 @@ public class ProgG22Cmplx2 {
             k = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             k = 0.0;
         }
         System.out.println("k = " + k);
@@ -1476,7 +1476,7 @@ public class ProgG22Cmplx2 {
             real = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             real = 0.0;
         }
         System.out.println("実部 = " + real);
@@ -1486,7 +1486,7 @@ public class ProgG22Cmplx2 {
             i = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             i = 0.0;
         }
         System.out.println("imag = " + i);
@@ -1496,7 +1496,7 @@ public class ProgG22Cmplx2 {
             j = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             j = 0.0;
         }
         System.out.println("j = " + j);
@@ -1506,7 +1506,7 @@ public class ProgG22Cmplx2 {
             k = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             k = 0.0;
         }
         System.out.println("k = " + k);
@@ -1518,7 +1518,7 @@ public class ProgG22Cmplx2 {
             a = scanner.nextDouble();
         else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
             a = 0.0;
         }
         System.out.println("実数 = " + a);
@@ -1614,7 +1614,7 @@ public class ProgG22Cmplx2 {
             x = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
         }
 
         System.out.print("y 軸の回転角度を入力してください： ");
@@ -1623,7 +1623,7 @@ public class ProgG22Cmplx2 {
             y = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
         }
 
         System.out.print("z 軸の回転角度を入力してください： ");
@@ -1632,7 +1632,7 @@ public class ProgG22Cmplx2 {
             z = scanner.nextDouble();
         } else {
             System.out.println("!!!入力値が不正です．デフォルト値「0.0」を設定します．");
-            scanner.nextLine();
+            scanner.next();
         }
 
         return Complex2.fromEulerXYZ(x, y, z);
