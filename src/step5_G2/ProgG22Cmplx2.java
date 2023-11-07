@@ -1362,6 +1362,23 @@ public class ProgG22Cmplx2 {
             return new Vector3(this.x / scalar, this.y / scalar, this.z / scalar);
         }
 
+        public Vector3 cross(Vector3 other) {
+            return new Vector3(
+                this.y * other.z - this.z * other.y,
+                this.z * other.x - this.x * other.z,
+                this.x * other.y - this.y * other.x
+            );
+        }
+        
+        public double norm() {
+            return Math.sqrt(x * x + y * y + z * z);
+        }
+    
+        public Vector3 normalize() {
+            double norm = norm();
+            return new Vector3(x / norm, y / norm, z / norm);
+        }
+
         public String toString() {
             return String.format("(%f, %f, %f)", x, y, z);
         }
@@ -1390,7 +1407,7 @@ public class ProgG22Cmplx2 {
         public static void main(String[] args) {
             char[][] screen = new char[HEIGHT][WIDTH];
 
-            Complex2 rotX = Complex2.fromEulerXYZ(0, 0, 90);
+            Complex2 rotX = Complex2.fromEulerXYZ(0, 90, 0);
             Complex2 rotXInv = Complex2.inv(rotX);
 
             for (int i = 0; i < vertices.length; i++) {
@@ -1402,6 +1419,18 @@ public class ProgG22Cmplx2 {
             }
 
             for (int[] triangle : triangles) {
+                Vector3 v0 = vertices[triangle[0]];
+                Vector3 v1 = vertices[triangle[1]];
+                Vector3 v2 = vertices[triangle[2]];
+    
+                // 三角形の法線を計算
+                Vector3 normal = v1.subtract(v0).cross(v2.subtract(v0)).normalize();
+    
+                // 視点から三角形が見えるかチェック（背面カリング）
+                if (normal.z <= 0) {
+                    continue;
+                }
+
                 int[] xPoints = new int[3];
                 int[] yPoints = new int[3];
                 for (int i = 0; i < 3; i++) {
