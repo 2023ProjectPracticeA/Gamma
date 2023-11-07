@@ -1458,7 +1458,20 @@ Complex2 c3 = c1.overPure(c2);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `plus(Complex2 complex)`
+2. `plus(double real, double imag, double j, double k)`
+
+    実数 `real` と第一虚部 `imag` と第二虚部 `j` と第三虚部 `k` との和を求めます。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `double` | `real` | 実数 |
+    | `double` | `imag` | 第一虚部 |
+    | `double` | `j` | 第二虚部 |
+    | `double` | `k` | 第三虚部 |
+
+3. `plus(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との和を求めます。
 
@@ -1499,7 +1512,20 @@ c.plus(5.0);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `minus(Complex2 complex)`
+2. `minus(double real, double imag, double j, double k)`
+
+    実数 `real` と第一虚部 `imag` と第二虚部 `j` と第三虚部 `k` との差を求めます。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `double` | `real` | 実数 |
+    | `double` | `imag` | 第一虚部 |
+    | `double` | `j` | 第二虚部 |
+    | `double` | `k` | 第三虚部 |
+
+3. `minus(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との差を求めます。
 
@@ -1541,7 +1567,20 @@ c.minus(5.0);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `times(Complex2 complex)`
+2. `times(double real, double imag, double j, double k)`
+
+    実数 `real` と第一虚部 `imag` と第二虚部 `j` と第三虚部 `k` との積を求めます。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `double` | `real` | 実数 |
+    | `double` | `imag` | 第一虚部 |
+    | `double` | `j` | 第二虚部 |
+    | `double` | `k` | 第三虚部 |
+
+3. `times(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との積を求めます。
 
@@ -1583,7 +1622,20 @@ c.times(5.0);
     |:---:|:---:|:---:|
     | `double` | `real` | 実数 |
 
-2. `over(Complex2 complex)`
+2. `over(double real, double imag, double j, double k)`
+
+    実数 `real` と第一虚部 `imag` と第二虚部 `j` と第三虚部 `k` との商を求めます。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `double` | `real` | 実数 |
+    | `double` | `imag` | 第一虚部 |
+    | `double` | `j` | 第二虚部 |
+    | `double` | `k` | 第三虚部 |
+
+3. `over(Complex2 complex)`
 
     複素数の拡張を表す数 `complex` との商を求めます。
 

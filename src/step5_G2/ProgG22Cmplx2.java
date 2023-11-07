@@ -558,13 +558,25 @@ class Complex2 {
     /**
      * 複素数の拡張を表す数との和を設定する
      * 
+     * @param real 実部
+     * @param imag 第一虚部
+     * @param j    第二虚部
+     * @param k    第三虚部
+     */
+    public void plus(double real, double imag, double j, double k) {
+        setReal(this.real + real);
+        setImag(this.imag + imag);
+        setJ(this.j + j);
+        setK(this.k + k);
+    }
+
+    /**
+     * 複素数の拡張を表す数との和を設定する
+     * 
      * @param complex 複素数の拡張を表す数
      */
     public void plus(Complex2 complex) {
-        setReal(complex.real + real);
-        setImag(complex.imag + imag);
-        setJ(complex.j + j);
-        setK(complex.k + k);
+        plus(complex.real, complex.imag, complex.j, complex.k);
     }
 
     /**
@@ -579,13 +591,25 @@ class Complex2 {
     /**
      * 複素数の拡張を表す数との差を設定する
      * 
+     * @param real 実部
+     * @param imag 第一虚部
+     * @param j    第二虚部
+     * @param k    第三虚部
+     */
+    public void minus(double real, double imag, double j, double k) {
+        setReal(this.real - real);
+        setImag(this.imag - imag);
+        setJ(this.j - j);
+        setK(this.k - k);
+    }
+
+    /**
+     * 複素数の拡張を表す数との差を設定する
+     * 
      * @param complex 複素数の拡張を表す数
      */
     public void minus(Complex2 complex) {
-        setReal(real - complex.real);
-        setImag(imag - complex.imag);
-        setJ(j - complex.j);
-        setK(k - complex.k);
+        minus(complex.real, complex.imag, complex.j, complex.k);
     }
 
     /**
@@ -603,18 +627,30 @@ class Complex2 {
     /**
      * 複素数の拡張を表す数との積を設定する
      * 
+     * @param real 実部
+     * @param imag 第一虚部
+     * @param j    第二虚部
+     * @param k    第三虚部
+     */
+    public void times(double real, double imag, double j, double k) {        
+        double newReal = this.real * real - this.imag * imag - this.j * j - this.k * k;
+        double newImag = this.real * imag + this.imag * real + this.j * k - this.k * j;
+        double newJ = this.real * j + this.imag * k + this.j * real + this.k * imag;
+        double newK = this.real * k - this.imag * j + this.j * imag + this.k * real;
+
+        setReal(newReal);
+        setImag(newImag);
+        setJ(newJ);
+        setK(newK);
+    }
+
+    /**
+     * 複素数の拡張を表す数との積を設定する
+     * 
      * @param complex 複素数の拡張を表す数
      */
     public void times(Complex2 complex) {
-        double real = this.real * complex.real - this.imag * complex.imag - this.j * complex.j - this.k * complex.k;
-        double imag = this.real * complex.imag + this.imag * complex.real + this.j * complex.k - this.k * complex.j;
-        double j = this.real * complex.j + this.imag * complex.k + this.j * complex.real + this.k * complex.imag;
-        double k = this.real * complex.k - this.imag * complex.j + this.j * complex.imag + this.k * complex.real;
-
-        setReal(real);
-        setImag(imag);
-        setJ(j);
-        setK(k);
+        times(complex.real, complex.imag, complex.j, complex.k);
     }
 
     /**
@@ -629,35 +665,32 @@ class Complex2 {
         setK(k / real);
     }
 
+    public void over(double real, double imag, double j, double k) {
+        // 絶対値
+        double abs = Math.sqrt(real * real + imag * imag + j * j + k * k);
+
+        // 絶対値の二乗
+        double absSquare = abs * abs;
+
+        // 実数で割った商を設定する
+        double newReal = (this.real * real + this.imag * imag + this.j * j + this.k * k) / absSquare;
+        double newImag = (this.imag * real - this.real * imag - this.j * k + this.k * j) / absSquare;
+        double newJ = (this.j * real - this.real * j + this.imag * k - this.k * imag) / absSquare;
+        double newK = (this.k * real - this.real * k - this.imag * j + this.j * imag) / absSquare;
+
+        setReal(newReal);
+        setImag(newImag);
+        setJ(newJ);
+        setK(newK);
+    }
+
     /**
      * 複素数の拡張を表す数で割った商を設定する
      * 
      * @param complex 複素数の拡張を表す数
      */
     public void over(Complex2 complex) {
-        // 絶対値
-        double abs = Complex2.abs(complex);
-
-        // 絶対値の二乗
-        double absSquare = abs * abs;
-
-        // 複素数の拡張を表す数で割った商を設定する
-        double real = (this.real * complex.real + this.imag * complex.imag + this.j * complex.j + this.k * complex.k)
-                / absSquare;
-
-        double image = (this.imag * complex.real - this.real * complex.imag - this.j * complex.k + this.k * complex.j)
-                / absSquare;
-
-        double j = (this.j * complex.real - this.real * complex.j + this.imag * complex.k - this.k * complex.imag)
-                / absSquare;
-
-        double k = (this.k * complex.real - this.real * complex.k - this.imag * complex.j + this.j * complex.imag)
-                / absSquare;
-
-        setReal(real);
-        setImag(image);
-        setJ(j);
-        setK(k);
+        over(complex.real, complex.imag, complex.j, complex.k);
     }
 
     /**
