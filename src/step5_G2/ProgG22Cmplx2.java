@@ -632,7 +632,7 @@ class Complex2 {
      * @param j    第二虚部
      * @param k    第三虚部
      */
-    public void times(double real, double imag, double j, double k) {        
+    public void times(double real, double imag, double j, double k) {
         double newReal = this.real * real - this.imag * imag - this.j * j - this.k * k;
         double newImag = this.real * imag + this.imag * real + this.j * k - this.k * j;
         double newJ = this.real * j + this.imag * k + this.j * real + this.k * imag;
@@ -1134,13 +1134,37 @@ class Complex2 {
     /**
      * 複素数の拡張を表す数を回転させる
      * 
+     * @param complex1    複素数の拡張を表す数
+     * @param complex2    複素数の拡張を表す数
+     * @param complex2Inv 複素数の拡張を表す数の逆数
+     * @return 回転させた複素数の拡張を表す数
+     */
+    public static Complex2 rotate(Complex2 complex1, Complex2 complex2, Complex2 complex2Inv) {
+        Complex2 complex = Complex2.times(complex2, complex1);
+        complex.times(complex2Inv);
+        return complex;
+    }
+
+    /**
+     * 複素数の拡張を表す数を回転させる
+     * 
+     * @param complex    複素数の拡張を表す数
+     * @param complexInv 複素数の拡張を表す数の逆数
+     * @return 回転させた複素数の拡張を表す数
+     */
+    public Complex2 rotatePure(Complex2 complex, Complex2 complexInv) {
+        return Complex2.rotate(this, complex, complexInv);
+    }
+
+    /**
+     * 複素数の拡張を表す数を回転させる
+     * 
      * @param complex1 複素数の拡張を表す数
      * @param complex2 複素数の拡張を表す数
      * @return 回転させた複素数の拡張を表す数
      */
     public static Complex2 rotate(Complex2 complex1, Complex2 complex2) {
-        Complex2 complex = Complex2.times(complex1, complex2);
-        return Complex2.times(complex, Complex2.inv(complex1));
+        return Complex2.rotate(complex1, complex2, Complex2.inv(complex2));
     }
 
     /**
@@ -1152,23 +1176,6 @@ class Complex2 {
      */
     public Complex2 rotatePure(Complex2 complex) {
         return Complex2.rotate(this, complex);
-    }
-
-    public void rotate(Complex2 complex) {
-        // 絶対値
-        double abs = Complex2.abs(this);
-
-        // 絶対値の二乗
-        double absSquare = abs * abs;
-
-        // 複素数の拡張を表す数の逆数
-        double invReal = real / absSquare;
-        double invImag = -imag / absSquare;
-        double invJ = -j / absSquare;
-        double invK = -k / absSquare;
-
-        times(complex);
-        times(invReal, invImag, invJ, invK);
     }
 
     /**
