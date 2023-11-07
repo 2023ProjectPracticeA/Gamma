@@ -117,7 +117,7 @@ class Complex2 {
      * @return 実部
      */
     public double getReal() {
-        return this.real;
+        return real;
     }
 
     /**
@@ -126,7 +126,7 @@ class Complex2 {
      * @return 第一虚部
      */
     public double getImag() {
-        return this.imag;
+        return imag;
     }
 
     /**
@@ -135,7 +135,7 @@ class Complex2 {
      * @return 第二虚部
      */
     public double getJ() {
-        return this.j;
+        return j;
     }
 
     /**
@@ -144,7 +144,7 @@ class Complex2 {
      * @return 第三虚部
      */
     public double getK() {
-        return this.k;
+        return k;
     }
 
     /**
@@ -266,16 +266,16 @@ class Complex2 {
         // 実部または虚部が NaN の場合は NaN を設定する
         if (complex.real == Double.NaN || complex.imag == Double.NaN || complex.j == Double.NaN
                 || complex.k == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
-            this.j = Double.NaN;
-            this.k = Double.NaN;
+            real = Double.NaN;
+            imag = Double.NaN;
+            j = Double.NaN;
+            k = Double.NaN;
             return;
         }
-        this.real = complex.real;
-        this.imag = complex.imag;
-        this.j = complex.j;
-        this.k = complex.k;
+        real = complex.real;
+        imag = complex.imag;
+        j = complex.j;
+        k = complex.k;
     }
 
     /**
@@ -552,7 +552,7 @@ class Complex2 {
      * @param real
      */
     public void plus(double real) {
-        this.setReal(real + this.real);
+        setReal(real + real);
     }
 
     /**
@@ -561,10 +561,10 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void plus(Complex2 complex) {
-        this.setReal(complex.real + this.real);
-        this.setImag(complex.imag + this.imag);
-        this.setJ(complex.j + this.j);
-        this.setK(complex.k + this.k);
+        setReal(complex.real + real);
+        setImag(complex.imag + imag);
+        setJ(complex.j + j);
+        setK(complex.k + k);
     }
 
     /**
@@ -582,10 +582,10 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void minus(Complex2 complex) {
-        this.setReal(this.real - complex.real);
-        this.setImag(this.imag - complex.imag);
-        this.setJ(this.j - complex.j);
-        this.setK(this.k - complex.k);
+        setReal(real - complex.real);
+        setImag(imag - complex.imag);
+        setJ(j - complex.j);
+        setK(k - complex.k);
     }
 
     /**
@@ -594,10 +594,10 @@ class Complex2 {
      * @param real 実数
      */
     public void times(double real) {
-        this.setReal(real * this.real);
-        this.setImag(real * this.imag);
-        this.setJ(real * this.j);
-        this.setK(real * this.k);
+        setReal(real * real);
+        setImag(real * imag);
+        setJ(real * j);
+        setK(real * k);
     }
 
     /**
@@ -606,10 +606,15 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void times(Complex2 complex) {
-        this.setReal(this.real * complex.real - this.imag * complex.imag - this.j * complex.j - this.k * complex.k);
-        this.setImag(this.real * complex.imag + this.imag * complex.real + this.j * complex.k - this.k * complex.j);
-        this.setJ(this.real * complex.j + this.imag * complex.k + this.j * complex.real + this.k * complex.imag);
-        this.setK(this.real * complex.k + this.imag * complex.j - this.j * complex.imag + this.k * complex.real);
+        double real = this.real * complex.real - this.imag * complex.imag - this.j * complex.j - this.k * complex.k;
+        double imag = this.real * complex.imag + this.imag * complex.real + this.j * complex.k - this.k * complex.j;
+        double j = this.real * complex.j + this.imag * complex.k + this.j * complex.real + this.k * complex.imag;
+        double k = this.real * complex.k - this.imag * complex.j + this.j * complex.imag + this.k * complex.real;
+
+        setReal(real);
+        setImag(imag);
+        setJ(j);
+        setK(k);
     }
 
     /**
@@ -618,10 +623,10 @@ class Complex2 {
      * @param real 実数
      */
     public void over(double real) {
-        this.setReal(this.real / real);
-        this.setImag(this.imag / real);
-        this.setJ(this.j / real);
-        this.setK(this.k / real);
+        setReal(this.real / real);
+        setImag(imag / real);
+        setJ(j / real);
+        setK(k / real);
     }
 
     /**
@@ -637,17 +642,22 @@ class Complex2 {
         double absSquare = abs * abs;
 
         // 複素数の拡張を表す数で割った商を設定する
-        this.setReal((this.real * complex.real + this.imag * complex.imag + this.j * complex.j + this.k * complex.k)
-                / absSquare);
+        double real = (this.real * complex.real + this.imag * complex.imag + this.j * complex.j + this.k * complex.k)
+                / absSquare;
 
-        this.setImag((this.imag * complex.real - this.real * complex.imag - this.j * complex.k + this.k * complex.j)
-                / absSquare);
+        double image = (this.imag * complex.real - this.real * complex.imag - this.j * complex.k + this.k * complex.j)
+                / absSquare;
 
-        this.setJ((this.j * complex.real - this.real * complex.j + this.imag * complex.k - this.k * complex.imag)
-                / absSquare);
+        double j = (this.j * complex.real - this.real * complex.j + this.imag * complex.k - this.k * complex.imag)
+                / absSquare;
 
-        this.setK((this.k * complex.real - this.real * complex.k - this.imag * complex.j + this.j * complex.imag)
-                / absSquare);
+        double k = (this.k * complex.real - this.real * complex.k - this.imag * complex.j + this.j * complex.imag)
+                / absSquare;
+
+        setReal(real);
+        setImag(image);
+        setJ(j);
+        setK(k);
     }
 
     /**
@@ -681,9 +691,9 @@ class Complex2 {
      * 複素数の拡張を表す数の共役を設定する
      */
     public void conj() {
-        this.setImag(-this.imag);
-        this.setJ(-this.j);
-        this.setK(-this.k);
+        setImag(-imag);
+        setJ(-j);
+        setK(-k);
     }
 
     /**
@@ -744,10 +754,10 @@ class Complex2 {
         double absSquare = abs * abs;
 
         // 複素数の拡張を表す数の逆数を設定する
-        this.setReal(this.real / absSquare);
-        this.setImag(-this.imag / absSquare);
-        this.setJ(-this.j / absSquare);
-        this.setK(-this.k / absSquare);
+        setReal(real / absSquare);
+        setImag(-imag / absSquare);
+        setJ(-j / absSquare);
+        setK(-k / absSquare);
     }
 
     /**
@@ -1137,7 +1147,7 @@ public class ProgG22Cmplx2 {
     private static final char[] chars = new char[] { ' ', '.', ':', '-', '=', '+', '*', '#', 'P', '@' };
 
     public static void main(String[] args) {
-        Simple3DConsoleRenderer.main(args);
+        runTest();
     }
 
     /**
