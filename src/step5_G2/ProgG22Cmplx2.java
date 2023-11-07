@@ -817,6 +817,7 @@ class Complex2 {
 
     /**
      * 複素数の拡張を表す数を複素数とみなして偏角を返す
+     * -π から π までの値を返す
      * 
      * @param complex 複素数の拡張を表す数
      * @return 複素数の偏角
@@ -831,6 +832,7 @@ class Complex2 {
 
     /**
      * 複素数の拡張を表す数を複素数とみなして偏角を返す
+     * -π から π までの値を返す
      * 
      * @return 複素数の偏角
      */
@@ -839,7 +841,28 @@ class Complex2 {
     }
 
     /**
-     * 複素数の拡張を表す数を複素数とみなして極形式で表示する
+     * 複素数の拡張を表す数を複素数とみなして偏角を返す
+     * -180° から 180° までの値を返す
+     * 
+     * @param complex 複素数の拡張を表す数
+     * @return 複素数の偏角
+     */
+    public static double argDegree(Complex2 complex) {
+        return Complex2.arg(complex) * 180.0 / Math.PI;
+    }
+
+    /**
+     * 複素数の拡張を表す数を複素数とみなして偏角を返す
+     * -180° から 180° までの値を返す
+     * 
+     * @return 複素数の偏角
+     */
+    public double argDegree() {
+        return Complex2.argDegree(this);
+    }
+
+    /**
+     * 複素数の拡張を表す数を複素数とみなして極形式で標準出力に出力する
      * 
      * @param complex 複素数の拡張を表す数
      */
@@ -848,14 +871,32 @@ class Complex2 {
     }
 
     /**
-     * 複素数の拡張を表す数を複素数とみなして極形式で表示する
+     * 複素数の拡張を表す数を複素数とみなして極形式で標準出力に出力する
      */
     public void printPolar() {
         Complex2.printPolar(this);
     }
 
     /**
-     * 複素数の拡張を表す数を複素数とみなして指数形式で表示する
+     * 複素数の拡張を表す数を複素数とみなして極形式で標準出力に出力する
+     * 偏角は度数法で表示する
+     * 
+     * @param complex 複素数の拡張を表す数
+     */
+    public static void printPolarDegree(Complex2 complex) {
+        System.out.println("r = " + Complex2.abs(complex) + ", θ = " + Complex2.argDegree(complex) + "°");
+    }
+
+    /**
+     * 複素数の拡張を表す数を複素数とみなして極形式で標準出力に出力する
+     * 偏角は度数法で表示する
+     */
+    public void printPolarDegree() {
+        Complex2.printPolarDegree(this);
+    }
+
+    /**
+     * 複素数の拡張を表す数を複素数とみなして指数形式で標準出力に出力する
      * 
      * @param complex 複素数の拡張を表す数
      */
@@ -864,7 +905,7 @@ class Complex2 {
     }
 
     /**
-     * 複素数の拡張を表す数を複素数とみなして指数形式で表示する
+     * 複素数の拡張を表す数を複素数とみなして指数形式で標準出力に出力する
      */
     public void printExponential() {
         Complex2.printExponential(this);
@@ -936,16 +977,16 @@ class Complex2 {
     }
 
     /**
-     * 複素数の拡張を表す数を標準出力する
+     * 複素数の拡張を表す数を標準出力に出力する
      * 
-     * @param complex 標準出力する複素数
+     * @param complex 複素数の拡張を表す数
      */
     public static void disp(Complex2 complex) {
         System.out.println(complex.toString());
     }
 
     /**
-     * 複素数の拡張を表す数を標準出力する
+     * 複素数の拡張を表す数を標準出力に出力する
      */
     public void disp() {
         Complex2.disp(this);

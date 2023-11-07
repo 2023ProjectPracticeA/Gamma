@@ -1926,3 +1926,816 @@ double dot = c1.dot(c2);
 ### 概要
 
 `Complex2` クラスのインスタンスを複素数をとみなして偏角を求める静的メソッドです。
+-π から π の範囲の値を返します。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `double` | 偏角 |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c の偏角を求める
+double arg = Complex2.arg(c);
+```
+
+## `arg` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして偏角を求めるメソッドです。
+-π から π の範囲の値を返します。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `double` | 偏角 |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c の偏角を求める
+double arg = c.arg();
+```
+
+## 静的 `argDegree` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして偏角を求める静的メソッドです。
+-180° から 180° の範囲の値を返します。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `double` | 偏角 |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c の偏角を求める
+double arg = Complex2.argDegree(c);
+```
+
+## `argDegree` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして偏角を求めるメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `double` | 偏角 |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c の偏角を求める
+double arg = c.argDegree();
+```
+
+## 静的 `printPolar` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして極座標表示で標準出力に出力する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c を極座標表示で標準出力に出力する
+Complex2.printPolar(c);
+```
+
+## `printPolar` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして極座標表示で標準出力に出力するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c を極座標表示で標準出力に出力する
+c.printPolar();
+```
+
+## 静的 `printPolarDegree` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして極座標表示で標準出力に出力する静的メソッドです。
+偏角は度数法で表示されます。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c を極座標表示で標準出力に出力する
+Complex2.printPolarDegree(c);
+```
+
+## `printPolarDegree` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして極座標表示で標準出力に出力するメソッドです。
+偏角は度数法で表示されます。
+
+### 引数
+
+なし
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0, 3.0, 4.0);
+
+// c を極座標表示で標準出力に出力する
+c.printPolarDegree();
+```
+
+## 静的 `printExponential` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして指数表示で標準出力に出力する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を指数表示で標準出力に出力する
+Complex2.printExponential(c);
+```
+
+## `printExponential` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを複素数をとみなして指数表示で標準出力に出力するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を指数表示で標準出力に出力する
+c.printExponential();
+```
+
+## 静的 `toString` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを文字列に変換する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `String` | 文字列 |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を文字列に変換する
+String str = Complex2.toString(c);
+```
+
+## `toString` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを文字列に変換するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `String` | 文字列 |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を文字列に変換する
+String str = c.toString();
+```
+
+## 静的 `disp` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを標準出力に出力する静的メソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を標準出力に出力する
+Complex2.disp(c);
+```
+
+## `disp` メソッド
+
+### 概要
+
+`Complex2` クラスのインスタンスを標準出力に出力するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を標準出力に出力する
+c.disp();
+```
+
+## 静的 `equals` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが等しいかどうかを判定する静的メソッドです。
+`NaN` との比較は常に `false` と判定されます。
+
+### オーバーロード
+
+1. `equals(double real, Complex2 complex)`
+
+    実数 `real` と `Complex2` クラスのインスタンス `complex` が等しいかどうかを判定します。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `double` | `real` | 実数 |
+    | `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+2. `equals(Complex2 complex1, Complex2 complex2)`
+
+    `Complex2` クラスのインスタンス `complex1` と `Complex2` クラスのインスタンス `complex2` が等しいかどうかを判定します。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `Complex2` | `complex1` | `Complex2` クラスのインスタンス |
+    | `Complex2` | `complex2` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 等しい場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c1 = new Complex2(1.0, 2.0);
+Complex2 c2 = new Complex2(1.0, 2.0);
+
+// c1 と c2 が等しいかどうかを判定する
+boolean result = Complex2.equals(c1, c2);
+```
+
+## `equals` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが等しいかどうかを判定するメソッドです。
+`NaN` との比較は常に `false` と判定されます。
+
+### オーバーロード
+
+1. `equals(double real, Complex2 complex)`
+
+    実数 `real` と `Complex2` クラスのインスタンス `complex` が等しいかどうかを判定します。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `double` | `real` | 実数 |
+    | `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+2. `equals(Complex2 complex)`
+
+    `Complex2` クラスのインスタンス `complex` と自身が等しいかどうかを判定します。
+
+    #### 引数
+
+    | 型 | 変数名 | 概要 |
+    |:---:|:---:|:---:|
+    | `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 等しい場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c1 = new Complex2(1.0, 2.0);
+Complex2 c2 = new Complex2(1.0, 2.0);
+
+// c1 と c2 が等しいかどうかを判定する
+boolean result = c1.equals(c2);
+```
+
+## 静的 `isPurelyReal` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが純粋な実数かどうかを判定する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 純粋な実数の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 0.0);
+
+// c が純粋な実数かどうかを判定する
+boolean result = Complex2.isPurelyReal(c);
+```
+
+## `isPurelyReal` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが純粋な実数かどうかを判定するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 純粋な実数の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 0.0);
+
+// c が純粋な実数かどうかを判定する
+boolean result = c.isPurelyReal();
+```
+
+## 静的 `isPurelyImaginary` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが純粋な虚数かどうかを判定する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 純粋な虚数の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(0.0, 1.0);
+
+// c が純粋な虚数かどうかを判定する
+boolean result = Complex2.isPurelyImaginary(c);
+```
+
+## `isPurelyImaginary` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが純粋な虚数かどうかを判定するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 純粋な虚数の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(0.0, 1.0);
+
+// c が純粋な虚数かどうかを判定する
+boolean result = c.isPurelyImaginary();
+```
+
+## 静的 `isPurelyComplex` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが純粋な複素数かどうかを判定する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 純粋な複素数の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(0.0, 1.0);
+
+// c が純粋な複素数かどうかを判定する
+boolean result = Complex2.isPurelyComplex(c);
+```
+
+## `isPurelyComplex` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが純粋な複素数かどうかを判定するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | 純粋な複素数の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(0.0, 1.0);
+
+// c が純粋な複素数かどうかを判定する
+boolean result = c.isPurelyComplex();
+```
+
+## 静的 `isNaN` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが `NaN` かどうかを判定する静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | `NaN` の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(Double.NaN, Double.NaN);
+
+// c が NaN かどうかを判定する
+boolean result = Complex2.isNaN(c);
+```
+
+## `isNaN` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトが `NaN` かどうかを判定するメソッドです。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|
+| `boolean` | `NaN` の場合は `true`、そうでない場合は `false` |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(Double.NaN, Double.NaN);
+
+// c が NaN かどうかを判定する
+boolean result = c.isNaN();
+```
+
+## 静的 `rotate` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトを回転させる静的メソッドです。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex1` | `Complex2` クラスのインスタンス |
+| `Complex2` | `complex2` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|:---:|
+| `Complex2` | 回転後のオブジェクト |
+
+### 使い方
+
+```Java
+Complex2 c1 = new Complex2(1.0, 0.0);
+Complex2 c2 = new Complex2(0.0, 1.0);
+
+// c1 を c2 で回転させる
+Complex2 c3 = Complex2.rotate(c1, c2);
+```
+
+## `rotatePure` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトを回転させるメソッドです。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|:---:|
+| `Complex2` | 回転後のオブジェクト |
+
+### 使い方
+
+```Java
+Complex2 c1 = new Complex2(1.0, 0.0);
+Complex2 c2 = new Complex2(0.0, 1.0);
+
+// c1 を c2 で回転させる
+Complex2 c3 = c1.rotatePure(c2);
+```
+
+## `rotate` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトを回転させるメソッドです。
+オブジェクト自身が回転されます。
+オブジェクトが変更されますが、新しいオブジェクトを作成しないので、効率的です。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c1 = new Complex2(1.0, 0.0);
+Complex2 c2 = new Complex2(0.0, 1.0);
+
+// c1 を c2 で回転させる
+c1.rotate(c2);
+```
+
+## 静的 `nomalize` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトを正規化する静的メソッドです。
+絶対値が `1` になります。
+
+### 引数
+
+| 型 | 変数名 | 概要 |
+|:---:|:---:|:---:|
+| `Complex2` | `complex` | `Complex2` クラスのインスタンス |
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|:---:|
+| `Complex2` | 正規化されたオブジェクト |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を正規化する
+Complex2 c2 = Complex2.nomalize(c);
+```
+
+## `nomalizePure` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトを正規化するメソッドです。
+絶対値が `1` になります。
+オブジェクトを変更せずに、新しいオブジェクトを作成して返します。
+
+### 引数
+
+なし
+
+### 戻り値
+
+| 戻り値の型 | 説明 |
+|:---:|:---:|:---:|
+| `Complex2` | 正規化されたオブジェクト |
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を正規化する
+Complex2 c2 = c.nomalizePure();
+```
+
+## `nomalize` メソッド
+
+### 概要
+
+`Complex2` クラスのオブジェクトを正規化するメソッドです。
+絶対値が `1` になります。
+オブジェクト自身が正規化されます。
+オブジェクトが変更されますが、新しいオブジェクトを作成しないので、効率的です。
+
+### 引数
+
+なし
+
+### 戻り値
+
+なし
+
+### 使い方
+
+```Java
+Complex2 c = new Complex2(1.0, 2.0);
+
+// c を正規化する
+c.nomalize();
+```
