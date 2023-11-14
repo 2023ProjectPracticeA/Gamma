@@ -1,5 +1,7 @@
 package step6_G3;
 
+import step6_G3C.Complex;
+
 /*
  * 課題番号      ： 第7回 演習問題G3-1
  * ファイル名    ： ProgG31Eqtn1.java
@@ -11,12 +13,7 @@ package step6_G3;
 /**
  * 複素数の拡張を表す数を表すクラス
  */
-class Complex2 {
-    // 複素数の拡張を表す数の実部
-    private double real = 0.0;
-
-    // 複素数の拡張を表す数の第一虚部
-    private double imag = 0.0;
+class Complex2 extends Complex {
 
     // 複素数の拡張を表す数の第二虚部
     private double j = 0.0;
@@ -28,6 +25,7 @@ class Complex2 {
      * コンストラクター
      */
     public Complex2() {
+        super();
     }
 
     /**
@@ -36,15 +34,14 @@ class Complex2 {
      * @param real 実部
      */
     public Complex2(double real) {
+        super(real);
+
         // 実部が NaN の場合は NaN を設定する
         if (real == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-        this.real = real;
     }
 
     /**
@@ -54,17 +51,14 @@ class Complex2 {
      * @param imag 複素数の虚部
      */
     public Complex2(double real, double imag) {
+        super(real, imag);
+
         // 実部または虚部が NaN の場合は NaN を設定する
         if (real == Double.NaN || imag == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-
-        this.real = real;
-        this.imag = imag;
     }
 
     /**
@@ -76,18 +70,30 @@ class Complex2 {
      * @param k    複素数の拡張を表す数の第三虚部
      */
     public Complex2(double real, double imag, double j, double k) {
+        super(real, imag);
+
         // 実部または虚部が NaN の場合は NaN を設定する
         if (real == Double.NaN || imag == Double.NaN || j == Double.NaN || k == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-        this.real = real;
-        this.imag = imag;
         this.j = j;
         this.k = k;
+    }
+
+    public Complex2(Complex complex){
+        super(complex);
+
+        // 実部または虚部が NaN の場合は NaN を設定する
+        if (complex.getReal() == Double.NaN || complex.getImag() == Double.NaN) {
+            this.j = Double.NaN;
+            this.k = Double.NaN;
+            return;
+        }
+
+        this.j = 0.0;
+        this.k = 0.0;
     }
 
     /**
@@ -96,37 +102,17 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public Complex2(Complex2 complex) {
+        super(complex);
+
         // 実部または虚部が NaN の場合は NaN を設定する
-        if (complex.real == Double.NaN || complex.imag == Double.NaN || complex.j == Double.NaN
+        if (complex.getReal() == Double.NaN || complex.getImag() == Double.NaN || complex.j == Double.NaN
                 || complex.k == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-        this.real = complex.real;
-        this.imag = complex.imag;
         this.j = complex.j;
         this.k = complex.k;
-    }
-
-    /**
-     * 実部を返す
-     * 
-     * @return 実部
-     */
-    public double getReal() {
-        return real;
-    }
-
-    /**
-     * 第一虚部を返す
-     * 
-     * @return 第一虚部
-     */
-    public double getImag() {
-        return imag;
     }
 
     /**
@@ -155,13 +141,12 @@ class Complex2 {
     public void setReal(double real) {
         // NaN の場合は NaN を設定する
         if (real == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
+            set(Double.NaN, Double.NaN);
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-        this.real = real;
+        setReal(real);
     }
 
     /**
@@ -172,13 +157,12 @@ class Complex2 {
     public void setImag(double imag) {
         // NaN の場合は NaN を設定する
         if (imag == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
+            set(Double.NaN, Double.NaN);
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-        this.imag = imag;
+        setImag(imag);
     }
 
     /**
@@ -189,8 +173,7 @@ class Complex2 {
     public void setJ(double j) {
         // NaN の場合は NaN を設定する
         if (j == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
+            set(Double.NaN, Double.NaN);
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
@@ -206,32 +189,12 @@ class Complex2 {
     public void setK(double k) {
         // NaN の場合は NaN を設定する
         if (k == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
+            set(Double.NaN, Double.NaN);
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
         this.k = k;
-    }
-
-    /**
-     * 複素数の拡張を表す数の実部と第一虚部を設定する
-     * 
-     * @param real 複素数の拡張を表す数の実部
-     * @param imag 複素数の拡張を表す数の第一虚部
-     */
-    public void setComplex(double real, double imag) {
-        // 実部または虚部が NaN の場合は NaN を設定する
-        if (real == Double.NaN || imag == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
-            this.j = Double.NaN;
-            this.k = Double.NaN;
-            return;
-        }
-        this.real = real;
-        this.imag = imag;
     }
 
     /**
@@ -245,14 +208,12 @@ class Complex2 {
     public void set(double real, double imag, double j, double k) {
         // 実部または虚部が NaN の場合は NaN を設定する
         if (real == Double.NaN || imag == Double.NaN || j == Double.NaN || k == Double.NaN) {
-            this.real = Double.NaN;
-            this.imag = Double.NaN;
+            set(Double.NaN, Double.NaN);
             this.j = Double.NaN;
             this.k = Double.NaN;
             return;
         }
-        this.real = real;
-        this.imag = imag;
+        set(real, imag);
         this.j = j;
         this.k = k;
     }
@@ -264,16 +225,15 @@ class Complex2 {
      */
     public void set(Complex2 complex) {
         // 実部または虚部が NaN の場合は NaN を設定する
-        if (complex.real == Double.NaN || complex.imag == Double.NaN || complex.j == Double.NaN
+        if (getReal() == Double.NaN || getImag() == Double.NaN || complex.j == Double.NaN
                 || complex.k == Double.NaN) {
-            real = Double.NaN;
-            imag = Double.NaN;
+
+            set(Double.NaN, Double.NaN);
             j = Double.NaN;
             k = Double.NaN;
             return;
         }
-        real = complex.real;
-        imag = complex.imag;
+        set(complex.getReal(), complex.getImag());
         j = complex.j;
         k = complex.k;
     }
@@ -340,7 +300,7 @@ class Complex2 {
      * @return 実数と複素数の拡張を表す数の差
      */
     public static Complex2 minus(double real, Complex2 complex) {
-        return new Complex2(real - complex.real, complex.imag, complex.j, complex.k);
+        return new Complex2(real - complex.getReal(), complex.getImag(), complex.j, complex.k);
     }
 
     /**
@@ -351,7 +311,7 @@ class Complex2 {
      * @return 複素数の拡張を表す数と実数の差
      */
     public static Complex2 minus(Complex2 complex, double real) {
-        return new Complex2(complex.real - real, complex.imag, complex.j, complex.k);
+        return new Complex2(complex.getReal() - real, complex.getImag(), complex.j, complex.k);
     }
 
     /**
@@ -434,7 +394,7 @@ class Complex2 {
      * @return 実数を複素数の拡張を表す数で割った商
      */
     public static Complex2 over(double real, Complex2 complex) {
-        return new Complex2(real / complex.real, real / complex.imag, real / complex.j, real / complex.k);
+        return new Complex2(real / complex.getReal(), real / complex.getImag(), real / complex.j, real / complex.k);
     }
 
     /**
@@ -445,7 +405,7 @@ class Complex2 {
      * @return 複素数の拡張を表す数を実数で割った商
      */
     public static Complex2 over(Complex2 complex, double real) {
-        return new Complex2(complex.real / real, complex.imag / real, complex.j / real, complex.k / real);
+        return new Complex2(complex.getReal() / real, complex.getImag() / real, complex.j / real, complex.k / real);
     }
 
     /**
@@ -551,8 +511,10 @@ class Complex2 {
      * 
      * @param real
      */
-    public void plus(double real) {
+    public Complex2 plus(double real) {
         setReal(real + real);
+        
+        return this;
     }
 
     /**
@@ -564,8 +526,8 @@ class Complex2 {
      * @param k    第三虚部
      */
     public void plus(double real, double imag, double j, double k) {
-        setReal(this.real + real);
-        setImag(this.imag + imag);
+        setReal(getReal() + real);
+        setImag(getImag() + imag);
         setJ(this.j + j);
         setK(this.k + k);
     }
@@ -576,7 +538,7 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void plus(Complex2 complex) {
-        plus(complex.real, complex.imag, complex.j, complex.k);
+        plus(complex.getReal(), complex.getImag(), complex.j, complex.k);
     }
 
     /**
@@ -584,8 +546,10 @@ class Complex2 {
      * 
      * @param real 実数
      */
-    public void minus(double real) {
-        this.setReal(this.real - real);
+    public Complex2 minus(double real) {
+        setReal(getReal() - real);
+
+        return this;
     }
 
     /**
@@ -597,8 +561,8 @@ class Complex2 {
      * @param k    第三虚部
      */
     public void minus(double real, double imag, double j, double k) {
-        setReal(this.real - real);
-        setImag(this.imag - imag);
+        setReal(getReal() - real);
+        setImag(getImag() - imag);
         setJ(this.j - j);
         setK(this.k - k);
     }
@@ -609,7 +573,7 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void minus(Complex2 complex) {
-        minus(complex.real, complex.imag, complex.j, complex.k);
+        minus(complex.getReal(), complex.getImag(), complex.j, complex.k);
     }
 
     /**
@@ -617,11 +581,13 @@ class Complex2 {
      * 
      * @param real 実数
      */
-    public void times(double real) {
+    public Complex2 times(double real) {
         setReal(real * real);
-        setImag(real * imag);
+        setImag(real * getImag());
         setJ(real * j);
         setK(real * k);
+        
+        return this;
     }
 
     /**
@@ -633,10 +599,10 @@ class Complex2 {
      * @param k    第三虚部
      */
     public void times(double real, double imag, double j, double k) {
-        double newReal = this.real * real - this.imag * imag - this.j * j - this.k * k;
-        double newImag = this.real * imag + this.imag * real + this.j * k - this.k * j;
-        double newJ = this.real * j + this.imag * k + this.j * real + this.k * imag;
-        double newK = this.real * k - this.imag * j + this.j * imag + this.k * real;
+        double newReal = getReal() * real - getImag() * imag - this.j * j - this.k * k;
+        double newImag = getReal() * imag + getImag() * real + this.j * k - this.k * j;
+        double newJ = getReal() * j + getImag() * k + this.j * real + this.k * imag;
+        double newK = getReal() * k - getImag() * j + this.j * imag + this.k * real;
 
         setReal(newReal);
         setImag(newImag);
@@ -650,7 +616,7 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void times(Complex2 complex) {
-        times(complex.real, complex.imag, complex.j, complex.k);
+        times(complex.getReal(), complex.getImag(), complex.j, complex.k);
     }
 
     /**
@@ -658,11 +624,13 @@ class Complex2 {
      * 
      * @param real 実数
      */
-    public void over(double real) {
-        setReal(this.real / real);
-        setImag(imag / real);
+    public Complex2 over(double real) {
+        setReal(getReal() / real);
+        setImag(getImag() / real);
         setJ(j / real);
         setK(k / real);
+
+        return this;
     }
 
     public void over(double real, double imag, double j, double k) {
@@ -673,10 +641,10 @@ class Complex2 {
         double absSquare = abs * abs;
 
         // 実数で割った商を設定する
-        double newReal = (this.real * real + this.imag * imag + this.j * j + this.k * k) / absSquare;
-        double newImag = (this.imag * real - this.real * imag - this.j * k + this.k * j) / absSquare;
-        double newJ = (this.j * real - this.real * j + this.imag * k - this.k * imag) / absSquare;
-        double newK = (this.k * real - this.real * k - this.imag * j + this.j * imag) / absSquare;
+        double newReal = (getReal() * real + getImag() * imag + this.j * j + this.k * k) / absSquare;
+        double newImag = (getImag() * real - getReal() * imag - this.j * k + this.k * j) / absSquare;
+        double newJ = (this.j * real - getReal() * j + getImag() * k - this.k * imag) / absSquare;
+        double newK = (this.k * real - getReal() * k - getImag() * j + this.j * imag) / absSquare;
 
         setReal(newReal);
         setImag(newImag);
@@ -690,7 +658,7 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public void over(Complex2 complex) {
-        over(complex.real, complex.imag, complex.j, complex.k);
+        over(complex.getReal(), complex.getImag(), complex.j, complex.k);
     }
 
     /**
@@ -724,7 +692,7 @@ class Complex2 {
      * 複素数の拡張を表す数の共役を設定する
      */
     public void conj() {
-        setImag(-imag);
+        setImag(-getImag());
         setJ(-j);
         setK(-k);
     }
@@ -736,8 +704,9 @@ class Complex2 {
      * @return 複素数の拡張を表す数の絶対値
      */
     public static double abs(Complex2 complex) {
-        return Math.sqrt(complex.real * complex.real + complex.imag * complex.imag + complex.j * complex.j
-                + complex.k * complex.k);
+        return Math.sqrt(
+                complex.getReal() * complex.getReal() + complex.getImag() * complex.getImag() + complex.j * complex.j
+                        + complex.k * complex.k);
     }
 
     /**
@@ -787,8 +756,8 @@ class Complex2 {
         double absSquare = abs * abs;
 
         // 複素数の拡張を表す数の逆数を設定する
-        setReal(real / absSquare);
-        setImag(-imag / absSquare);
+        setReal(getReal() / absSquare);
+        setImag(-getImag() / absSquare);
         setJ(-j / absSquare);
         setK(-k / absSquare);
     }
@@ -801,7 +770,8 @@ class Complex2 {
      * @return 複素数の拡張を表す数の内積
      */
     public static double dot(Complex2 complex1, Complex2 complex2) {
-        return complex1.real * complex2.real + complex1.imag * complex2.imag + complex1.j * complex2.j
+        return complex1.getReal() * complex2.getReal() + complex1.getImag() * complex2.getImag()
+                + complex1.j * complex2.j
                 + complex1.k * complex2.k;
     }
 
@@ -827,7 +797,7 @@ class Complex2 {
         // Math.atan2 は Math.atan2(y, x) で y/x の偏角を返す
         // Math.atan も逆正接を返すが、-π/2 <= Math.atan(x) <= π/2 であり、象限を考慮しない
         // Math.atan2 は -π <= Math.atan2(y, x) <= π であり、象限を考慮する
-        return Math.atan2(complex.imag, complex.real);
+        return Math.atan2(complex.getImag(), complex.getReal());
     }
 
     /**
@@ -917,30 +887,30 @@ class Complex2 {
      * @param complex 複素数の拡張を表す数
      */
     public static String toString(Complex2 complex) {
-        if (complex.real == Double.NaN || complex.imag == Double.NaN || complex.j == Double.NaN
+        if (complex.getReal() == Double.NaN || complex.getImag() == Double.NaN || complex.j == Double.NaN
                 || complex.k == Double.NaN) {
             return "NaN";
         }
         String str = "";
 
-        if (complex.real != 0.0) {
-            str += complex.real;
+        if (complex.getReal() != 0.0) {
+            str += complex.getReal();
         }
 
-        if (complex.imag != 0.0) {
-            if (complex.imag > 0.0) {
-                if (complex.real != 0.0) {
+        if (complex.getImag() != 0.0) {
+            if (complex.getImag() > 0.0) {
+                if (complex.getReal() != 0.0) {
                     str += " + ";
                 }
             } else {
                 str += " - ";
             }
-            str += Math.abs(complex.imag) + "i";
+            str += Math.abs(complex.getImag()) + "i";
         }
 
         if (complex.j != 0.0) {
             if (complex.j > 0.0) {
-                if (complex.real != 0.0 || complex.imag != 0.0) {
+                if (complex.getReal() != 0.0 || complex.getImag() != 0.0) {
                     str += " + ";
                 }
             } else {
@@ -951,7 +921,7 @@ class Complex2 {
 
         if (complex.k != 0.0) {
             if (complex.k > 0.0) {
-                if (complex.real != 0.0 || complex.imag != 0.0 || complex.j != 0.0) {
+                if (complex.getReal() != 0.0 || complex.getImag() != 0.0 || complex.j != 0.0) {
                     str += " + ";
                 }
             } else {
@@ -1003,7 +973,7 @@ class Complex2 {
         if (Double.isNaN(real) || complex.isNaN()) {
             return false;
         }
-        return real == complex.real && complex.imag == 0.0 && complex.j == 0.0 && complex.k == 0.0;
+        return real == complex.getReal() && complex.getImag() == 0.0 && complex.j == 0.0 && complex.k == 0.0;
     }
 
     /**
@@ -1038,8 +1008,8 @@ class Complex2 {
         if (complex1.isNaN() || complex2.isNaN()) {
             return false;
         }
-        return complex1.real == complex2.real
-                && complex1.imag == complex2.imag
+        return complex1.getReal() == complex2.getReal()
+                && complex1.getImag() == complex2.getImag()
                 && complex1.j == complex2.j
                 && complex1.k == complex2.k;
     }
@@ -1061,7 +1031,7 @@ class Complex2 {
      * @return 複素数の拡張を表す数が純粋な実数かどうか
      */
     public static boolean isPurelyReal(Complex2 complex) {
-        return complex.imag == 0.0 && complex.j == 0.0 && complex.k == 0.0;
+        return complex.getImag() == 0.0 && complex.j == 0.0 && complex.k == 0.0;
     }
 
     /**
@@ -1080,7 +1050,7 @@ class Complex2 {
      * @return 複素数の拡張を表す数が純粋な虚数かどうか
      */
     public static boolean isPurelyImaginary(Complex2 complex) {
-        return complex.real == 0.0 && complex.j == 0.0 && complex.k == 0.0;
+        return complex.getReal() == 0.0 && complex.j == 0.0 && complex.k == 0.0;
     }
 
     /**
@@ -1118,7 +1088,7 @@ class Complex2 {
      * @return 複素数の拡張を表す数が NaN かどうか
      */
     public static boolean isNaN(Complex2 complex) {
-        return Double.isNaN(complex.real) || Double.isNaN(complex.imag) || Double.isNaN(complex.j)
+        return Double.isNaN(complex.getReal()) || Double.isNaN(complex.getImag()) || Double.isNaN(complex.j)
                 || Double.isNaN(complex.k);
     }
 
