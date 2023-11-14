@@ -1269,15 +1269,15 @@ class QuadEq implements EqSolver {
         String s = a + "x² ";
 
         if (b < 0) {
-            s += "-" + Math.abs(b) + "x ";
+            s += "- " + Math.abs(b) + "x ";
         } else {
-            s += "+" + b + "x ";
+            s += "+ " + b + "x ";
         }
 
         if (c < 0) {
-            s += "-" + Math.abs(c);
+            s += "- " + Math.abs(c);
         } else {
-            s += "+" + c;
+            s += "+ " + c;
         }
 
         return s + " = 0";
