@@ -8,7 +8,7 @@ package step6_G3C;
  * グループ      ： Γ
  */
 
-class Complex {
+public class Complex {
     // 複素数の実部
     private double real = 0.0;
 
