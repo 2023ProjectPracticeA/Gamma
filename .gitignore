@@ -20,3 +20,7 @@
 !/src/step6_G3/
 /src/step6_G3/*
 !/src/step6_G3/*.java
+
+!/src/step6_G3C/
+/src/step6_G3C/*
+!/src/step6_G3C/*.java
