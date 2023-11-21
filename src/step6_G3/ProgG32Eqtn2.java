@@ -3,7 +3,7 @@ package step6_G3;
 import java.util.Scanner;
 
 /*
- * 課題番号      ： 第8回 演習問題G3-2
+ * 課題番号      ： 第9回 演習問題G3-2
  * ファイル名    ： ProgG31Eqtn2.java
  * 作成年月日    ： 2023年11月21日
  * 学生番号・氏名：
