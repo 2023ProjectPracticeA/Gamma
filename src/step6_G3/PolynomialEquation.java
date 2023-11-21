@@ -1,12 +1,16 @@
 package step6_G3;
 
+import java.util.Random;
+
 public class PolynomialEquation implements EqSolver {
     private double[] coefficients;
-    private double solution;
+    private double[] solutions;
+
     private static final double EPSILON = 1e-7;
 
     public PolynomialEquation(double[] coefficients) {
         this.coefficients = coefficients;
+        this.solutions = new double[coefficients.length - 1];
     }
 
     private double evaluate(double x) {
@@ -27,23 +31,30 @@ public class PolynomialEquation implements EqSolver {
 
     @Override
     public void solve() {
-        double x0 = 0;
-        double x1;
+        for (int i = 0; i < solutions.length; i++) {
+            Random rand = new Random();
+    
+            double x0 = rand.nextDouble() * Double.MAX_VALUE;
+            if (rand.nextBoolean()) {
+                x0 *= -1;
+            }
+            double x1;
 
-        while (true) {
-            double f = evaluate(x0);
-            double fPrime = derivative(x0);
+            while (true) {
+                double f = evaluate(x0);
+                double fPrime = derivative(x0);
 
-            x1 = x0 - f / fPrime;
+                x1 = x0 - f / fPrime;
 
-            if (Math.abs(x1 - x0) < EPSILON) {
-                break;
+                if (Math.abs(x1 - x0) < EPSILON) {
+                    break;
+                }
+
+                x0 = x1;
             }
 
-            x0 = x1;
+            solutions[i] = x1;
         }
-
-        solution = x1;
     }
 
     @Override
@@ -56,6 +67,10 @@ public class PolynomialEquation implements EqSolver {
 
     @Override
     public void dispAns() {
-        System.out.println("解: " + solution);
+        System.out.print("解: ");
+        for (double solution : solutions) {
+            System.out.print(solution + " ");
+        }
+        System.out.println();
     }
 }
