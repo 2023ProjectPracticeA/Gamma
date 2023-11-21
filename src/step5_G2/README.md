@@ -2659,7 +2659,7 @@ Complex2 c2 = new Complex2(0.0, 1.0);
 c1.rotate(c2);
 ```
 
-## 静的 `nomalize` メソッド
+## 静的 `normalize` メソッド
 
 ### 概要
 
@@ -2684,10 +2684,10 @@ c1.rotate(c2);
 Complex2 c = new Complex2(1.0, 2.0);
 
 // c を正規化する
-Complex2 c2 = Complex2.nomalize(c);
+Complex2 c2 = Complex2.normalize(c);
 ```
 
-## `nomalizePure` メソッド
+## `normalizePure` メソッド
 
 ### 概要
 
@@ -2711,10 +2711,10 @@ Complex2 c2 = Complex2.nomalize(c);
 Complex2 c = new Complex2(1.0, 2.0);
 
 // c を正規化する
-Complex2 c2 = c.nomalizePure();
+Complex2 c2 = c.normalizePure();
 ```
 
-## `nomalize` メソッド
+## `normalize` メソッド
 
 ### 概要
 
@@ -2737,5 +2737,5 @@ Complex2 c2 = c.nomalizePure();
 Complex2 c = new Complex2(1.0, 2.0);
 
 // c を正規化する
-c.nomalize();
+c.normalize();
 ```
