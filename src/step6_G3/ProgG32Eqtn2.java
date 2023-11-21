@@ -16,11 +16,11 @@ public class ProgG32Eqtn2 {
 
         int degree = getValidatedNaturalNumberInput(scanner, "方程式の次数 >> ");
 
-        double a, b, c;
+        double a, b;
+        Complex2 aComplex, bComplex, cComplex;
 
         switch (degree) {
             case 1:
-                Complex2 aComplex, bComplex;
                 System.out.println("係数が複素数の一次方程式を解きます．");
                 System.out.println("係数を入力して下さい．");
                 System.out.println("x の係数");
@@ -48,10 +48,29 @@ public class ProgG32Eqtn2 {
             case 2:
                 System.out.println("二次方程式を解きます．");
                 System.out.println("係数を入力して下さい．");
-                a = getValidatedDoubleInput(scanner, "x² の係数 >> ", false);
-                b = getValidatedDoubleInput(scanner, "x の係数 >> ");
-                c = getValidatedDoubleInput(scanner, "定数項 >> ");
-                QuadEq quadEquation = new QuadEq(a, b, c);
+                System.out.println("x² の係数");
+                a = getValidatedDoubleInput(scanner, " 実部 >>");
+                b = getValidatedDoubleInput(scanner, " 虚部 >> ");
+                aComplex = new Complex2(a, b);
+
+                if (aComplex.equals(new Complex2(0))) {
+                    System.out.println("x² の係数が 0 です．");
+                    System.out.println("一次方程式ではありません．");
+                    System.out.println("デフォルト値 '1' を使用します。");
+                    aComplex = new Complex2(1);
+                }
+                
+                System.out.println("x の係数");
+                a = getValidatedDoubleInput(scanner, " 実部 >>");
+                b = getValidatedDoubleInput(scanner, " 虚部 >> ");
+                bComplex = new Complex2(a, b);
+
+                System.out.println("定数項");
+                a = getValidatedDoubleInput(scanner, " 実部 >>");
+                b = getValidatedDoubleInput(scanner, " 虚部 >> ");
+                cComplex = new Complex2(a, b);
+
+                ComplexQuadraticEquation quadEquation = new ComplexQuadraticEquation(aComplex, bComplex, cComplex);
                 quadEquation.solve();
                 System.out.println();
                 System.out.println("方程式：");
@@ -120,16 +139,36 @@ public class ProgG32Eqtn2 {
         String superscript = "";
         for (int i = 0; i < str.length(); i++) {
             switch (str.charAt(i)) {
-                case '0': superscript += "⁰"; break;
-                case '1': superscript += "¹"; break;
-                case '2': superscript += "²"; break;
-                case '3': superscript += "³"; break;
-                case '4': superscript += "⁴"; break;
-                case '5': superscript += "⁵"; break;
-                case '6': superscript += "⁶"; break;
-                case '7': superscript += "⁷"; break;
-                case '8': superscript += "⁸"; break;
-                case '9': superscript += "⁹"; break;
+                case '0':
+                    superscript += "⁰";
+                    break;
+                case '1':
+                    superscript += "¹";
+                    break;
+                case '2':
+                    superscript += "²";
+                    break;
+                case '3':
+                    superscript += "³";
+                    break;
+                case '4':
+                    superscript += "⁴";
+                    break;
+                case '5':
+                    superscript += "⁵";
+                    break;
+                case '6':
+                    superscript += "⁶";
+                    break;
+                case '7':
+                    superscript += "⁷";
+                    break;
+                case '8':
+                    superscript += "⁸";
+                    break;
+                case '9':
+                    superscript += "⁹";
+                    break;
             }
         }
         return superscript;
