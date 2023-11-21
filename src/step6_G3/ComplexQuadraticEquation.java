@@ -39,11 +39,12 @@ public class ComplexQuadraticEquation implements EqSolver {
         x1 = new Complex2(-1).timesPure(b).plusPure(discriminant.sqrt()).overPure(a.timesPure(2));
         x2 = new Complex2(-1).timesPure(b).minusPure(discriminant.sqrt()).overPure(a.timesPure(2));
 
-        // 解の値に基づいてsolutionTypeを設定
         if (x1.equals(x2)) {
-            if (x1.isPurelyImaginary()) {
+            if (x1.isPurelyReal()) {
                 solutionType = ComplexQuadraticEquationSolutionType.ONE_REAL_REPEATED_SOLUTION;
-            } else {
+            } else if (x1.isPurelyImaginary()) {
+                solutionType = ComplexQuadraticEquationSolutionType.ONE_PURELY_IMAGINARY_REPEATED_SOLUTION;
+            }else{
                 solutionType = ComplexQuadraticEquationSolutionType.ONE_COMPLEX_REPEATED_SOLUTION;
             }
         } else {
