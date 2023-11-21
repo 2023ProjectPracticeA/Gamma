@@ -73,34 +73,34 @@ public class ComplexQuadraticEquation implements EqSolver {
     public void dispAns() {
         switch (solutionType) {
             case TWO_REAL_SOLUTIONS:
-                System.out.println("解: 2 つの実数解です．");
+                System.out.println("解: 2 つの解です．");
                 x1.disp();
                 x2.disp();
                 break;
                 
             case TWO_COMPLEX_SOLUTIONS:
-                System.out.println("解: 2 つの複素数解です．");
+                System.out.println("解: 2 つの解です．");
                 x1.disp();
                 x2.disp();
                 break;
 
             case ONE_REAL_REPEATED_SOLUTION:
-                System.out.println("解: 1 つの実数解です．（重解）");
+                System.out.println("解: 重解です．");
                 x1.disp();
                 break;
 
             case ONE_PURELY_IMAGINARY_REPEATED_SOLUTION:
-                System.out.println("解: 1 つの純虚数解です．（重解）");
+                System.out.println("解: 重解です．");
                 x1.disp();
                 break;
 
             case ONE_COMPLEX_REPEATED_SOLUTION:
-                System.out.println("解: 1 つの複素数解です．（重解）");
+                System.out.println("解: 重解です．");
                 x1.disp();
                 break;
 
             case ONE_REAL_ONE_COMPLEX_SOLUTION:
-                System.out.println("解: 1 つの実数解と 1 つの複素数解です．");
+                System.out.println("解: 重解です．");
                 x1.disp();
                 x2.disp();
                 break;
