@@ -6,7 +6,7 @@ public class PolynomialEquation implements EqSolver {
     private double[] coefficients;
     private double[] solutions;
 
-    private static final double EPSILON = 1e-7;
+    private static final double EPSILON = 1;
 
     public PolynomialEquation(double[] coefficients) {
         this.coefficients = coefficients;
