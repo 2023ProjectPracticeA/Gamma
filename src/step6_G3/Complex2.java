@@ -10,7 +10,6 @@ import step6_G3C.Complex;
  * グループ      ： Γ
  */
 
-
 /**
  * 複素数の拡張を表す数を表すクラス
  */
@@ -777,6 +776,38 @@ public class Complex2 extends Complex {
     }
 
     /**
+     * 複素数の拡張を表す数を複素数とみなして平方根を返す
+     * 
+     * @param complex 複素数の拡張を表す数
+     * @return 複素数の拡張を表す数の平方根
+     */
+    public static Complex2 sqrt(Complex2 complex) {
+        // 極座標形式に変換
+        double r = Complex2.abs(complex);
+        double theta = Complex2.arg(complex);
+
+        // 平方根を計算
+        double sqrtR = Math.sqrt(r);
+        double halfTheta = theta / 2;
+
+        // 直交座標形式に戻す
+        double real = sqrtR * Math.cos(halfTheta);
+        double imag = sqrtR * Math.sin(halfTheta);
+
+        // 新しい複素数を生成して返す
+        return new Complex2(real, imag, 0, 0);
+    }
+
+    /**
+     * 複素数の拡張を表す数を複素数とみなして平方根を返す
+     * 
+     * @return 複素数の拡張を表す数の平方根
+     */
+    public Complex2 sqrt() {
+        return Complex2.sqrt(this);
+    }
+
+    /**
      * 複素数の拡張を表す数の内積を返す
      * 
      * @param complex 複素数の拡張を表す数
@@ -1214,4 +1245,3 @@ public class Complex2 extends Complex {
         return new Complex2(w, x, y, z);
     }
 }
-
