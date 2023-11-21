@@ -48,7 +48,19 @@ public class ProgG32Eqtn2 {
                 quadEquation.dispAns();
                 break;
             default:
-                System.out.println("無効な次数です．");
+                System.out.println("多項式方程式を解きます．");
+                System.out.println("係数を入力して下さい．");
+                double[] coefficients = new double[degree + 1];
+                for (int i = degree; i >= 0; i--) {
+                    coefficients[i] = getValidatedDoubleInput(scanner, "x" + toSuperscript(i) + " の係数 >> ");
+                }
+                PolynomialEquation polyEquation = new PolynomialEquation(coefficients);
+                polyEquation.solve();
+                System.out.println();
+                System.out.println("方程式：");
+                polyEquation.dispEq();
+                System.out.println();
+                polyEquation.dispAns();
                 break;
         }
 
@@ -89,5 +101,25 @@ public class ProgG32Eqtn2 {
             scanner.nextLine();
             return 1;
         }
+    }
+
+    public static String toSuperscript(int num) {
+        String str = String.valueOf(num);
+        String superscript = "";
+        for (int i = 0; i < str.length(); i++) {
+            switch (str.charAt(i)) {
+                case '0': superscript += "⁰"; break;
+                case '1': superscript += "¹"; break;
+                case '2': superscript += "²"; break;
+                case '3': superscript += "³"; break;
+                case '4': superscript += "⁴"; break;
+                case '5': superscript += "⁵"; break;
+                case '6': superscript += "⁶"; break;
+                case '7': superscript += "⁷"; break;
+                case '8': superscript += "⁸"; break;
+                case '9': superscript += "⁹"; break;
+            }
+        }
+        return superscript;
     }
 }
