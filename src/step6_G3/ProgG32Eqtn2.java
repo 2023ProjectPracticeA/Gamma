@@ -14,7 +14,6 @@ public class ProgG32Eqtn2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("方程式の次数 >> ");
         int degree = getValidatedNaturalNumberInput(scanner, "方程式の次数 >> ");
 
         double a, b, c;
