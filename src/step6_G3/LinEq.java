@@ -8,7 +8,6 @@ package step6_G3;
  * グループ      ： Γ
  */
 
-
 enum LinEqSolutionType {
     ONE_REAL_SOLUTION,
     NO_SOLUTION
@@ -16,11 +15,11 @@ enum LinEqSolutionType {
 
 public class LinEq implements EqSolver {
     private final int DEGREE = 1;
-    private double a, b;
+    private Complex2 a, b;
     private Complex2 x;
     private LinEqSolutionType solutionType;
 
-    public LinEq(double a, double b) {
+    public LinEq(Complex2 a, Complex2 b) {
         this.a = a;
         this.b = b;
         this.solutionType = LinEqSolutionType.NO_SOLUTION;
@@ -30,20 +29,14 @@ public class LinEq implements EqSolver {
 
     @Override
     public void solve() {
-        x = new Complex2(-b / a, 0);
+        x = new Complex2(-1);
+        x.times(b);
+        x.over(a);
         solutionType = LinEqSolutionType.ONE_REAL_SOLUTION;
     }
 
     public String toString() {
-        String s = a + "x ";
-
-        if (b < 0) {
-            s += "- " + Math.abs(b);
-        } else {
-            s += "+ " + b;
-        }
-
-        return s + " = 0";
+        return "(" + a.toString() + ")" + "x " + b.toString() + " = 0";
     }
 
     @Override
@@ -55,7 +48,11 @@ public class LinEq implements EqSolver {
     public void dispAns() {
         switch (solutionType) {
             case ONE_REAL_SOLUTION:
-                System.out.println("解: 一つの実数解です．");
+                if (x.isPurelyReal()) {
+                    System.out.println("解: 一つの実数解です．");
+                } else {
+                    System.out.println("解: 一つの複素数解です．");
+                }
                 x.disp();
                 break;
 
@@ -68,11 +65,11 @@ public class LinEq implements EqSolver {
         }
     }
 
-    public double getA() {
+    public Complex2 getA() {
         return a;
     }
 
-    public double getB() {
+    public Complex2 getB() {
         return b;
     }
 
@@ -88,12 +85,12 @@ public class LinEq implements EqSolver {
         return DEGREE;
     }
 
-    public void setA(double a) {
+    public void setA(Complex2 a) {
         this.a = a;
         solve();
     }
 
-    public void setB(double b) {
+    public void setB(Complex2 b) {
         this.b = b;
         solve();
     }
