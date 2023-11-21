@@ -146,7 +146,7 @@ public class Complex2 extends Complex {
             this.k = Double.NaN;
             return;
         }
-        setReal(real);
+        super.setReal(real);
     }
 
     /**
@@ -162,7 +162,7 @@ public class Complex2 extends Complex {
             this.k = Double.NaN;
             return;
         }
-        setImag(imag);
+        super.setImag(imag);
     }
 
     /**
@@ -213,7 +213,7 @@ public class Complex2 extends Complex {
             this.k = Double.NaN;
             return;
         }
-        set(real, imag);
+        super.set(real, imag);
         this.j = j;
         this.k = k;
     }
@@ -233,7 +233,7 @@ public class Complex2 extends Complex {
             k = Double.NaN;
             return;
         }
-        set(complex.getReal(), complex.getImag());
+        super.set(complex.getReal(), complex.getImag());
         j = complex.j;
         k = complex.k;
     }
