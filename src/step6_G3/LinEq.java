@@ -9,7 +9,7 @@ package step6_G3;
  */
 
 
-enum SolutionType {
+enum LinEqSolutionType {
     ONE_REAL_SOLUTION,
     NO_SOLUTION
 }
@@ -18,12 +18,12 @@ public class LinEq implements EqSolver {
     private final int DEGREE = 1;
     private double a, b;
     private Complex2 x;
-    private SolutionType solutionType;
+    private LinEqSolutionType solutionType;
 
     public LinEq(double a, double b) {
         this.a = a;
         this.b = b;
-        this.solutionType = SolutionType.NO_SOLUTION;
+        this.solutionType = LinEqSolutionType.NO_SOLUTION;
 
         solve();
     }
@@ -31,7 +31,7 @@ public class LinEq implements EqSolver {
     @Override
     public void solve() {
         x = new Complex2(-b / a, 0);
-        solutionType = SolutionType.ONE_REAL_SOLUTION;
+        solutionType = LinEqSolutionType.ONE_REAL_SOLUTION;
     }
 
     public String toString() {
@@ -80,7 +80,7 @@ public class LinEq implements EqSolver {
         return x;
     }
 
-    public SolutionType getSolutionType() {
+    public LinEqSolutionType getSolutionType() {
         return solutionType;
     }
 
