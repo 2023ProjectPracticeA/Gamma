@@ -60,7 +60,8 @@ public class ComplexQuadraticEquation implements EqSolver {
 
     public String toString() {
         String s = "(" + a.toString() + ")" + "x² ";
-        s += "(" + b.toString() + ")" + "x ";
+        s += "(" + b.toString() + ")" + "x +";
+        s += "(" + c.toString() + ")";
         return s + " = 0";
     }
 
