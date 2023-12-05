@@ -24,3 +24,7 @@
 !/src/step6_G3C/
 /src/step6_G3C/*
 !/src/step6_G3C/*.java
+
+!/src/step7_G4/
+/src/step7_G4/*
+!/src/step7_G4/*.java
