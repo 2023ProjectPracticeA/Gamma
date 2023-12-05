@@ -148,6 +148,43 @@ public class ProgG42Calc2 extends JFrame {
 
     public static void main(String[] args) {
         new ProgG41Calc1("Calculator");
+
+        Symbol one = new Symbol(true, "1");
+        Symbol two = new Symbol(true, "2");
+        Symbol three = new Symbol(true, "3");
+        Symbol four = new Symbol(true, "4");
+        Symbol five = new Symbol(true, "5");
+        Symbol six = new Symbol(true, "6");
+        Symbol seven = new Symbol(true, "7");
+        Symbol eight = new Symbol(true, "8");
+        Symbol nine = new Symbol(true, "9");
+        Symbol zero = new Symbol(true, "0");
+        Symbol pi = new Symbol(true, "pi");
+        Symbol e = new Symbol(true, "e");
+
+        Symbol plus = new Symbol(true, "+");
+        Symbol minus = new Symbol(true, "-");
+        Symbol times = new Symbol(true, "×");
+        Symbol divide = new Symbol(true, "÷");
+
+        Symbol lparen = new Symbol(true, "(");
+        Symbol rparen = new Symbol(true, ")");
+
+        Symbol sin = new Symbol(true, "sin");
+        Symbol cos = new Symbol(true, "cos");
+        Symbol tan = new Symbol(true, "tan");
+        Symbol exp = new Symbol(true, "exp");
+        Symbol log = new Symbol(true, "log");
+
+        Symbol epsilon = Symbol.getEpsilon();
+
+        Symbol number = new Symbol(false, "N");
+        Symbol expression = new Symbol(false, "E");
+        Symbol function = new Symbol(false, "F");
+        Symbol term = new Symbol(false, "T");
+
+        Production N = new Production(number, new Symbol[] { one, two, three, four, five, six, seven, eight, nine, zero, pi, e });
+        Production E = new Production(expression, new Symbol[] { term, plus, expression });
     }
 }
 
