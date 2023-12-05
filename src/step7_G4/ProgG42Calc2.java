@@ -180,16 +180,21 @@ public class ProgG42Calc2 extends JFrame {
         Symbol exp = new Symbol(true, "exp");
         Symbol log = new Symbol(true, "log");
 
-        Symbol epsilon = Symbol.getEpsilon();
-
         Symbol number = new Symbol(false, "N");
+        Symbol operator = new Symbol(false, "O");
         Symbol expression = new Symbol(false, "E");
         Symbol function = new Symbol(false, "F");
+        Symbol functionApplication = new Symbol(false, "A");
         Symbol term = new Symbol(false, "T");
 
         Production N = new Production(number,
                 new Symbol[] { one, two, three, four, five, six, seven, eight, nine, zero, pi, e });
-        Production E = new Production(expression, new Symbol[] { term, plus, expression });
+        Production O = new Production(operator, new Symbol[] { plus, minus, times, divide });
+        Production F = new Production(function, new Symbol[] { sin, cos, tan, exp, log });
+        Production A = new Production(functionApplication, new Symbol[] { function, lparen, expression, rparen });
+        Production T = new Production(term, new Symbol[] { number, expression, functionApplication });
+        Production E1 = new Production(expression, new Symbol[] { term, operator, term });
+        Production E2 = new Production(expression, new Symbol[] { lparen, term, rparen });
     }
 
     class CenteredComboBoxRenderer extends DefaultListCellRenderer {
