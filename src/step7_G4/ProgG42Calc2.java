@@ -187,7 +187,7 @@ public class ProgG42Calc2 extends JFrame {
     }
 
     public static void main(String[] args) {
-        new ProgG41Calc1("Calculator");
+        new ProgG42Calc2("Calculator");
 
         Symbol one = new Symbol(true, "1");
         Symbol two = new Symbol(true, "2");
