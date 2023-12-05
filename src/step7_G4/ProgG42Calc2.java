@@ -48,9 +48,9 @@ public class ProgG42Calc2 extends JFrame {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 String operator = (String) operatorBox.getSelectedItem();
                 if (operator.equals("sin") || operator.equals("cos") || operator.equals("tan") || operator.equals("ln") || operator.equals("log")) {
-                    txt2.setEnabled(false);
+                    txt1.setEnabled(false);
                 } else {
-                    txt2.setEnabled(true);
+                    txt1.setEnabled(true);
                 }
                 calculate();
             }
