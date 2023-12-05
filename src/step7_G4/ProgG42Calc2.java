@@ -8,9 +8,9 @@ import java.awt.Component;
 import java.awt.Font;
 
 /*
-* 課題番号 ： 第 10 回 演習問題 G4-1
+* 課題番号 ： 第 11 回 演習問題 G4-2
 * ファイル名 ： ProgG41Calc1.java
-* 作成年月日 ： 2023 年 11 月 28 日
+* 作成年月日 ： 2023 年 12 月 5 日
 * 学生番号・氏名： 
 * グループ ： Γ
 */
