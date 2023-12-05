@@ -96,6 +96,24 @@ public class ProgG42Calc2 extends JFrame {
         // 3. Add the button to the frame
         add(acButton, gbc);
 
+        // 1. Create the button
+        JButton exButton = new JButton("左右入れ替え");
+        exButton.setHorizontalAlignment(JButton.CENTER);
+
+        // 2. Add an action listener to the button
+        exButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear the text fields
+                String temp = txt1.getText();
+                txt1.setText(txt2.getText());
+                txt2.setText(temp);
+            }
+        });
+
+        // 3. Add the button to the frame
+        add(exButton, gbc);
+
         pack();
         setVisible(true);
 
