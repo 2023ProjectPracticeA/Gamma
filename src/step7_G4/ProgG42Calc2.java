@@ -55,10 +55,16 @@ public class ProgG42Calc2 extends JFrame {
 
         gbc.weightx = 0.0;
 
-        String[] operators = { "+", "-", "×", "÷" };
+        String[] operators = { "+", "-", "×", "÷", "sin", "cos", "tan", "ln", "log" };
         operatorBox = new JComboBox<String>(operators);
         operatorBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
+                String operator = (String) operatorBox.getSelectedItem();
+                if (operator.equals("sin") || operator.equals("cos") || operator.equals("tan") || operator.equals("ln") || operator.equals("log")) {
+                    txt2.setEnabled(false);
+                } else {
+                    txt2.setEnabled(true);
+                }
                 calculate();
             }
         });
@@ -94,6 +100,27 @@ public class ProgG42Calc2 extends JFrame {
         txt3 = new JTextField();
         txt3.setEditable(false);
         add(txt3, gbc);
+
+        gbc.weightx = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER; // Make the button take up the rest of the row
+
+        // 1. Create the button
+        JButton acButton = new JButton("AC");
+        acButton.setHorizontalAlignment(JButton.CENTER);
+
+        // 2. Add an action listener to the button
+        acButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear the text fields
+                txt1.setText("");
+                txt2.setText("");
+                txt3.setText("");
+            }
+        });
+
+        // 3. Add the button to the frame
+        add(acButton, gbc);
 
         pack();
         setVisible(true);
@@ -145,7 +172,16 @@ public class ProgG42Calc2 extends JFrame {
             } else {
                 d = d1 / d2;
             }
-        }
+        } else if (operator.equals("sin"))
+            d = Math.sin(d1);
+        else if (operator.equals("cos"))
+            d = Math.cos(d1);
+        else if (operator.equals("tan"))
+            d = Math.tan(d1);
+        else if (operator.equals("ln"))
+            d = Math.log(d1);
+        else if (operator.equals("log"))
+            d = Math.log10(d1);
 
         txt3.setText("" + d);
     }
