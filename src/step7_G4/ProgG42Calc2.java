@@ -159,15 +159,15 @@ public class ProgG42Calc2 extends JFrame {
                 d = d1 / d2;
             }
         } else if (operator.equals("sin"))
-            d = Math.sin(d1);
+            d = Math.sin(d2);
         else if (operator.equals("cos"))
-            d = Math.cos(d1);
+            d = Math.cos(d2);
         else if (operator.equals("tan"))
-            d = Math.tan(d1);
+            d = Math.tan(d2);
         else if (operator.equals("ln"))
-            d = Math.log(d1);
+            d = Math.log(d2);
         else if (operator.equals("log"))
-            d = Math.log10(d1);
+            d = Math.log10(d2);
 
         txt3.setText("" + d);
     }
