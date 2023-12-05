@@ -61,19 +61,6 @@ public class ProgG42Calc2 extends JFrame {
         gbc.weightx = 1.0;
 
         txt2 = new JTextField();
-        txt2.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                calculate();
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                calculate();
-            }
-
-            public void insertUpdate(DocumentEvent e) {
-                calculate();
-            }
-        });
         add(txt2, gbc);
 
         gbc.weightx = 0.0;
