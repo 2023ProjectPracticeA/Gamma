@@ -3,7 +3,7 @@ package step6_G3;
 import step6_G3C.Complex;
 
 /*
- * 課題番号      ： 第7回 演習問題G3-1
+ * 課題番号      ： 第8回 演習問題G3-1
  * ファイル名    ： Complex2.java
  * 作成年月日    ： 2023年11月14日
  * 学生番号・氏名：

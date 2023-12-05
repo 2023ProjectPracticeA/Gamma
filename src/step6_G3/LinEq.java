@@ -36,7 +36,7 @@ public class LinEq implements EqSolver {
     }
 
     public String toString() {
-        return "(" + a.toString() + ")" + "x " + b.toString() + " = 0";
+        return "(" + a.toString() + ")" + "x +" + b.toString() + " = 0";
     }
 
     @Override
