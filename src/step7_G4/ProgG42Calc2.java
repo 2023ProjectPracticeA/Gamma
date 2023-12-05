@@ -100,9 +100,8 @@ public class ProgG42Calc2 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Clear the text fields
-                txt1.setText("");
-                txt2.setText("");
-                txt3.setText("");
+                txt1.setText("0");
+                txt2.setText("0");
             }
         });
 
