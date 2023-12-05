@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.event.*;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Color;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -37,7 +38,7 @@ public class ProgG42Calc2 extends JFrame {
 
         gbc.gridwidth = 1;
 
-        txt1 = new JTextField();
+        txt1 = new JTextField("0");
         add(txt1, gbc);
 
         gbc.weightx = 0.0;
@@ -60,7 +61,7 @@ public class ProgG42Calc2 extends JFrame {
 
         gbc.weightx = 1.0;
 
-        txt2 = new JTextField();
+        txt2 = new JTextField("0");
         add(txt2, gbc);
 
         gbc.weightx = 0.0;
@@ -129,6 +130,7 @@ public class ProgG42Calc2 extends JFrame {
         } catch (NumberFormatException ex) {
             txt2.setText("0");
         }
+        txt3.setBackground(Color.WHITE); 
 
         operator = (String) operatorBox.getSelectedItem();
 
@@ -141,6 +143,7 @@ public class ProgG42Calc2 extends JFrame {
         else if (operator.equals("÷")) {
             if (d2 == 0) {
                 txt3.setText("error");
+                txt3.setBackground(Color.RED);
                 return;
             } else {
                 d = d1 / d2;
