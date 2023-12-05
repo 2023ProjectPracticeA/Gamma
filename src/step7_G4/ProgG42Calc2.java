@@ -42,9 +42,11 @@ public class ProgG42Calc2 extends JFrame {
             public void changedUpdate(DocumentEvent e) {
                 calculate();
             }
+
             public void removeUpdate(DocumentEvent e) {
                 calculate();
             }
+
             public void insertUpdate(DocumentEvent e) {
                 calculate();
             }
@@ -70,9 +72,11 @@ public class ProgG42Calc2 extends JFrame {
             public void changedUpdate(DocumentEvent e) {
                 calculate();
             }
+
             public void removeUpdate(DocumentEvent e) {
                 calculate();
             }
+
             public void insertUpdate(DocumentEvent e) {
                 calculate();
             }
@@ -183,17 +187,18 @@ public class ProgG42Calc2 extends JFrame {
         Symbol function = new Symbol(false, "F");
         Symbol term = new Symbol(false, "T");
 
-        Production N = new Production(number, new Symbol[] { one, two, three, four, five, six, seven, eight, nine, zero, pi, e });
+        Production N = new Production(number,
+                new Symbol[] { one, two, three, four, five, six, seven, eight, nine, zero, pi, e });
         Production E = new Production(expression, new Symbol[] { term, plus, expression });
     }
-}
 
-class CenteredComboBoxRenderer extends DefaultListCellRenderer {
-    @Override
-    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
-            boolean cellHasFocus) {
-        super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-        setHorizontalAlignment(CENTER);
-        return this;
+    class CenteredComboBoxRenderer extends DefaultListCellRenderer {
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                boolean cellHasFocus) {
+            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            setHorizontalAlignment(CENTER);
+            return this;
+        }
     }
 }
