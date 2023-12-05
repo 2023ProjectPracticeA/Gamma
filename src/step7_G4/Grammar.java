@@ -17,6 +17,10 @@ public class Grammar {
         productions.add(production);
     }
 
+    public List<Production> getProductions() {
+        return productions;
+    }
+
     public void calculateFirstSets() {
         // Initialize first sets for all symbols
         for (Production production : productions) {
