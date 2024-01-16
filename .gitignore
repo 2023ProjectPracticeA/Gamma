@@ -30,3 +30,7 @@
 !/src/step7_G4/
 /src/step7_G4/*
 !/src/step7_G4/*.java
+
+!/src/step9_G6/
+/src/step9_G6/*
+!/src/step9_G6/*.java
