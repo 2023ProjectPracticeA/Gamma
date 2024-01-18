@@ -26,7 +26,7 @@ jobs:
 
       - name: Cache google-java-format
         id: cache-gjf
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.google-java-format/
           key: google-java-format-1.18.1
